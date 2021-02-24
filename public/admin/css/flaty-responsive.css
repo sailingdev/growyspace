@@ -1,0 +1,362 @@
+@media (min-width: 1200px) {
+
+}
+
+@media (min-width: 980px) and (max-width: 1199px) {
+    .tile .img > [class*="fa fa-"] {
+        font-size: 50px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+
+}
+
+@media (max-width: 1199px) {
+    #nav-horizontal > li > a > i[class*="fa fa-"] {
+        display: none !important;
+    }
+    #nav-horizontal > li > a {
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+    }
+}
+
+@media (max-width: 979px) {
+    .mail-msg-header .msg-options {
+        display: block;
+        float: none;
+        margin-top: 10px;
+    }
+    .mail-msg-header .msg-options > i {
+        float: left;
+    }
+    .mail-msg-header .msg-options > br {
+        display: none;
+    }
+
+    .navbar-toggle.for-nav-horizontal {
+        display: inline-block;
+    }
+    .navbar {
+        padding-right: 0;
+    }
+    #nav-horizontal {
+        width: 100%;
+        padding: 9px;
+        position: absolute;
+        top: 40px;
+    }
+    #nav-horizontal.collapse {
+        display: none!important;
+    }
+    #nav-horizontal a {
+        font-size: 13px;
+    }
+    #nav-horizontal.navbar-collapse {
+        max-height: 10000%;
+    }
+    #nav-horizontal > li {
+        margin-bottom: 1px;
+        vertical-align: baseline;
+
+    }
+    #nav-horizontal > li [class*="fa fa-"] {
+        font-size: 18px;
+    }
+    #nav-horizontal > li > a > i[class*="fa fa-"] {
+        display: inline-block !important;
+        width: 30px;
+    }
+    #nav-horizontal > li.active > a > span {
+        font-weight: bold;
+    }
+    #nav-horizontal > li > a {
+        padding-top: 0;
+        line-height: 36px;
+    }
+    #nav-horizontal ul,
+    #nav-horizontal li {
+        width: 100%;
+    }
+    #nav-horizontal .dropdown-menu {
+        max-width: 100%;
+        position: static;
+        top: auto;
+        left: auto;
+        right: auto;
+        float: none;
+        box-shadow: none !important;
+        margin-top: 0;
+    }
+    #nav-horizontal .dropdown-menu > li {
+        padding-left: 0;
+        padding-right: 0;
+        display: block;
+        position: relative;
+    }
+    #nav-horizontal .dropdown-menu > li:last-child {
+        overflow: hidden;
+    }
+    #nav-horizontal .dropdown-menu li a {
+        padding: 7px 0 8px 42px;
+        line-height: 18px;
+    }
+    #nav-horizontal > li > .dropdown-menu .dropdown-menu li a {
+        padding-left: 60px;
+        font-size: 12px;
+    }
+    #nav-horizontal .dropdown-menu li a > [class*="fa fa-"] {
+        display: none;
+    }
+    #nav-horizontal > li > .dropdown-menu > li > ul {
+        position: static;
+        display: block;
+    }
+    #nav-horizontal .dropdown-menu > li:before {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 9px;
+        left: 25px;
+        top: 17px;
+        border-top: 1px dashed rgba(255,255,255,0.5);
+    }
+    #nav-horizontal > li > .dropdown-menu > li > ul > li:before {
+        width: 22px;
+    }
+    #nav-horizontal > li > .dropdown-menu > li:after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 22px;
+        width: 0;
+        border-left: 1px dashed rgba(255,255,255,0.5);
+    }
+    #nav-horizontal > li > a > b[class*="fa fa-"] {
+        float: right;
+        line-height: 33px;
+    }
+}
+
+@media (max-width: 767px) {
+    .hidden-inline-xs {
+        display: none !important;
+    }
+    body {
+        padding-right: 0;
+        padding-left: 0;
+    }
+    #theme-setting {
+        top: 45px;
+    }
+    #theme-setting > a,
+    #theme-setting ul {
+        background: rgba(255,255,255,1);
+    }
+    .search-results.search-results-advance li > .info > a + .url {display: none;}
+    .bootstrap-duallistbox-container .box2 {
+        margin-top: 20px;
+    }
+    .flaty-nav > li[class*="hidden-"] {
+        display: none !important;
+    }
+    .navbar-collapse .nav > li > a {
+        font-weight: normal;
+        margin-bottom: 0;
+        -webkit-border-radius: 0;
+           -moz-border-radius: 0;
+                border-radius: 0;
+    }
+    .nav-list > li.active > a:after {display: none;}
+    #sidebar {
+        width: 100%;
+        z-index: 989;
+    }
+    #sidebar:before {
+        display: none;
+    }
+    .user-profile img {margin-right: 0!important;}
+    .navbar-collapse .nav {
+        margin: 9px;
+    }
+    .nav-list > li {
+        margin-bottom: 1px;
+    }
+    .nav-list .search-form:hover {
+        cursor: text;
+    }
+    .nav-list .search-pan input {
+        width: 388px;
+        border-bottom: 0;
+    }
+
+
+
+
+
+    #main-content {margin-left: 0 !important;}
+    label {
+        font-weight: bold;
+        padding-bottom: 5px;
+    }
+    label.checkbox,
+    label.checkbox-inline,
+    label.radio,
+    label.radio-inline {
+        font-weight: normal;
+        white-space: nowrap;
+    }
+
+    .mail-pagination > span {
+        display: none;
+    }
+    .mail-toolbar > li {
+        padding-right: 10px;
+    }
+    .messages-input-form .buttons .btn {
+        margin-top: -2px;
+    }
+    .list-inline > li,
+    .breadcrumb > li,
+    .messages > li > div .time,
+    label,
+    .form-wizard .step .desc,
+    .box-title > .nav-tabs > li,
+    #form-login .goto-register,
+    .mail-msg-header .msg-sender-recver,
+    .mail-msg-header .msg-options,
+    .error-wrapper > p > a,
+    .tl-date-small > span,
+    .dataTables_paginate .pagination > li {
+        white-space: nowrap;
+    }
+
+    .daterangepicker {
+        width: 418px;
+    }
+    .daterangepicker.opensright .ranges,
+    .daterangepicker.opensright .calendar {
+        float: left;
+    }
+
+}
+
+@media (max-width: 480px) {
+    .btn-toolbar-gallery .btn-group {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+    .navbar .navbar-btn:focus,
+    .navbar .navbar-btn {
+        margin-left: 0;
+        margin-right: 15px;
+    }
+    #user_info {
+        display: none !important;
+    }
+    .nav-list .search-pan input {
+        width: 280px;
+    }
+    .navbar .navbar-brand {
+        max-width: 200px;
+        overflow: hidden;
+        padding-left: 10px;
+        padding-right: 5px;
+        font-size: 17px;
+    }
+    #theme-setting > ul > li {
+        width: 270px;
+    }
+    #theme-setting > ul > li > span {
+        font-size: 14px;
+        width: 60px;
+    }
+    #theme-setting ul.colors a {
+        width: 15px;
+        height: 15px;
+    }
+    #theme-setting > ul > li > a {
+        font-size: 14px;
+        margin-top: 0;
+    }
+    .page-title > div h1 {
+        font-size: 20px;
+    }
+    .page-title > div h1 > i {
+        width: 25px;
+    }
+    .page-title > div h4 {
+        font-size: 13px;
+        margin-left: 32px;
+    }
+    .box-title h3 {
+        font-size: 18px;
+    }
+    .error-page .error-wrapper {
+        width: 320px;
+        padding: 10px;
+    }
+    .error-page h4 {
+        font-size: 24px;
+    }
+    .error-page h4 > span {
+        font-size: 50px;
+        margin-top: -20px;
+    }
+    .error-page h5 {
+        font-size: 20px;
+    }
+    .error-page h5 > span {
+        font-size: 50px;
+    }
+
+    .fc-header .fc-header-right {
+        padding-top: 40px;
+        float: left;
+        margin-left: -153px;
+    }
+
+    .daterangepicker {
+        width: 210px;
+    }
+
+    .mail-nav {
+        width: 30px;
+    }
+    .mail-content {
+        margin-left: 40px;
+    }
+
+}
+
+@media (max-width: 320px) {
+    .navbar .navbar-btn:focus,
+    .navbar .navbar-btn {
+        margin-right: 5px;
+    }
+    .navbar .navbar-brand {
+        max-width: 190px;
+        min-width: 150px;
+        font-size: 15px;
+    }
+    .login-page .login-wrapper form,
+    .error-page .error-wrapper {
+        width: 300px;
+    }
+    .error-page h5 > span {
+        font-size: 45px;
+    }
+}
+
+
+@media (min-width: 980px) {
+
+}
+
+/* Fix static min-width in bs 3.0.2 */
+.container {
+    min-width: 100%;
+}

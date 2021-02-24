@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+
+RewriteEngine On
+
+	
+
+	RewriteCond %{HTTP_HOST} ^www.growyspace.com$ [NC]
+	RewriteRule ^(.*)$ https://growyspace.com/$1 [R=301,L]
+
+
+RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

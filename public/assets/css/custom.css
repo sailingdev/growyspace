@@ -1,0 +1,2410 @@
+
+/* Media Query for Mobile Devices */ 
+@media (max-width: 480px) { 
+  .navbar_custom{
+    padding: 0px;
+  }
+  .navbar_custom2{
+    padding: 0px;
+    border-left:0px;
+  }
+  .navbar-brand{
+    width: 80%;
+  }
+  .nav_img{
+    height:auto;
+  }
+
+  .astronaut {
+    background-image: url("../images/Astronaut.svg");
+    background-size: cover;
+    background-position: 95%;
+    width: 100%;
+    height: 455px;
+  }
+  .explore_circle {
+    background-image: url("../images/explore_search_mobile.png");
+    height:302px;
+    background-size: 100% 100%;
+  }
+  .explore_circle_area h1{
+    font-size: 1.5rem;
+    font-weight: bold;
+    width: 70%;
+    padding-top: 10%;
+  }
+
+  .explore_circle_area p{
+    width: 82%;
+  }
+  .astronaut_text{
+    display: none;
+  }
+  .astronaut_mobile_text{
+    display: block;
+  }
+  .astronaut_mobile_text h1{
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+  .astronaut_mobile_text p{
+    font-size: 1.2rem;
+  }
+  .opportunity_buttons{  
+    width: 100%;
+    margin: 0 auto;
+    text-align: left;
+    padding-top: 5%;
+    padding-bottom: 5%;
+  }
+  .opportunity_buttons h1{
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  .seekers_blog h1{
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  .signupButton{
+    width:60%;
+    height: 44px;
+    background: #3170af;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px #32275f;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 18px;
+    color: #ffffff;
+    transition: transform 0.2s;
+  }
+
+  .opportunityButton {
+    width: 100%;
+    height: 44px;
+    background: #3170af;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px #32275f;
+    border-radius: 10px;
+    font-family: "Montserrat";
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 18px;
+    color: #ffffff;
+    transition: transform 0.2s;
+  }
+  .talentButton {
+    width: 100%;
+    height: 44px;
+    background: #65c5bf;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px #32275f;
+    border-radius: 10px;
+    font-family: "Montserrat";
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 18px;
+    color: #ffffff;
+    transition: transform 0.2s;
+  }
+  .vector_seeker{
+    display: none;
+  }
+  .contact_text{
+    width: 65%;
+    padding: 12% 4% 4% 5%;
+  }
+  .contact_text p br{
+    display: none;
+  }
+  .contact_text h1{
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  .contact_img{
+    width: 35%;
+    text-align: center;
+  }
+  .contact_img img{
+    max-width: 100%;
+    width: 90px;
+    margin-top: 45%;
+  }
+  .footerMenu {
+    list-style-type: none;
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+    padding: 0px;
+  }
+  .footerMenu li {
+    display: block;
+    padding-left: 0px;
+    width: 100%;
+  }
+  .footerMenu li a{
+    color:#3170AF;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  .bottomFooter {
+    height: 44px;
+    font-family: "Montserrat";
+    text-align: center;
+    color: white;
+    background: #32275f;
+  }
+  .bottomFooter p{
+    margin: 0 auto;
+    padding-top: 9px;
+  }
+  /* profile */
+  .profile_img{
+    width: 30%;
+  }
+  .profile_name{
+    width: 70%;   
+    padding-left: 15px;
+  }
+  .round_change_bg {
+    background-image: url("../images/round_change_picture.svg");
+    background-size: cover;
+    height: 10%;
+  }
+  .profile_name h3, .profile_experience h3{
+    font-size: 1.4rem;
+  }  
+  .profile_pitch h3{
+    color:#1C3041;
+    font-size: 1.1rem;
+  }   
+  .profile_pitch .opt_roles_font{
+    color:#1C3041;
+    font-size: 0.9rem;
+  }  
+  .profile_exp_font{
+    font-size: 1.1rem;
+  }
+  .profile_name img{
+    width: 5%;
+  }
+  .profile_pitch{
+    /* margin-top: 0px !important; */
+  }
+  .myname{
+    font-size:1.5rem !important;  
+  }
+  .myprofessor{
+    font-size:1rem !important;  
+  }
+  .mypresentation{
+    font-size:1.5rem !important;
+  }
+  .mypictch{
+    font-size:1rem !important;
+  }
+  .myexperience{
+    font-size:1rem !important;
+  }
+  .myexp_company{
+    font-size:1rem !important;
+  }
+  .myexp_location{
+    font-size:0.875rem !important;
+  }
+  .mylocation{
+    display:none;
+  }
+  .opportunity_header p{
+    font-size:1rem
+  }
+  .card-header {
+    height: 40px;
+  }
+    
+  .select2-selection__choice__display {
+    font-size: 12px !important;
+    padding-top: 3px !important;
+  }
+  .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    padding: 3px 12px !important
+  }
+    .edit_opportunity_card_link_new img{
+        width: 15px;
+    }
+
+    .chip-custom{
+        background: #332960;
+        border-radius: 6px;
+        height: 25px;
+        font-weight: 500;
+        font-size: 15px;
+        line-height: 18px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        letter-spacing: -0.015em;
+        color: #FFFFFF;
+        padding:10px;
+    }
+    .button_create_opportunity{
+      font-size: 0.8rem;
+    }
+    .custom_endorse{
+      border-radius: 6px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    .explore_result.pl-3{
+      padding-left:0px !important;
+    }
+	.head_logo_area{		
+		padding: 0px 0% 2% 5%;
+  }
+  .head_logo_area_small{
+    padding: 0px 0% 3% 5%;
+  }
+  .head_logo_area_message{		
+		padding: 0px 0% 2% 9%;
+  }
+  .custom_pictures{
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .custom_pictures img{
+    width:100%;
+  }
+} 
+    
+/* Media Query for low resolution  Tablets, Ipads */ 
+@media (min-width: 481px) and (max-width: 767px) { 
+    .navbar_custom{
+      padding: 0px;
+    }
+    .navbar_custom2{
+      padding: 0px;
+      
+    }
+   
+    .nav_img{
+      height:auto;
+    }
+    .astronaut_text{
+      display: none;
+    }
+    .astronaut_mobile_text{
+      display: block;
+    }
+    .astronaut {
+      background-image: url("../images/Astronaut.svg");
+      background-size: cover;
+      background-position: 100%;
+      width: 100%;
+      height: 455px;
+    }
+    .astronaut_mobile_text h1{
+      font-size: 1.9rem;
+      font-weight: bold;
+    }
+    .astronaut_mobile_text p{
+      font-size: 1.2rem;
+    }
+    .explore_circle {
+      background-image: url("../images/explore_search_mobile.png");
+      height:302px;
+      background-size: 100% 100%;
+    }
+    .explore_circle_area h1{
+      font-size: 1.8rem;
+      font-weight: bold;
+      width: 70%;
+      padding-top: 10%;
+    }
+    .explore_circle_area p{
+      width: 80%;
+    }
+    .opportunity_buttons{  
+      width: 55%;
+      margin: 0 auto;
+      text-align: center;
+      padding-top: 5%;
+      padding-bottom: 5%;
+    }
+    .opportunityButton {
+      width: 100%;
+      height: 44px;
+      background: #3170af;
+      box-sizing: border-box;
+      box-shadow: 0px 4px 4px #32275f;
+      border-radius: 10px;
+      font-family: "Montserrat";
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 18px;
+      color: #ffffff;
+      transition: transform 0.2s;
+    }
+    .talentButton {
+      width: 100%;
+      height: 44px;
+      background: #65c5bf;
+      box-sizing: border-box;
+      box-shadow: 0px 4px 4px #32275f;
+      border-radius: 10px;
+      font-family: "Montserrat";
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 18px;
+      color: #ffffff;
+      transition: transform 0.2s;
+    }
+    .opportunity_buttons h1{
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    .seekers_blog h1{
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    .signupButton{
+      width:40%;
+      height: 44px;
+      background: #3170af;
+      box-sizing: border-box;
+      box-shadow: 0px 4px 4px #32275f;
+      border-radius: 5px;
+      font-weight: 600;
+      font-size: 18px;
+      color: #ffffff;
+      transition: transform 0.2s;
+    }
+    .vector_seeker{
+      display: none;
+    }
+    .contact_text{
+      width: 65%;
+      padding: 12% 4% 4% 5%;
+    }
+    .contact_text p br{
+      display: none;
+    }
+    .contact_text h1{
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .contact_img{
+      width: 35%;
+      text-align: center;
+    }
+    .contact_img img{
+      max-width: 100%;
+      width: 90px;
+      margin-top: 30%;
+    }
+    .footerMenu {
+      list-style-type: none;
+      margin: 0 auto;
+      width: 100%;
+      text-align: center;
+      padding: 0px;
+    }
+    .footerMenu li {
+      display: inline-block;
+      padding-left: 6%;
+    }
+    .footerMenu li a{
+      color:#3170AF;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    .bottomFooter {
+      height: 44px;
+      font-family: "Montserrat";
+      text-align: center;
+      color: white;
+      background: #32275f;
+    }
+    .bottomFooter p{
+      margin: 0 auto;
+      padding-top: 9px;
+    }
+      /* profile */
+    .profile_img{
+      width: 20%;
+    }
+    .profile_name{
+      width: 80%;     
+      padding-left: 15px;
+    }
+    .round_change_bg {
+      background-image: url("../images/round_change_picture.svg");
+      background-size: cover;
+      height: 10%;
+    }
+    .profile_name h3, .profile_experience h3{
+      font-size: 1.5rem;
+    }    
+	.profile_pitch h3{
+      font-size: 1.2rem;
+      color:#1C3041;
+    }
+	.profile_exp_font{
+      font-size: 1.2rem;
+    }
+	.profile_pitch .opt_roles_font{
+    font-size: 0.9rem;
+    color:#1C3041;
+	} 
+    .profile_name img{
+      width: 4%;
+    }
+    .myname{
+      font-size:1.5rem !important;  
+    }
+    .myprofessor{
+      font-size:1rem !important;  
+    }
+    .mypresentation{
+      font-size:1.5rem !important;
+    }
+    .mypictch{
+      font-size:1rem !important;
+    }
+    .myexperience{
+      font-size:1rem !important;
+    }
+    .myexp_company{
+      font-size:1rem !important;
+    }
+    .myexp_location{
+      font-size:0.875rem !important;
+    }
+    .mylocation{
+      font-size: 1rem !important;
+      padding: 0px;
+      margin: 0px;
+      padding-top: 0.6rem;
+    }  
+    .card-header {
+      height: 40px;
+    }
+    .chip-custom{
+      background: #332960;
+      border-radius: 6px;
+      height: 25px;
+      font-weight: 500;
+      font-size: 15px;
+      line-height: 18px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      letter-spacing: -0.015em;
+      color: #FFFFFF;
+      padding:10px;
+  }
+  .button_create_opportunity{
+    font-size: 0.8rem;
+  }
+  .custom_endorse{
+    border-radius: 6px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  .explore_result.pl-3{
+    padding-left:0px !important;
+  }
+	.head_logo_area{
+     padding: 0px 0% 2% 3.5%;
+  }
+  .head_logo_area_small{
+    padding: 0px 0% 2% 3.4%;
+  }
+  .head_logo_area_message{		
+		padding: 0px 0% 2% 5%;
+  }
+  .form-inline label {
+    display: block;
+  }
+  .custom_pictures{
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .custom_pictures img{
+    width:100%;
+  }
+} 
+    
+/* Media Query for Tablets Ipads portrait mode */ 
+@media (min-width: 768px) and (max-width: 1024px){ 
+  .navbar_custom{
+    padding: 0px 2% 0px 2%;
+    
+  }
+  .navbar_custom2{
+    padding: 0px 0px 0px 2%;
+    
+  }
+  .nav_img{
+    height:75px;
+  }
+  .astronaut_mobile_text{
+    display: none;
+  }
+  .opportunity_buttons{  
+    width: 55%;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 5%;
+    padding-bottom: 5%;
+  }
+  .opportunity_buttons h1{
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+  .seekers_blog{
+    padding-left: 2%;
+    padding-right: 2%;
+  }
+  .seekers_blog h1{
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  .vector_seeker{
+    position: absolute;
+    right: 5%;
+    width: 312px;
+    top: 5%;
+  }
+
+
+    .astronaut {
+      background-image: url("../images/Astronaut.svg");
+      background-size: cover;
+      background-position: 73%;
+      width: 100%;
+      height: 455px;
+      /* background-size: 100% 100% */
+    }
+    .astronaut_text{
+      color: #fff;
+      position: absolute;
+      left: 3%;
+      top: 33%;
+      text-align: left;
+      width: 42%;
+  
+    }
+    .astronaut_text h1{
+      font-size: 1.6rem;
+      font-weight: bold;
+    }
+    .explore_circle {
+      background-image: url("../images/explore_search_tablet.png");
+      height:302px;
+      background-size: 100% 100%;
+    }
+    .explore_circle_area{
+
+      padding: 1rem
+    }
+    .explore_circle_area h1{
+      font-size: 1.8rem;
+      font-weight: bold;
+      width: 40%;
+      padding-top: 3%;
+    }
+    .explore_circle_area p{
+      width: 39%;
+    }
+    
+  .opportunityButton {
+    width: 65%;
+    height: 44px;
+    background: #3170af;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px #32275f;
+    border-radius: 10px;
+    font-family: "Montserrat";
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 18px;
+    color: #ffffff;
+    transition: transform 0.2s;
+  }
+  .talentButton {
+    width: 65%;
+    height: 44px;
+    background: #65c5bf;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px #32275f;
+    border-radius: 10px;
+    font-family: "Montserrat";
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 18px;
+    color: #ffffff;
+    transition: transform 0.2s;
+  }
+
+  .signupButton{
+    width:20%;
+    height: 44px;
+    background: #3170af;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px #32275f;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 18px;
+    color: #ffffff;
+    transition: transform 0.2s;
+  }
+  .contact_text{
+    width: 55%;
+    padding: 4% 4% 4% 5%;
+  }
+  .contact_text h1{
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+  .contact_img{
+    width: 35%;
+    text-align: center;
+  }
+  .contact_img img{
+    max-width: 100%;
+    width: 40%;
+    margin-top: 10%;
+  }
+  .footerMenu {
+    list-style-type: none;
+    margin: 0 auto;
+    width: 520px;
+    text-align: center;
+    padding: 0px;
+  }
+  .footerMenu li {
+    display: inline-block;
+    width:130px;
+  }
+  .footerMenu li a{
+    color:#3170AF;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  .bottomFooter {
+    height: 44px;
+    font-family: "Montserrat";
+    text-align: center;
+    color: white;
+    background: #32275f;
+  }
+  .bottomFooter p{
+    margin: 0 auto;
+    padding-top: 9px;
+  }
+    /* profile */
+    .profile_img{
+      width: 20%;
+    }
+    .profile_name{
+      width: 80%;     
+      padding-left: 15px;
+    }
+    .profile_name h3, .profile_experience h3{
+      font-size: 1.6rem;
+    }    
+	.profile_pitch h3{
+      font-size: 1.3rem;
+      color:#1C3041;
+    }	
+	.profile_exp_font{
+      font-size: 1.3rem;
+    }
+	.profile_pitch .opt_roles_font{
+  font-size: 1rem;
+  color:#1C3041;
+	} 	
+    .profile_name img{
+      width: 4%;
+    }
+    .round_change_bg {
+      background-image: url("../images/round_change_picture.svg");
+      background-size: cover;
+      height: 10%;
+    }
+    .myname{
+      font-size:1.6rem !important;  
+    }
+    .myprofessor{
+      font-size:1.1rem !important;  
+    }
+    .mypresentation{
+      font-size:1.6rem !important;
+    }
+    .mypictch{
+      font-size:1.1rem !important;
+    }
+    .myexperience{
+      font-size:1.1rem !important;
+    }
+    .myexp_company{
+      font-size:1.1rem !important;
+    }
+    .myexp_location{
+      font-size:0.975rem !important;
+    }
+    .mylocation{
+      font-size: 1.1rem !important;
+      padding: 0px;
+      margin: 0px;
+      padding-top: 0rem;
+    }
+    .card-header {
+      height: 45px;
+    }
+    .chip-custom{
+      background: #332960;
+      border-radius: 6px;
+      height: 25px;
+      font-weight: 500;
+      font-size: 15px;
+      line-height: 18px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      letter-spacing: -0.015em;
+      color: #FFFFFF;
+      padding:10px;
+  }
+  .custom_endorse{
+    border-radius: 6px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  .button_create_opportunity{
+    font-size: 0.9rem;
+  }
+  .head_logo_area{
+    padding: 0px 0% 2% 10%;
+  }
+  .head_logo_area_small{
+    padding: 0px 0% 2% 18.7%;
+  }
+  .head_logo_area_message{		
+    padding: 0px 0% 2% 11.2%;
+  }
+  .form-inline label {
+    display: block;
+  }
+} 
+    
+/* Media Query for Laptops and Desktops */ 
+@media (min-width: 1025px) and (max-width: 1280px){ 
+  .navbar_custom{
+    padding: 0px 2% 0px 2%;
+  }
+  .navbar_custom2{
+    padding: 0px 0px 0px 2%;
+  }
+  .nav_img{
+    height:75px;
+  }
+  .astronaut {
+    background-image: url("../images/Astronaut.svg");
+    background-size: cover;
+    background-position: 73%;
+    width: 100%;
+    height: 595px;
+  }
+  .astronaut_text{
+    color: #fff;
+    position: absolute;
+    left: 9%;
+    top: 37%;
+    text-align: left;
+    width: 60%;
+  }
+
+  .astronaut_text h1{
+    font-size: 2.6rem;
+    font-weight: bold;
+  }
+  .astronaut_text p{
+    font-size: 1.2rem;
+  }
+  .astronaut_mobile_text{
+    display: none;
+  }
+  .explore_circle {
+    background-image: url("../images/explore_circle.png");
+    height:302px;
+    background-size: 100% 100%;
+  }
+  .explore_circle_area{
+
+    padding: 2.5rem 1rem 1rem 6rem;
+  }
+  .explore_circle_area h1{
+    font-size: 2.1rem;
+    font-weight: bold;
+    width: 42%;
+  }
+  .explore_circle_area p{
+    width: 40%;
+    font-size: 1.2rem;
+  }
+  .opportunity_buttons{  
+    width: 55%;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 5%;
+    padding-bottom: 5%;
+  }
+  .opportunity_buttons h1{
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+  .opportunityButton {
+    width: 50%;
+    height: 44px;
+    background: #3170af;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px #32275f;
+    border-radius: 10px;
+    font-family: "Montserrat";
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 18px;
+    color: #ffffff;
+    transition: transform 0.2s;
+  }
+  .talentButton {
+    width: 50%;
+    height: 44px;
+    background: #65c5bf;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px #32275f;
+    border-radius: 10px;
+    font-family: "Montserrat";
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 18px;
+    color: #ffffff;
+    transition: transform 0.2s;
+  }
+  .seekers_blog{
+    padding-left: 8%;
+    padding-right: 8%;
+  }
+  .seekers_blog h1{
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  .signupButton{
+    width:20%;
+    height: 44px;
+    background: #3170af;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px #32275f;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 18px;
+    color: #ffffff;
+    transition: transform 0.2s;
+  }
+  .vector_seeker{
+    position: absolute;
+    right: 5%;
+    width: 312px;
+    top: 5%;
+  }
+  .contact_text{
+    width: 60%;
+    padding: 4% 4% 4% 10%;
+  }
+  .contact_text h1{
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+  .contact_img{
+    width: 30%;
+    text-align: center;
+  }
+  .contact_img img{
+    max-width: 100%;
+    width: 40%;
+    margin-top: 10%;
+  }
+  .footerMenu {
+    list-style-type: none;
+    margin: 0 auto;
+    width: 560px;
+    text-align: center;
+    padding: 0px;
+  }
+  .footerMenu li {
+    display: inline-block;
+    width:130px;
+  }
+  .footerMenu li a{
+    color:#3170AF;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  .bottomFooter {
+    height: 44px;
+    font-family: "Montserrat";
+    text-align: center;
+    color: white;
+    background: #32275f;
+  }
+  .bottomFooter p{
+    margin: 0 auto;
+    padding-top: 9px;
+  }
+    /* profile */
+    .profile_img{
+      width: 20%;
+    }
+    .profile_name{
+      width: 80%;     
+      padding-left: 20px;
+    }
+    .round_change_bg {
+      background-image: url("../images/round_change_picture.svg");
+      background-size: cover;
+      height: 10%;
+    }
+    .profile_name h3, .profile_experience h3{
+      font-size: 1.6rem;
+    }    
+	.profile_pitch h3{
+      font-size: 1.3rem;
+      color:#1C3041;
+    }	
+	.profile_exp_font{
+      font-size: 1.3rem;
+    }
+	.profile_pitch .opt_roles_font{
+  font-size: 1rem;
+  color:#1C3041;
+	} 	
+    .profile_name img{
+      width: 4%;
+    }  
+    .myname{
+      font-size:2rem !important
+    }
+    .myprofessor{
+      font-size:1.675rem !important;  
+    }
+    .mypresentation{
+      font-size:1.625rem !important;  
+    }
+    .mypictch{
+      font-size:1.125rem !important;
+    }
+    .myexperience{
+      font-size:1.5rem !important;
+    }
+    .myexp_company{
+      font-size:1.25rem !important;
+    }
+    .myexp_location{
+      font-size:1rem !important;
+    }
+    .mylocation{
+      font-size: 1.15rem !important;
+      padding: 0px;
+      margin: 0px;
+      padding-top: 0rem;
+    }
+    .card-header {
+      height: 45px;
+    }
+    .opportunity_header p{
+      font-size:1.4rem
+    }
+    .button_create_opportunity{
+      font-size: 0.9rem;
+    }
+    .chip-custom{
+      background: #332960;
+      border-radius: 6px;
+      height: 25px;
+      font-weight: 500;
+      font-size: 15px;
+      line-height: 18px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      letter-spacing: -0.015em;
+      color: #FFFFFF;
+      padding:10px;
+  }
+  .head_logo_area{
+    padding: 0px 0% 2% 9.7%;
+  }
+  .head_logo_area_small{
+    padding: 0px 0% 2% 18.1%;
+  }
+  .head_logo_area_message{		
+    padding: 0px 0% 2% 11%;
+  }
+  .form-inline label {
+    display: block;
+  }
+} 
+    
+/* Media Query for Large screens */ 
+@media (min-width: 1281px) { 
+    .navbar_custom{
+      padding: 0px 2% 0px 2%;
+      height: 75px;
+    }
+    .navbar_custom2{
+      padding: 0px 0px 0px 2%;
+      height: 75px;
+    }
+    .nav_img{
+      height:75px;
+    }
+    .astronaut {
+      background-image: url("../images/Astronaut.svg");
+      background-position: 73%;
+      width: 100%;
+      height: 838px;
+      /* background-size: 100% 100% */
+    }
+    .astronaut_text{
+      color: #fff;
+      position: absolute;
+      left: 12%;
+      top: 44%;
+      text-align: left;
+      width: 50%;
+    }
+    .astronaut_text h1{
+      font-size: 2.8rem;
+      font-weight: bold;
+    }
+    .astronaut_text p{
+      font-size: 1.4rem;
+    }
+    .astronaut_mobile_text{
+      display: none;
+    }
+    .explore_circle {
+      background-image: url("../images/explore_circle.png");
+      height:428px;
+      background-size: 100% 100%;
+    }
+    .opportunity_buttons{  
+      width: 55%;
+      margin: 0 auto;
+      text-align: center;
+      padding-top: 4%;
+      padding-bottom: 4%;
+    }
+    .opportunity_buttons h1{
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    .opportunityButton {
+      width: 50%;
+      height: 44px;
+      background: #3170af;
+      box-sizing: border-box;
+      box-shadow: 0px 4px 4px #32275f;
+      border-radius: 10px;
+      font-family: "Montserrat";
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 18px;
+      color: #ffffff;
+      transition: transform 0.2s;
+    }
+    .talentButton {
+      width: 50%;
+      height: 44px;
+      background: #65c5bf;
+      box-sizing: border-box;
+      box-shadow: 0px 4px 4px #32275f;
+      border-radius: 10px;
+      font-family: "Montserrat";
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 18px;
+      color: #ffffff;
+      transition: transform 0.2s;
+    }
+    .explore_circle_area{
+  
+      padding: 2.5rem 1rem 1rem 6rem;
+    }
+    .explore_circle_area h1{
+      font-size: 2.3rem;
+      font-weight: bold;
+      width: 42%;
+    }
+    .explore_circle_area p{
+      width: 40%;
+      font-size: 1.2rem;
+    }
+    .opportunityButton {
+      width: 306px;
+      height: 44px;
+      background: #3170af;
+      box-sizing: border-box;
+      box-shadow: 0px 4px 4px #32275f;
+      border-radius: 10px;
+      font-family: "Montserrat";
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 18px;
+      color: #ffffff;
+      transition: transform 0.2s;
+    }
+    .talentButton {
+      width: 306px;
+      height: 44px;
+      background: #65c5bf;
+      box-sizing: border-box;
+      box-shadow: 0px 4px 4px #32275f;
+      border-radius: 10px;
+      font-family: "Montserrat";
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 18px;
+      color: #ffffff;
+      transition: transform 0.2s;
+    }
+    .seekers_blog{
+      padding-left: 10%;
+      padding-right: 10%;
+    }
+    .seekers_blog h1{
+      font-size: 1.8rem;
+      font-weight: bold;
+      text-align: center;
+    }
+    .signupButton{
+      width:179px;
+      height: 44px;
+      background: #3170af;
+      box-sizing: border-box;
+      box-shadow: 0px 4px 4px #32275f;
+      border-radius: 5px;
+      font-weight: 600;
+      font-size: 18px;
+      color: #ffffff;
+      transition: transform 0.2s;
+    }
+    .vector_seeker{
+      position: absolute;
+      right: 5%;
+      width: 312px;
+      top: 5%;
+    }
+    .contact_text{
+      width: 62%;
+      padding: 3% 4% 4% 11%;
+    }
+    .contact_text h1{
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    .contact_img{
+      width: 30%;
+      text-align: center;
+    }
+    .contact_img img{
+      max-width: 100%;
+      width: 150px;
+      margin-top: 5%;
+    }
+    .footerMenu {
+      list-style-type: none;
+      margin: 0 auto;
+      width: 560px;
+      padding:0px;
+      text-align: center;
+    }
+    .footerMenu li {
+      display: inline-block;
+      width: 130px;
+    }
+    .footerMenu li a{
+      color:#3170AF;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    .bottomFooter {
+      height: 44px;
+      font-family: "Montserrat";
+      text-align: center;
+      color: white;
+      background: #32275f;
+    }
+    .bottomFooter p{
+      margin: 0 auto;
+      padding-top: 9px;
+    }
+    /* profile */
+    .profile_img{
+      width: 137px;
+    }
+    .round_change_bg {
+      background-image: url("../images/round_change_picture.svg");
+      background-size: cover;
+      height: 10%;
+    }
+    .profile_name{
+      width: auto;     
+      padding-left: 24px;
+    }
+    .myname{
+      font-size:2.25rem !important;  
+    }
+    .myprofessor{
+      font-size:1.875rem !important;  
+    }
+    .mypresentation{
+      font-size:1.875rem !important;  
+    }
+    .mypictch{
+      font-size:1.125rem !important;
+    }
+    .myexperience{
+      font-size:1.5rem !important;
+    }
+    .myexp_company{
+      font-size:1.25rem !important;
+    }
+    .myexp_location{
+      font-size:1rem !important;
+    }
+    .mylocation{
+      font-size: 1.25rem !important;
+      padding: 0px;
+      margin: 0px;
+      padding-top: 1rem;
+    }
+    .color-black1{
+      color: #000;
+    }
+    .color-black2{
+      color:#1C3041;      
+    }
+    .profile_name h3, .profile_experience h3{
+      font-size: 1.6rem;
+    }    
+	.profile_pitch h3{
+      font-size: 1.3rem;
+      color:#1C3041;
+    }	
+	.profile_exp_font{
+      font-size: 1.3rem;
+    }
+	.profile_pitch .opt_roles_font{
+    font-size: 1.125rem;
+    color: #1C3041;
+	} 	
+    .profile_name img{
+      width: 12px;
+    } 
+    .card-header {
+      height: 60px;
+    }
+    .opportunity_header p{
+      font-size:1.4rem
+    }
+    .button_create_opportunity{
+      font-size: 1rem;
+    }
+
+      .edit_opportunity_card_link_new img{
+        width: 24.18px;height: 22.35px;margin-top: 7px;
+      }
+      .location_icon{
+        padding-top: 16px;
+        margin: 0px;
+      }
+      .location_icon img{
+        margin-top: -7px;
+      }
+      .open_to_work_location_icon{
+        margin: 0px;
+      }
+      .open_to_work_location_icon img{
+        margin-top: -7px;
+      }
+      .request_skills{
+        padding-bottom: 40px;
+      }
+
+
+      .chip {
+        display: inline-block;
+        height: 32px;
+        padding: 0 12px;
+        margin-right: 1rem;
+        margin-bottom: 0px;
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 32px;
+        color: rgba(0,0,0,0.6);
+        cursor: pointer;
+        background-color: #eceff1;
+        border-radius: 6px;
+        -webkit-transition: all .3s linear;
+        transition: all .3s linear;
+      }
+      
+      .left_back{
+        position: absolute;
+        left: 0;
+        margin-top: 0px;
+        margin-left: -137px;
+      }
+      .left_back img{
+        max-width: 114px;
+      }
+      .popover-body li{
+        list-style: none;
+      }
+      a.add_to_my_collection{
+        text-decoration: none;
+      }
+
+      
+      
+
+      
+      /* opent-to-work */
+
+
+      .padding-top-80{
+        padding-top: 80px;
+      }
+      .card-custom{
+        width: 888px;
+        margin: 0 auto;
+        background: #e1e3dd;
+        border: 0px;
+        padding-top: 60px;
+      }
+      .card-header-custom{
+        height: 78px;
+          padding: 0px;
+          border-radius: 10px 10px 0px 0px;
+      }
+      .card-header-custom h2{
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 44px;
+        line-height: 30px;
+        letter-spacing: -0.015em;
+        color: #FFFFFF;
+        margin-top: 24px;
+        margin-left: 18px;
+      }
+      .card-body-custom{
+        background: #FFFFFF;
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          border-radius: 0px 0px 10px 10px;
+          padding: 24px 18px 39px 18px;
+      }
+      .card-body-custom h4{
+        font-family: Montserrat;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 36px;
+          line-height: 36px;
+          letter-spacing: -0.015em;
+          color: #000000;
+          margin: 0px;
+          padding: 0px;
+      }
+      .card-body-custom h6{
+        padding-top: 16px;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 25px;
+        line-height: 30px;
+        letter-spacing: -0.015em;
+        color: #000000;
+        margin: 0px;
+      }
+      .cityLabel{
+        padding-left: 12px;
+        font-size: 25px;
+        line-height: 30px;
+        letter-spacing: -0.015em;
+      }
+      .descriptionLabel{
+        font-size: 18px;
+          line-height: 36px;
+          letter-spacing: -0.015em;
+          color: #000000;
+          padding-top: 16px;
+          font-weight: bold;
+          margin: 0px;
+      }
+      .phone_layout{
+        margin: 0px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+      }
+      .card-text{
+        font-size: 18px;
+        line-height: 30px;
+        letter-spacing: -0.015em;
+        color: rgba(0, 0, 0, 0.8);
+        margin: 0px;
+      }
+      .skillsLabel{
+        padding-top: 18px;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 30px;
+        letter-spacing: -0.015em;
+        color: #1C3041;
+        margin: 0px;
+        padding-bottom: 0px;
+      }
+      .chip-custom{
+        background: #332960;
+        border-radius: 6px;
+        height: 25px;
+        font-weight: 500;
+        font-size: 15px;
+        line-height: 18px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        letter-spacing: -0.015em;
+        color: #FFFFFF;
+      }
+     
+      .btn-msg-customs{
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 24px;
+        display: flex;
+        align-items: center;
+        text-align: right;
+        letter-spacing: -0.015em;
+        color: #000;
+        margin-left: 24px;
+      }
+      .padding-top-100{
+        padding-top:100px
+      }
+      
+
+      
+      .editable-click, a.editable-click, a.editable-click:hover {
+        text-decoration: none;
+        border-bottom: dashed 0px #0088cc;
+      }
+      .editable-controls input {
+        width: 100%
+      }
+      
+      .form-inline label {
+        display: block;
+      }
+      .custom_endorse{
+        height: 65px;
+      }
+      .undo_icon{
+        color: #90CDE1;float: right;
+      }
+      .opentowork_endorse{
+        padding-left:10px;
+      }
+      .alert {
+        margin-bottom: 0px;
+      }
+      
+
+
+      .send_opentowork{
+        margin: 0px !important;
+        border-bottom: 0.5px solid #000000;
+        font-size: 12px;
+        font-weight: 500;    
+        padding: 4px 8px 4px 8px;
+      }
+      .send_opentowork a{
+        text-decoration: none;
+        color: #000;
+      }
+
+      .search_user_block .request_skills{
+        padding-bottom: 0px;
+      }
+      
+
+      .left_filter_area{
+        height:172px;
+        background: #FFFFFF;
+        border-radius: 10px;
+        padding: 15px;
+      }
+      .left_filter_area h4{
+        font-weight: 600;
+        font-size: 30px;
+        padding-top: 10px;
+      }
+      .filter_result{
+        padding-left: 45px;
+        margin: 0 auto;
+        padding-right: 0px;
+      }
+      .filter_oppbox{
+        margin: 0px;
+        float:unset;
+        width:auto;
+        margin-bottom: 1rem;
+      }
+      .filter_optbox{
+        margin: 0px;
+        float:unset;
+        width:auto;
+        margin-bottom: 2rem;
+      }
+      .search_opt_rlt_card{
+        background: #3170AF;
+        padding: 0px;
+        height: 56px;
+        width: auto;
+      }
+      
+      .search_opt_card{
+        text-decoration: none;
+        padding-right: 24px;
+        float: right;
+      }
+      
+      .search_opt_card_body{
+        margin-top:10px;
+        padding-left: 18px;
+        padding-top: 18px;
+        background: #FFFFFF;
+        padding-bottom: 20px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 0px 0px 10px 10px;
+      }
+      
+      .search_opt_body_company{
+        margin: 0px;
+        font-size: 18px;
+        line-height: 30px;
+      }
+      .search_opp_rlt_card {
+        background: #65C5BF;
+        padding: 0px;
+        height: 56px;
+        width: auto;
+      }
+      .search_user_rlt_card{
+        background: #B7B1D8;
+        padding: 0px;
+        height: 56px;
+        width: auto;
+      }
+
+      .keyword_img{
+        position: absolute;
+        width: 25px;
+        left: 15px;
+        top: 10px;
+      }
+      .search_body{
+        padding:0px;
+      }
+      .other_urls{
+        padding-right: 18px; 
+        padding-top:27px;
+      }
+	.head_logo_area{
+    padding: 0px 0% 2% 9.4%;
+  }
+  .head_logo_area_small{
+    padding: 0px 0% 2% 17.8%;
+  }
+  .head_logo_area_message{		
+    padding: 0px 0% 2% 10.5%;
+  }
+  .custom_pictures{
+  }
+  .custom_pictures img{
+    width: 333px;
+  }
+} 
+/* exception */
+@media (max-width: 320px){
+  .astronaut {
+    background-position: 82%;
+  }
+  .astronaut_mobile_text h1{
+    font-size: 1.4rem;
+    font-weight: bold;
+  }
+  .astronaut_mobile_text p{
+    font-size: 1rem;
+  }
+  .opportunity_header p{
+    font-size: 0.8rem
+  }
+  .round_change_bg{
+    background-image: url("../images/round_change_picture.svg");
+    background-size: cover;
+    height: 70px;
+  }
+}
+@media (min-width: 321px) and (max-width: 414px){
+  .astronaut {
+    background-position: 93%;
+  }
+  .astronaut_mobile_text h1{
+    font-size: 1.6rem;
+    font-weight: bold;
+  }
+  .astronaut_mobile_text p{
+    font-size: 1.2rem;
+  }
+  .round_change_bg {
+    background-image: url("../images/round_change_picture.svg");
+    background-size: cover;
+    height: 10%;
+  }
+}
+@media (min-width: 1300px) {
+  .explore_circle_area {
+    padding: 2.5rem 1rem 1rem 9rem;
+  }
+  .explore_circle_area h1 {
+    font-size: 2.3rem;
+    font-weight: bold;
+    width: 40%;
+    padding-top: 5.5%;
+  }
+  .explore_circle_area p {
+    width: 36%;
+    font-size: 1.2rem;
+  }
+}
+@media (min-width: 1800px) {
+  .explore_circle_area {
+    padding: 7rem 1rem 1rem 9rem;
+}
+  .explore_circle_area h1 {
+    font-size: 2.3rem;
+    font-weight: bold;
+    width: 40%;
+    padding-top: 0px;
+  }
+  .explore_circle_area p {
+    width: 36%;
+    font-size: 1.2rem;
+  }
+  .astronaut_text {
+    color: #fff;
+    position: absolute;
+    left: 19.5%;
+    top: 44%;
+    text-align: left;
+    width: 50%;
+  }
+}
+@media (min-width: 2560px) {
+  .astronaut_text {
+    color: #fff;
+    position: absolute;
+    left: 26%;
+    top: 44%;
+    text-align: left;
+    width: 50%;
+  }  
+  .explore_circle_area {
+    padding: 2.5rem 1rem 1rem 8rem;
+  }
+}
+@media (max-width: 500px){
+  .display_image1{
+    display:none;
+  }
+  .display_image2{
+    display:block;
+    
+  }
+
+  .display_image2 img{
+    background: #fff;
+    padding: 10px 15px 10px 15px;
+    border-radius: 10px;
+    float:right;
+    margin-bottom: 10px;
+  }
+  .opt_align_mobile{
+    width: 100%;
+    text-align: center;
+    padding: 0px !important;
+    margin: 0px;
+  }
+  .opt_align_no_user_mobile{
+    width: 100%;
+    text-align: center;
+    padding: 0px !important;
+    margin: 0px;
+  }
+  .display_button1{
+    display:none;
+  }
+  .display_button2{
+    display:block;    
+  }
+  .show_mobile{
+    display:block;
+  }
+  .hide_mobile{
+    display:none;
+  }
+}
+@media (min-width: 501px){
+  .display_image1{
+    display:block;
+  }
+  .display_image2{
+    display:none;
+  }
+  .opt_align_mobile{
+    width: unset;
+    text-align: unset;
+    padding: unset;
+    margin: unset;
+  }
+  .opt_align_no_user_mobile{
+    width: unset;
+    text-align: right;
+    padding: unset;
+    margin: unset;
+  }
+  .display_button1{
+    display:flex;
+  }
+  .display_button2{
+    display:none;    
+  }
+  .show_mobile{
+    display:none;
+  }
+  .hide_mobile{
+    display:flex;
+  }
+
+}
+@media (max-width: 768px){
+  .show_tablet{
+    display:flex;
+  }
+  .hide_tablet{
+    display:none;
+  }
+  .news_img{
+    max-width: 100%;
+  }
+
+}
+@media (min-width: 769px){
+  .show_tablet{
+    display:none;
+  }
+  .hide_tablet{
+    display:flex;
+  }
+  .news_img{
+    max-width: 170px;
+  }
+}
+@media (max-width: 767px){
+  .show_navbar_inmobile{
+    display:none;
+  }
+  .hide_navbar_inmobile{
+    display:flex;
+  }
+  .nav-link.active {
+    background: rgba(196, 196, 196, 0.35);
+  }
+  .ended_align{
+    text-align: left;
+  }
+}
+@media (min-width: 768px){
+  .show_navbar_inmobile{
+    display:flex;
+  }
+  .hide_navbar_inmobile{
+    display:none !important
+  }
+  .nav-link.active {
+    background: rgba(196, 196, 196, 0.35);
+    height: 75px;
+  }
+  .ended_align{
+    text-align: center;
+  }
+}
+@media (max-width: 1024px){
+  .changePicture{
+    position: absolute;
+    left: 0px;
+  }
+  .matching_title1{
+    width:100%;
+    text-align: left;
+  }
+  .matching_option1{
+    width: 100%;
+    margin: 0 auto !important;
+  }
+  .matching_title{
+    width:100%;
+    text-align: left;
+  }
+  .matching_option{
+    width: 100%;
+    margin: 0 auto !important;
+  }
+}
+@media (min-width: 1025px){
+  .changePicture{
+    position: absolute;
+    left: 0px;
+    height: 100%;
+  }
+  .matching_title1{
+    width: 30%;
+    text-align: left;
+    margin:auto;
+  }
+  .matching_title{
+    width: 60%;
+    text-align: left;
+    margin:auto;
+  }
+  .matching_option1{
+    width: 70%;
+    margin: 0 auto !important;
+  }
+  .matching_option{
+    width: 40%;
+    margin: 0 auto !important;
+  }
+}
+@media (max-width: 999px){
+  .hiddenState_opt_mobile{
+    display:flex
+  }
+  .hiddenState_opt_desktop{
+    display:none
+  }
+}
+@media (min-width: 1000px){
+  .hiddenState_opt_mobile{
+    display:none
+  }
+  .hiddenState_opt_desktop{
+    display:flex
+  }
+}
+body {
+  font-family: "Montserrat";
+  height: 100%;
+}
+html {
+  height: 100%;
+}
+.navbar-light .navbar-nav .nav-link {
+  color: #202020
+}
+.navbar-light .navbar-toggler {
+  border-color: transparent;
+}
+
+  .container{
+    max-width: 1490px;
+    margin: 0 auto !important;
+  }
+
+
+  .bg-gray{
+    background: #e1e3dd;
+  }
+  .margin-0-auto{
+    margin:0 auto;
+  }
+  .padding-0{
+    padding: 0px;
+  }
+  .main_area{
+    min-height: 1000px;
+    position: relative;
+  }
+
+  .bgcolor-blue{
+    background: #3170AF;
+  }
+  .bgcolor-collection{
+    background: #332960;
+  }
+  .bgcolor-sky{
+    background:#65C5BF
+  }
+  .textcolor-white{
+    color: #fff;
+  }
+  
+  .textcolor-blue{
+   color: #219BC4 !important;
+  }
+  .card-header{
+    border-radius: 10px 10px 0px 0px;
+  }
+  .select2-selection__choice{
+    background-color: #332960 !important;
+    border-radius: 6px !important;
+  }
+  
+  .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    background-color: transparent;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 8px 12px;
+    float: right;
+  }
+  .select2-container--default .select2-selection--multiple .select2-selection__choice__remove span{
+    cursor: pointer;
+    color: #fff;
+    border: 1px solid #AEAEAE;
+    border-radius: 30px;
+    background: #332960;
+    font-size: 21px;
+    font-weight: bold;
+    display: inline-block;
+    line-height: 0px;
+    padding: 9px 3px;
+  }
+  .select2-selection__choice__display{
+    font-weight: 500;
+      font-size: 20px;
+      line-height: 24px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      letter-spacing: -0.015em;
+      color: #FFFFFF;
+      padding-top: 6px;
+      padding-left: 10px !important;
+  
+  }
+  .select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover, .select2-container--default .select2-selection--multiple .select2-selection__choice__remove:focus {
+    background-color: #332960;
+  }
+  .select2-results__options li{
+    margin-bottom: 0px;
+  }
+   .select2-selection__rendered{
+    margin:0px;
+  }
+  li.select2-selection__choice{
+    margin:0px
+  }
+  .opc_explore .select2-container--default .select2-selection--multiple{
+    border-radius: 0px;
+  }
+  #opportunity ul .bgcolor-purple, #opentowork ul .bgcolor-purple {
+    background: #332960;
+    color: #fff;
+  }
+.opp_btn_list{
+  /* background: linear-gradient(0deg, #FFFFFF, #FFFFFF), #32275F;
+  border-bottom: 1px solid #000000;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
+  box-shadow: 0px 7px 4px -5px rgba(0, 0, 0, 0.25);
+}
+.seekers{
+  position: relative;
+  width:100%;
+  /* background: linear-gradient(0deg, #FFFFFF, #FFFFFF), #32275F;
+  border-bottom: 1px solid #000000;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
+  box-shadow: 0px 7px 4px -5px rgba(0, 0, 0, 0.25);
+}
+.seekers_blog{
+  padding-top:4%;
+  padding-bottom: 4%;
+}
+.color-5{
+  background:#65C5BF;
+}
+.contacts{
+  height: 202px;
+  background: #737b97;
+  display: flex;
+  color: white;
+}
+/* .nav-link.active{
+  background: rgba(196, 196, 196, 0.35);
+} */
+
+.head_logo{
+  float: left;
+  background: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding-top: 9px;
+  padding-left: 18px;
+  padding-right: 18px;
+}
+.head_logo h3{
+  padding-left: 15px;
+  font-weight: bold;
+}
+.card-header{
+  border-radius: 10px 10px 0px 0px;
+}
+.color-user{
+  background: #B7B1D8 !important;
+  color:#fff;
+}
+.color-oppportunity{
+  background: #3170AF !important;
+  color:#fff;
+}
+.color-opentowork{
+  background: #65C5BF !important;
+  color:#fff;
+}
+.color-experience{
+  background: #332960 !important;
+  color:#fff;
+}
+.color-delete{
+  color:#CA7073;
+}
+.w-65{
+  width:65% !important;
+}
+.w-90{
+  width:90% !important;
+}
+.w-10{
+  width:10% !important;
+}
+.w-35{
+  width:35% !important;
+}
+.w-40{
+  width:40% !important;
+}
+.w-60{
+  width:60% !important;
+}
+.w-33{
+  width:33.3% !important;
+}
+.button_create_opportunity {
+  color: white;
+  background: #3170AF;
+  box-shadow: 0px 4px 4px rgba(50, 39, 95, 0.5);
+  border-radius: 10px;
+  width: 100%;
+}
+.cusor_pointer{
+  cursor: pointer;
+}
+
+.popup_header {
+  height: 100px;
+  background-color: #332960;
+  width: 100%;
+  padding-top: 30px;
+  padding-left: 10px;
+  position: relative;
+  font-family:Montserrat;
+  
+}
+.popup_header h1 {
+  color: white;
+  font-size: 40px;
+  text-align: left;
+  margin-left: 17px;
+  font-family:Montserrat;
+}
+
+.settingsButton {
+  width: 96%;
+  height: 44px;
+  box-sizing: border-box;
+  box-shadow: 0px 1px 1px #32275f;
+  border-radius: 10px;
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  color: #ffffff;
+  transition: transform 0.2s;
+}
+.btn-delete-color{
+  background: #CA7073;
+}
+.btn-hide-color{
+  background: #219BC4;
+}
+.btn-noti_email-color{
+  background: #146c43;
+}
+
+.has-search .form-control {
+  padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color:#332960;
+}
+.has-location .form-control-marker {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #332960
+}
+.has-location .form-control {
+  padding-left: 2.375rem;
+}
+.has-location .select2-container--default.select2-container--focus .select2-selection--multiple {
+  padding-left: 2.375rem;
+}
+.has-location .select2-selection__choice__display {
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: unset;
+  color: #FFFFFF;
+  padding-top: 2px;
+  padding-left: 10px !important;
+}
+.has-location .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+  background-color: transparent;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0px 12px;
+  float: right;
+  margin-top: 0px;
+}
+.has-location .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
+}
+.has-location .select2-container{
+  width: 100% !important;
+}
+.has-location .select2-container--default .select2-selection--multiple{
+  border-radius: 0px;
+  padding-left: 2.375rem;
+}
+.search_btn{
+  color: #fff;
+  border-radius: 0px 10px 10px 0px;
+}
+.search_btn:hover {
+  color: #fff;
+  border-radius: 0px 10px 10px 0px;
+}
+.search_input{
+  border-radius: 10px 0px 0px 10px;
+}
+.explore_card{
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px rgba(51, 41, 96, 0.5);
+}
+.collection_item_block.active {
+  background: #EAEAEA !important;
+  border: 4px solid #E0D5D5;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(51, 41, 96, 0.5);
+  border-radius: 10px;
+}
+
+.card-block {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 0px 0px 10px 10px;
+  background: #fff;
+}
+.hidden {
+  display: none !important;
+}
+.left_back{
+  background: #e1e3dd;
+}
+.btn:hover {
+  /* color: #fff !important; */
+}
+.footer-custom{
+  background: linear-gradient(0deg, #FFFFFF, #FFFFFF), #32275F;
+  border: 1px solid #000000;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  height:273px;
+}
+.color_a{
+  color:#3170AF !important;
+}
+.color_contact{
+  color:#90CDE1 !important;
+}
+.inline_error {
+  color: #a94442;
+  text-align: center;
+  padding:0px;
+  margin:0px;
+}
+.editable-click, a.editable-click, a.editable-click:hover {
+  text-decoration: none;
+  border-bottom: dashed 0px #0088cc;
+}
+.ellipsis{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+button{
+  border:0px;
+}
+.padding-49{
+  padding:4.9px;
+}
+.card{
+    border: 0px;
+}
+.bgcolor-e1e3dd{
+  background-color: #e1e3dd !important;
+}
+.height_ellipsis {
+  height: 250px;
+  line-height: 20px;
+  word-break: break-all;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -ms-box-orient: vertical;
+  box-orient: vertical;
+  -webkit-line-clamp: 5;
+  -moz-line-clamp: 5;
+  -ms-line-clamp: 5;
+  line-clamp: 5;
+  overflow: hidden;
+}
+.footer_area{
+  background: #fff;
+  display: flex;
+  color: #AFB6B9;
+  max-width: 1490px;
+  margin: 0 auto;
+}
+.footer_img{
+  padding: 4% 4% 4% 11%;
+}
+.footer_social{
+  background:#fff; padding-top:4%;
+}
+.footer_ul li a{
+  color: #AFB6B9;
+  font-weight: bold;
+  text-decoration: none;
+}
+.overlay{
+  position: absolute;top: 0;right: 0;bottom: 0;left: 0;
+}
+#loading {
+    background: url('../images/ajax-loader.gif') no-repeat right 50%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    margin: 0 auto;
+    height: 100px;
+    width: 100px;
+    z-index: 9999999;
+    background-size: contain;
+}
+.send_angle{
+
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  font-size: 2.1rem;
+}
+.hidden_opc{
+  padding: .35rem 1.25rem;
+}
+.hiddenState_opt_title{
+  width:30%; 
+  margin: auto;
+}
+.hiddenState_opt_icon{
+  width:48%
+}
+.hiddenState_opt_cont{  
+  background:#EAEAEA;    
+  border-radius: 0px 10px 10px 0px;
+}
+.hiddenState_opt_cont p{
+  color:#1C3041;
+  font-size:0.875rem;    
+  padding: 0px;
+  margin: 0px; 
+  padding-left: 3%;
+  padding-right: 3%;
+  margin-top: 4%;
+}
+.hiddenState_opt_edit{
+  width:22%;
+  margin: auto;
+}
