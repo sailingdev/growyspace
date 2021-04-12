@@ -17,7 +17,7 @@
 		<li class="">
 			<a href="{{ URL::to('/growyspace-admin/opentowork_cards/') }}">
 			<i class="fa fa-tasks"></i>
-			<span>Open-to-work cards</span>
+			<span>Professional cards</span>
 			</a>
 		</li>
 		<li class="">

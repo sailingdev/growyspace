@@ -164,6 +164,15 @@ Route::get('/opentowork_guide' ,'InfoController@opentowork_guide');
 Route::get('/news' ,'NewsController@index');
 Route::get('/news/{id}' ,'NewsController@get');
 
+
+
+Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
+Route::get('/callback/{provider}', 'SocialController@callback');
+Route::post('/ajax/upload_attachment' ,'AjaxController@upload_attachment');
+Route::get('/download/{file}' ,'AjaxController@download_attachment');
+Route::get('/exportOPW/{id}' ,'AjaxController@exportOPW');
+Route::get('/exportOPP/{id}' ,'AjaxController@exportOPP');
+
 Route::prefix('growyspace-admin')->group(function() {
 
   //------------ ADMIN LOGIN SECTION ------------

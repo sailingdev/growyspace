@@ -18,7 +18,7 @@
             2) Find an opportunity by searching in <a href="/search" style="color:#219BC4;">Explore</a>
             </h4>
             <h4 class="mt-5">
-            3) Press “Send my open-to-work” then either select one of your open-to-work cards or create a new one to send
+            3) Press “Send my professional card” then either select one of your Professional cards or create a new one to send
             </h4>
             <!-- <p style="width: 90%;margin: 0 auto;">a. If you’ve already created an Open to work card, select and existing one</p>
             <p class="pb-3" style="width: 90%;margin: 0 auto;">b. Or create a new one</p>

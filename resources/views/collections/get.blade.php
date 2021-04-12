@@ -44,7 +44,7 @@
 							<div class="card-header pl-4 pr-4 color-user h-100">
 								<div class="row m-0 p-0 opportunity_header">
 									<p class="w-50 m-0 p-0 font-weight-bold">{{$collection_name}}</p>
-									<p class="w-50 m-0 p-0 text-right font-weight-bold ellipsis" onclick="toggleEllipsis(this)"><span class="fa fa-map-marker"></span><span class="pl-2">{{$u->city}}, {{$countries[$u->country_code]}}</span></p>
+									<p class="w-50 m-0 p-0 text-right location_font ellipsis" onclick="toggleEllipsis(this)"><span class="fa fa-map-marker"></span><span class="pl-2">{{$u->city}}, {{$countries[$u->country_code]}}</span></p>
 									
 								</div>
 							</div>
@@ -106,7 +106,7 @@
 							<div class="card-header pl-4 pr-4 color-oppportunity h-100">
 								<div class="row m-0 p-0 opportunity_header">
 									<p class="w-50 m-0 p-0 font-weight-bold">{{$collection_name}}</p>
-									<p class="w-50 m-0 p-0 text-right font-weight-bold ellipsis" onclick="toggleEllipsis(this)"><span class="fa fa-map-marker"></span><span class="pl-2">{{$opc->city}}, {{$countries[$opc->country_code]}}</span></p>
+									<p class="w-50 m-0 p-0 text-right location_font ellipsis" onclick="toggleEllipsis(this)"><span class="fa fa-map-marker"></span><span class="pl-2">{{$opc->city}}, {{$countries[$opc->country_code]}}</span></p>
 									
 								</div>
 							</div>
@@ -115,12 +115,12 @@
 									<div class="row m-0 p-0 ">
 										<div class="w-100 profile_pitch">
 											<h3 class="font-weight-bold">{{ strlen($opc->title) > 150 ? substr($opc->title,0,150).'...' : $opc->title }}</h3>
-											<p>{{ strlen($opc->company) > 150 ? substr($opc->company,0,150).'...' : $opc->company }}</p>
+											<p>{{ $opc->company }}</p>
 											
 										</div>
 									</div>
 									<div class="w-100 profile_pitch">
-										<h3 class="font-weight-bold opt_roles_font">Requested skills</h3>
+										<h3 class="font-weight-bold opt_roles_font">Technical skills</h3>
 										<ul class="list-unstyled list-inline margin-0-auto mb-0 request_skills">
 											@foreach(json_decode($opc->fields,true) as $oc)
 											<li class="list-inline-item mr-0 pr-2 pb-2" style="margin:0px">
@@ -149,7 +149,7 @@
 										<a href="/cards/{{ $opc->id }}"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2 opt_align_mobile"  style="color: #219BC4">Read more</a>
 
 										<div>
-											<a href="#"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2 opt_align_mobile" data-toggle="dropdown"  style="color: #219BC4">Send my open-to-work</a>
+											<a href="#"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2 opt_align_mobile" data-toggle="dropdown"  style="color: #219BC4">Send my professional card</a>
 											<div class="dropdown-menu dropdown-menu-right"  style="padding: 0px;">
 												@if(count($opt_list) > 0) 
 													<ul style="margin: 0px;padding: 0px;">
@@ -177,7 +177,7 @@
 							<div class="card-header pl-4 pr-4 color-opentowork h-100">
 								<div class="row m-0 p-0 opportunity_header">
 									<p class="w-50 m-0 p-0 font-weight-bold">{{$collection_name}}</p>
-									<p class="w-50 m-0 p-0 text-right font-weight-bold ellipsis" onclick="toggleEllipsis(this)"><span class="fa fa-map-marker"></span><span class="pl-2">{{$opc->city}}, {{$countries[$opc->country_code]}}</span></p>
+									<p class="w-50 m-0 p-0 text-right location_font ellipsis" onclick="toggleEllipsis(this)"><span class="fa fa-map-marker"></span><span class="pl-2">{{$opc->city}}, {{$countries[$opc->country_code]}}</span></p>
 									
 								</div>
 							</div>

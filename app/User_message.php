@@ -73,7 +73,7 @@ class User_message extends Model
 						$opentowork_html = (String) view('opp_card_item',[
 							'opc' => $opc,
 							'user_id' => $user_id,
-							'name' => 'Open-to-work',
+							'name' => 'Professional card',
 							'url' => 'opentowork',
 							'msg_state' => $msg_state,
 							'countries' => $countries
@@ -156,6 +156,26 @@ class User_message extends Model
 						// $msg = str_replace("{NEWS".$news_id."}","",$msg);
 					}
 			}	
+			//attachment
+			$attach_html = false;
+			if (strpos($msg, '{ATACHMENT}') !== false) {
+				$msg = str_replace("{ATACHMENT}", "", $msg);
+				$spilt = explode('#',$msg);
+				$news_id = 1;
+				$opc = News_card::find($news_id);
+				$attach_html = (String) view('opp_card_item',[
+					'opc' => $opc,
+					'original_name' => $spilt[0],
+					'real_name' => $spilt[1],
+					'user_id' => $user_id,
+					'name' => 'Attachment',
+					'url' => 'download',
+					'msg_state' => $msg_state,
+					'countries' => $countries
+				]);	
+				$msg = '';	
+			}
+						
 			$am_pm_time = date('h:i A  |  F d', strtotime($message->created_at));
 			if($message->to_id == $user_id) { //receive
 				
@@ -224,6 +244,10 @@ class User_message extends Model
 					}
 					$messages_html .= '<li class="agent incoming_opp_card clearfix">'.$news_html.'</li>';
 				}
+				if($attach_html !== false) {
+					
+					$messages_html .= '<li class="agent incoming_opp_card clearfix">'.$attach_html.'</li>';
+				}
 				
 				if($msg){
 
@@ -290,6 +314,10 @@ class User_message extends Model
 						$messages_html .= '</li>';
 					}
 					$messages_html .= '<li class="admin outgoing_opp_card clearfix">'.$news_html.'</li>';
+				}
+				if($attach_html !== false) {
+					
+					$messages_html .= '<li class="admin outgoing_opp_card clearfix">'.$attach_html.'</li>';
 				}
 				
 				if($msg){

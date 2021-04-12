@@ -18,7 +18,7 @@
             How to find talent
             </h3>
             <h4 class="mt-5 mb-3">
-            To find users, or Open to work cards (online CV) go to <a href="/search" style="color:#219BC4;">Explore</a> and search
+            To find users, or Professional cards (online CV) go to <a href="/search" style="color:#219BC4;">Explore</a> and search
             </h4>
             <h3 class="mt-5 pt-5 font-weight-bold">
             Need help as an opportunity seeker?

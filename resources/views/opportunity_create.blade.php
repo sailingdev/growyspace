@@ -47,14 +47,39 @@
                         </div>    
                         
                         <div class="form-group form-inline p-0 m-0 mt-3">
-                            <label class="col-md-3 p-0" for="profession">Requested Skills:</label>
+                            <label class="col-md-3 p-0" for="profession">Technical skills:</label>
                             <select data-tags="true"  multiple class="opc_fields col-md-9 form-control mt-2">
                             @foreach($opc_fields as $oc => $val)
                                 <option value="{{$val}}" {{ isset($opc_fields_db) && count($opc_fields_db) > 0 && in_array($val, $opc_fields_db) ? 'selected' : '' }}>{{$val}}</option>
                             @endforeach
                             </select>
                             
-                        </div>                                            
+                        </div>   
+                        <div class="form-group form-inline p-0 m-0 mt-2">
+                            <label class="col-md-3 p-0" for="salary">Salary:</label>
+                            <input class="form-control col-md-9 opc_salary" type="text" autocomplete="no" value="{{ $opc && $opc->salary ? $opc->salary : '' }}">
+						</div>               
+                        <div class="form-group form-inline p-0 m-0 mt-2">
+                            <label class="col-md-3 p-0" for="Perks">Perks:</label>
+                            <textarea class="col-md-12 form-control profile_presentation opc_perks mt-2">{{ $opc && $opc->perks ? nl2br($opc->perks)  : '' }}</textarea>
+                        </div>                             
+                        <div class="form-group p-0 m-0 mt-2">
+                            <label class="w-100 p-0" for="profession">Remote Position:</label>
+                            
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="remote_position" id="inlineRadio1" value="1" {{$opc &&  $opc->remote == 1 ? 'checked'  : '' }}>
+                                <label class="form-check-label" for="inlineRadio1">Remote</label>
+                                
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="remote_position" id="inlineRadio2" value="2" {{$opc &&  $opc->remote == 2 ? 'checked'  : '' }}>
+                                <label class="form-check-label" for="inlineRadio2">Onsite</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="remote_position" id="inlineRadio3" value="3" {{ $opc && $opc->remote == 3 ? 'checked'  : '' }}>
+                                <label class="form-check-label" for="inlineRadio3">Flexible</label>
+                            </div>
+                        </div>                             
                     </div>
                 </div>
 

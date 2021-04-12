@@ -56,16 +56,26 @@
 						<div id="messages_block" class="messages_block msg_block_custom">
 							
 						</div>
-						<div class="messages_input_block">
+            <div class="messages_input_block" >
+              <div class="input-group bg-white" style="border:1px solid #ccc; border-bottom:0px;">
+                <a class="msg_attach2 cusor_pointer"><img src="/assets/images/message_pin.png" data-to-id="{{ $user->id }}" class=" pl-3 pt-2 pb-2 pr-2"> Attach</a>
+              </div>
+            </div>
+						<div class="messages_input_block" >
 							
-							<div class="input-group mb-3 bg-white" style="border:1px solid;">
+							<div class="input-group mb-3 bg-white" style="border:1px solid #ccc">
 							<textarea value="{{ $default_msg }}" data-to-id="{{ $user->id }}" style="padding-right:5%;border:0px;    margin-top: 7px; height: 45px;" class="message_input form-control msg_input_custom" placeholder="Type a message..." >{{ $default_msg }}</textarea>
-							<!-- <img src="/assets/images/message_pin.png" data-to-id="{{ $user->id }}" class="send_message msg_attach"> -->
+						
               <!-- <img src="/assets/images/message_pin.png" data-to-id="{{ $user->id }}" style="opacity:0;" class="send_message msg_attach"> -->
               
                <a data-to-id="{{ $user->id }}"  class="send_message msg_attach cusor_pointer">Send</a>
 							</div>
 						</div>
+            <!-- <div style="width:5%;float:left;    padding-top: 10px;padding-left: 10px;">
+              <img src="/assets/images/message_pin.png" data-to-id="{{ $user->id }}" class="msg_attach2">
+            </div> -->
+            <input type="file" name="attachment_files" hidden value="" data-to-id="{{ $user->id }}" />
+            
 					@endif
 				</div>			
         		<div class="mt-5"></div>
@@ -84,10 +94,6 @@
   z-index: 1;
   cursor: pointer;
 }
-
-
-
-
 
 .message_loader {
   border: 16px solid #f3f3f3;
@@ -279,8 +285,10 @@
   padding: 10px;
 }
 .msg_attach:hover, .msg_attach:focus, .msg_attach:active{
-  background: #B0EAFD;
-  color:#000000 !important;
+  /* background: #B0EAFD;
+  color:#000000 !important; */
+  background: #EAEAEA !important;
+  color: #fff !important;
 }
 
 .msg_name{

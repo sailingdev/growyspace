@@ -406,19 +406,19 @@ $(document).ready(function() {
 		var dataid = $(this).attr('data-id');
 		var product = $('.add_edit_opentowork_card').attr('data-owner-product');
 		$.confirm({
-			title: state + ' Open-to-work',
-			content: 'Confirm '+state+' Open-to-work?',
+			title: state + ' Professional card',
+			content: 'Confirm '+state+' Professional card?',
 			buttons: {
 				confirm: function () {
 					if(product != 0){
 						if(state == "Unhide"){
 							$('#hideOpentowork').attr('data-title', 'Hide');
 							$('#hideOpentowork').attr('data-refer-id', '0');
-							$('#hideOpentowork').html('Hide open-to-work');
+							$('#hideOpentowork').html('Hide Professional card');
 						}else{
 							$('#hideOpentowork').attr('data-title','Unhide');
 							$('#hideOpentowork').attr('data-refer-id','1');
-							$('#hideOpentowork').html('Unhide open-to-work');
+							$('#hideOpentowork').html('Unhide Professional card');
 						}
 						return true;						
 					}
@@ -450,11 +450,11 @@ $(document).ready(function() {
 								if(state == "Unhide"){
 									$('#hideOpentowork').attr('data-title', 'Hide');
 									$('#hideOpentowork').attr('data-refer-id', '0');
-									$('#hideOpentowork').html('Hide open-to-work');
+									$('#hideOpentowork').html('Hide Professional card');
 								}else{
 									$('#hideOpentowork').attr('data-title','Unhide');
 									$('#hideOpentowork').attr('data-refer-id','1');
-									$('#hideOpentowork').html('Unhide open-to-work');
+									$('#hideOpentowork').html('Unhide Professional card');
 								}
 								// setTimeout(function() {
 								// 	window.location.reload();
@@ -1634,8 +1634,10 @@ $(document).ready(function() {
 		var opc_fields = $('.opc_fields').val();
 		var opc_title = $('.opc_title').val();
 		var opc_company = $('.opc_company').val();
+		var opc_salary = $('.opc_salary').val();
+		var opc_perks = $('.opc_perks').val();
 		
-
+		var remote = $("input[name='remote_position']:checked").val();
 		
 		var opc_country_code = $('.opc_country_code').val();
 		var opc_city = $('.opc_city').val();
@@ -1701,6 +1703,9 @@ $(document).ready(function() {
 		formData.append('opc_fields', opc_fields);
 		formData.append('opc_title',  opc_title);
 		formData.append('opc_company',  opc_company);
+		formData.append('opc_perks',  opc_perks);
+		formData.append('opc_salary',  opc_salary);
+		formData.append('remote',  remote);
 		formData.append('opc_city',  opc_city);
 		formData.append('opc_description',  opc_description);
 		formData.append('opc_country_code',  opc_country_code);
@@ -2906,7 +2911,7 @@ $(document).ready(function() {
 		var button_text = this_.html();
 				
 		$.confirm({
-			title: 'Delete open-to-work',
+			title: 'Delete Professional card',
 			content: 'Confirm deletion?',
 			buttons: {
 				confirm: function () {
@@ -2925,7 +2930,7 @@ $(document).ready(function() {
 								
 								$.notify({
 									// options
-									message: 'Open-to-work was deleted successfully.' 
+									message: 'Professional card was deleted successfully.' 
 								},{
 									// settings
 									type: 'success',
@@ -3189,7 +3194,7 @@ $(document).ready(function() {
 		success: function(data) {
 			$.notify({
 				// options
-				message: 'Open-to-work was updated in the collection successfully'
+				message: 'Professional card was updated in the collection successfully'
 			},{
 				// settings
 				type: 'success',
@@ -4006,6 +4011,9 @@ $('.opentowork_endorse').click(function(){
 	var logined = $(this).attr('data-logined');
 	var optid = $(this).attr('data-opt-id');
 
+	if(logined == 0){	
+		return false;
+	}
 	$.ajax({
 		type:'POST',
 		url:base_url + 'ajax/endorse_opentowork',
@@ -4120,4 +4128,121 @@ $('.matching_filter').on("change", function () {
 	}
 	return false;
 	
+	
 }
+
+$('.msg_attach2').click(function() {
+
+	$('input[name=attachment_files]').click();
+});
+
+$('input[name=attachment_files]').change(function() {
+	var formData = new FormData();
+	
+	if ($.trim($(this).val()) != '') {
+		var uLogo    = $(this)[0];
+		var file = uLogo.files[0];
+		var fileType = file.type;	
+		var filename = file.name;
+		// const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
+		// if (!validImageTypes.includes(fileType)) {
+		// 	alert("Please select the correct image");
+		// 	return false;
+		// }	
+
+		//file size check.
+		if (file) {
+			formData.append('attachment_files', file);
+		}
+		
+		formData.append('_token', $('._token').val());
+
+		var to_id = $(this).attr('data-to-id');
+		var last_msg_id = $('.message_item_row:last-child').attr('data-msg-id');
+
+		$.ajax({
+			async: true,
+			url: base_url + 'ajax/upload_attachment',
+			dataType: "json",
+			type : "POST",
+			data : formData,
+			contentType : false,
+			cache : false,
+			processData : false,
+			xhr: function() {
+				var xhr = new window.XMLHttpRequest();
+				xhr.upload.addEventListener("progress", function(evt) {
+					if (evt.lengthComputable) {
+						/*var percentComplete = evt.loaded / evt.total;
+						percentComplete = parseInt(percentComplete * 100);
+						$('.take_photo_progress_bar').removeClass('hidden');
+						$('.take_photo_progress_bar div').css('width', percentComplete + '%').html(percentComplete + '%');
+						if (percentComplete === 100) {
+
+						}*/
+					}
+				}, false);
+				return xhr;
+			},
+			success : function(data)
+			{
+				if (data.complete) {
+					var filename2 = data.filename;
+					
+					if($.trim(filename2) != '') {
+						$.ajax({
+							type:'POST',
+							url:base_url + 'ajax/send_message',
+							dataType:'json',
+							data:{
+								to_id:to_id,
+								last_msg_id:last_msg_id,
+								message:"{ATACHMENT}"+ filename + "#" + filename2,
+								_token: $('._token').val()
+							},
+							cache: false,
+							success:function(data) {
+								if (data.complete) {
+									var messages_html = data.messages_html;
+									var con_html = data.con_html;
+									$('.messages_block').append(messages_html);
+									$('.message_input').val('');
+									$('.messages_conversation_items_block').html(con_html);
+									//scrollToBottom('messages_block');
+									$(".messages_block").animate({ scrollTop: $('.messages_block').height() + 100000}, 500);
+								
+								}
+							}
+						});
+					}
+				}
+			},
+			error: function(xhr, errStr) {
+
+			}
+		});
+	}
+			
+	return false;
+});
+
+// function downloadAttachment(file) {
+
+// 	// top.location.href = 'http://new_working.localhost/uploads/attachment_files/Sourcer%20pro.pdf';
+// 		$.ajax({
+// 			type:'POST',
+// 			url:base_url + 'ajax/download_attachment',
+// 			dataType:'json',
+// 			data:{
+// 				file:file,
+// 				_token: $('._token').val()
+// 			},
+// 			cache: false,
+// 			success:function(data){
+// 				if(data.complete){
+// 				}
+// 			}
+// 		});
+	
+	
+// }

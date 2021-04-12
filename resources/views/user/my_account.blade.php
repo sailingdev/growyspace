@@ -30,12 +30,16 @@
 					
 					<div class="row m-0 p-0 hide_mobile">
 						@if($user->looking_for == 1)
-						<span class="m-0 text-right " style="padding: 14px 24px 14px 15px;position: absolute;right:0px; top:0px;height: 54px;background: #65C5BF;float:right;">
+						<span class="m-0 text-right " style="padding: 14px 24px 14px 15px;position: absolute;right:0px; top:0px;height: 54px;background: #65C5BF;float:right;border-radius: 0px 3px 0px 0px;">
 							<img src="/assets/images/Icon-opportunity seeker.svg" style="width:30px;"><span class="pl-2">Opportunity Seeker</span>
 						</span>
 						@elseif($user->looking_for == 2)
-						<span class="m-0 text-right " style="padding: 14px 24px 14px 15px;position: absolute;right:0px; top:0px;height: 54px;background: #3170AF;float:right;">
+						<span class="m-0 text-right " style="padding: 14px 24px 14px 15px;position: absolute;right:0px; top:0px;height: 54px;background: #3170AF;float:right;border-radius: 0px 3px 0px 0px;">
 							<img src="/assets/images/Icon-talent seeker.svg" style="width:30px;"><span class="pl-2">Talent Seeker</span>
+						</span>
+						@elseif($user->looking_for == 3)
+						<span class="m-0 text-right " style="padding: 14px 24px 14px 15px;position: absolute;right:0px; top:0px;height: 54px;background: #EAEAEA;float:right;color:#000000;border-bottom:1px solid #B7B1D8;border-radius: 0px 3px 0px 0px;">
+							<img src="/assets/images/Icon-news.svg" style="width:30px;"><span class="pl-2">Sourcer Pro</span>
 						</span>
 						@endif
 					</div>
@@ -50,6 +54,11 @@
 						<p class="w-75 m-0 pl-1 pull-left text-left ellipsis" onclick="toggleEllipsis(this)"><span class="fa fa-map-marker"></span><span class="pl-2">{{$user->city}}, {{$countries[$user->country_code]}}</span></p>
 						<p class="w-25 m-0 p-0 pull-left text-right">
 							<img src="/assets/images/Icon-talent seeker.svg" style="width:30px;">
+						</p>
+						@elseif($user->looking_for == 3)
+						<p class="w-75 m-0 pl-1 pull-left text-left ellipsis" onclick="toggleEllipsis(this)"><span class="fa fa-map-marker"></span><span class="pl-2">{{$user->city}}, {{$countries[$user->country_code]}}</span></p>
+						<p class="w-25 m-0 p-0 pull-left text-right">
+							<img src="/assets/images/Icon-news.svg" style="width:30px;">
 						</p>
 						@endif
 					</div>
@@ -90,13 +99,17 @@
 
 						<div class="row m-0 p-0 mt-3">
 							<div class="w-100 m-0 p-0">	
-							@if(!$third_person)						
+							@if($logged_in_user_id && !$third_person)						
 								<a href="/user/{{ $user->id }}/edit" class="textcolor-blue pull-right pl-2"><img src="/assets/images/Icon-edit.svg" alt="Edit" style="width:25px;"><span class="pl-2">Edit</span></a>
-							@endif
 								<a href="#" data-pk="{{ $user->id }}" data-type="checklist" data-source="{{ URL::to('/') }}/ajax/get_user_collection_list/{{$user->id}}"  data-title="Select collections" class="user_collection editable editable-click text-decoration-none textcolor-blue pull-right pr-2 pl-2" data-placement="bottom"   data-original-title="" title="" style="color: #219BC4">Add to collection</a>
-								<!-- <a href="/findmatch/{{ $user->id }}" class="text-decoration-none textcolor-blue pull-right pr-2 pl-2" data-placement="bottom" style="color: #219BC4">Find matches</a> -->
-							@if($third_person)	
+							@endif
+							@if($logged_in_user_id && $third_person)	
+								<a href="#" data-pk="{{ $user->id }}" data-type="checklist" data-source="{{ URL::to('/') }}/ajax/get_user_collection_list/{{$user->id}}"  data-title="Select collections" class="user_collection editable editable-click text-decoration-none textcolor-blue pull-right pr-2 pl-2" data-placement="bottom"   data-original-title="" title="" style="color: #219BC4">Add to collection</a>
 								<a href="/messages/{{ $user->id }}" class="text-decoration-none textcolor-blue float-right pr-2">Send a message</a>
+							@elseif(!$logged_in_user_id && $third_person)	
+								
+								<a href="#" data-toggle="modal" data-target="#login_modal" class="user_collection  text-decoration-none textcolor-blue pull-right pr-2 pl-2" style="color: #219BC4">Add to collection</a>
+								<a href="#" data-toggle="modal" data-target="#login_modal" class="text-decoration-none textcolor-blue float-right pr-2">Send a message</a>
 							@endif	
 							</div>
 						</div>
@@ -125,7 +138,7 @@
 					<div class="row m-0 p-0 opportunity_header">
 						<p class="w-50 m-0 p-0 font-weight-bold">Opportunity</p>
 						<!-- <p class="w-65 m-0 p-0 text-right font-weight-bold"><img src="/assets/images/location2.png"><span class="pl-2">{{ (isset($countries[$opc->country_code]) ? $countries[$opc->country_code] : $opc->country_code).', '.$opc->city }}</span></p> -->
-						<p class="w-50 m-0 p-0 text-right font-weight-bold ellipsis" onclick="toggleEllipsis(this)"><span class="fa fa-map-marker"></span><span class="pl-2">{{ (isset($countries[$opc->country_code]) ? $countries[$opc->country_code] : $opc->country_code).', '.$opc->city }}</span></p>
+						<p class="w-50 m-0 p-0 text-right location_font ellipsis" onclick="toggleEllipsis(this)"><span class="fa fa-map-marker"></span><span class="pl-2">{{ (isset($countries[$opc->country_code]) ? $countries[$opc->country_code] : $opc->country_code).', '.$opc->city }}</span></p>
 						
 					</div>
 				</div>
@@ -134,14 +147,14 @@
 						<div class="row m-0 p-0 ">
 							<div class="w-100 profile_pitch">
 								<h3 class="font-weight-bold ellipsis" onclick="toggleEllipsis(this)">{{ $opc->title }}</h3>
-								<p class="ellipsis" onclick="toggleEllipsis(this)">{{ strlen(nl2br(strip_tags($opc->description))) > 75 ? substr(nl2br(strip_tags($opc->description)),0,75).'...' : nl2br(strip_tags($opc->description)) }}</p>
+								<p style="font-size: 15px;color:#1C3041;">{{ $opc->company }}</p>
 								
 							</div>
 						</div>
-
+						
 						<div class="row m-0 p-0 ">
 							<div class="w-100 profile_pitch">
-								<h3 class="font-weight-bold opt_roles_font">Requested skills</h3>
+								<h3 class="font-weight-bold opt_roles_font">Technical skills</h3>
 								<ul class="list-unstyled list-inline margin-0-auto mb-0 request_skills">
 									@foreach(json_decode($opc->fields,true) as $oc)
 									<li class="list-inline-item mr-0 pr-2 pb-2" style="margin:0px">
@@ -159,9 +172,9 @@
 							<a href="/cards/{{ $opc->id }}/edit" class="textcolor-blue pull-right pl-2"><img src="/assets/images/Icon-edit.svg" alt="Edit" style="width:25px;"><span class="pl-2">Edit</span></a>
 						@endif
 							<a href="/cards/{{ $opc->id }}"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2"  style="color: #219BC4">Read more</a>
-							@if($third_person)	
+							@if($logged_in_user_id && $third_person)	
 								
-									<a href="#"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2" data-toggle="dropdown"  style="color: #219BC4">Send my open-to-work</a>
+									<a href="#"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2" data-toggle="dropdown"  style="color: #219BC4">Send my professional card</a>
 									<div class="dropdown-menu dropdown-menu-right"  style="padding: 0px;">
 										@if(count($opentowork_card) > 0) 
 											<ul style="margin: 0px;padding: 0px;">
@@ -177,6 +190,10 @@
 
 									<a href="#" data-pk="{{ $opc->id }}" data-type="checklist" data-source="{{ URL::to('/') }}/ajax/get_opc_collection_list/{{$opc->id}}"  data-title="Select collections" class="opportunity_collection editable editable-click  float-right  text-decoration-none textcolor-blue pr-2 pl-2" data-placement="bottom"   data-original-title="" title="">Add to collection</a>   
 													
+							@elseif(!$logged_in_user_id && $third_person)	
+
+								<a href="#"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2" data-toggle="modal" data-target="#login_modal"  style="color: #219BC4">Send my professional card</a>
+								<a href="#" data-toggle="modal" data-target="#login_modal" class="float-right  text-decoration-none textcolor-blue pr-2 pl-2" >Add to collection</a>
 							@endif	
 						</div>
 					</div>
@@ -205,9 +222,9 @@
 						<div class="card mt-5 mb-2">
 						<div class="card-header pl-4 pr-4 color-opentowork h-100">
 							<div class="row m-0 p-0 opportunity_header">
-								<p class="w-50 m-0 p-0 font-weight-bold">Open-to-work</p>
+								<p class="w-50 m-0 p-0 font-weight-bold">Professional card</p>
 								<!-- <p class="w-65 m-0 p-0 text-right font-weight-bold"><img src="/assets/images/location2.png"><span class="pl-2">{{ (isset($countries[$opc->country_code]) ? $countries[$opc->country_code] : $opc->country_code).', '.$opc->city }}</span></p> -->
-								<p class="w-50 m-0 p-0 text-right font-weight-bold ellipsis" onclick="toggleEllipsis(this)"><span class="fa fa-map-marker"></span><span class="pl-2">{{ (isset($countries[$opc->country_code]) ? $countries[$opc->country_code] : $opc->country_code).', '.$opc->city }}</span></p>
+								<p class="w-50 m-0 p-0 text-right location_font ellipsis" onclick="toggleEllipsis(this)"><span class="fa fa-map-marker"></span><span class="pl-2">{{ (isset($countries[$opc->country_code]) ? $countries[$opc->country_code] : $opc->country_code).', '.$opc->city }}</span></p>
 								
 							</div>
 						</div>
@@ -240,7 +257,7 @@
 									<a href="/opentowork/{{ $opc->id }}/edit" class="textcolor-blue pull-right pl-2"><img src="/assets/images/Icon-edit.svg" alt="Edit" style="width:25px;"><span class="pl-2">Edit</span></a>
 								@endif
 									<a href="/opentowork/{{ $opc->id }}"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2"  style="color: #219BC4">Read more</a>
-								@if($third_person)	
+								@if($logged_in_user_id && $third_person)	
 									
 										<a href="#" class=" float-right  text-decoration-none textcolor-blue pr-2 pl-2" data-toggle="dropdown">Send my opportunity</a>    
 																
@@ -259,6 +276,10 @@
 
 										<a href="#" data-pk="{{ $opc->id }}" data-type="checklist" data-source="{{ URL::to('/') }}/ajax/get_opc_collection_list/{{$opc->id}}"  data-title="Select collections" class="opportunity_collection editable editable-click  float-right  text-decoration-none textcolor-blue pr-2 pl-2" data-placement="bottom"   data-original-title="" title="">Add to collection</a>   
 														
+								@elseif(!$logged_in_user_id && $third_person)	
+
+									<a href="#" data-toggle="modal" data-target="#login_modal" class=" float-right  text-decoration-none textcolor-blue pr-2 pl-2" data-toggle="dropdown">Send my opportunity</a> 
+									<a href="#" data-toggle="modal" data-target="#login_modal" class="user_collection  text-decoration-none textcolor-blue pull-right pr-2 pl-2" style="color: #219BC4">Add to collection</a>
 								@endif
 									
 								</div>
@@ -270,9 +291,9 @@
 				<div class="card mt-5 mb-2">
 					<div class="card-header pl-4 pr-4 color-opentowork h-100">
 						<div class="row m-0 p-0 opportunity_header">
-							<p class="w-50 m-0 p-0 font-weight-bold">Open-to-work</p>
+							<p class="w-50 m-0 p-0 font-weight-bold">Professional card</p>
 							<!-- <p class="w-65 m-0 p-0 text-right font-weight-bold"><img src="/assets/images/location2.png"><span class="pl-2">{{ (isset($countries[$opc->country_code]) ? $countries[$opc->country_code] : $opc->country_code).', '.$opc->city }}</span></p> -->
-							<p class="w-50 m-0 p-0 text-right font-weight-bold ellipsis" onclick="toggleEllipsis(this)"><span class="fa fa-map-marker"></span><span class="pl-2">{{ (isset($countries[$opc->country_code]) ? $countries[$opc->country_code] : $opc->country_code).', '.$opc->city }}</span></p>
+							<p class="w-50 m-0 p-0 text-right location_font ellipsis" onclick="toggleEllipsis(this)"><span class="fa fa-map-marker"></span><span class="pl-2">{{ (isset($countries[$opc->country_code]) ? $countries[$opc->country_code] : $opc->country_code).', '.$opc->city }}</span></p>
 							
 						</div>
 					</div>
@@ -305,7 +326,7 @@
 								<a href="/opentowork/{{ $opc->id }}/edit" class="textcolor-blue pull-right pl-2"><img src="/assets/images/Icon-edit.svg" alt="Edit" style="width:25px;"><span class="pl-2">Edit</span></a>
 							@endif
 								<a href="/opentowork/{{ $opc->id }}"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2"  style="color: #219BC4">Read more</a>
-							@if($third_person)	
+							@if($logged_in_user_id && $third_person)	
 								
 									<a href="#" class=" float-right  text-decoration-none textcolor-blue pr-2 pl-2" data-toggle="dropdown">Send my opportunity</a>    
 															
@@ -324,6 +345,10 @@
 
 									<a href="#" data-pk="{{ $opc->id }}" data-type="checklist" data-source="{{ URL::to('/') }}/ajax/get_opc_collection_list/{{$opc->id}}"  data-title="Select collections" class="opportunity_collection editable editable-click  float-right  text-decoration-none textcolor-blue pr-2 pl-2" data-placement="bottom"   data-original-title="" title="">Add to collection</a>   
 													
+							@elseif(!$logged_in_user_id && $third_person)	
+
+								<a href="#" data-toggle="modal" data-target="#login_modal" class=" float-right  text-decoration-none textcolor-blue pr-2 pl-2" data-toggle="dropdown">Send my opportunity</a> 
+								<a href="#" data-toggle="modal" data-target="#login_modal" class="user_collection  text-decoration-none textcolor-blue pull-right pr-2 pl-2" style="color: #219BC4">Add to collection</a>
 							@endif
 								
 							</div>
@@ -340,12 +365,12 @@
 			<div class="row m-0 p-0 mt-5 display_button1">
 				<p class="w-65 m-0 p-0"></p>
 				<p class="w-35 m-0 p-0 text-right">
-				<a href="/opentowork" class="btn button_create_opportunity color-opentowork">Create new Open-to-work</a>
+				<a href="/opentowork" class="btn button_create_opportunity color-opentowork">Create new professional card</a>
 				</p>
 			</div>	
 			<div class="row m-0 p-0 mt-5 display_button2">
 				<p class="w-100 m-0 p-0 text-right">
-				<a href="/opentowork" class="btn button_create_opportunity color-opentowork">Create new Open-to-work</a>
+				<a href="/opentowork" class="btn button_create_opportunity color-opentowork">Create new professional card</a>
 				</p>
 			</div>	
 			@endif

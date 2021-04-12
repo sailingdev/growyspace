@@ -83,7 +83,7 @@
             2.5. Sharing
             </h4>
             <p>
-            Our Services allow messaging and sharing of information in many ways, such as your profile, Open-to-work cards, articles, Posts, links to news articles, Opportunities, messages and emails. Where we have made settings available, we will honor the choices you make about who can see content or information. For Opportunity or talent seeking activities, we default to not notifying your connections network or the public. So, if you signal that you are interested in an opportunity, or an open-to-work card, our default is to share it only with the owner.</p>
+            Our Services allow messaging and sharing of information in many ways, such as your profile, professional cards, articles, Posts, links to news articles, Opportunities, messages and emails. Where we have made settings available, we will honor the choices you make about who can see content or information. For Opportunity or talent seeking activities, we default to not notifying your connections network or the public. So, if you signal that you are interested in an opportunity, or an professional card, our default is to share it only with the owner.</p>
 
             <p>We are not obligated to publish any information or content on our Service and can remove it with or without notice.
             </p>
@@ -153,7 +153,7 @@
             <p>
             We use data and information about you to make relevant suggestions to you and others.</p>
 
-            <p>We use the information and data that you provide and that we have about Members to make recommendations for opportunities, users, or open-to-work card. Keeping your profile accurate and up to date helps us to make these recommendations more accurate and relevant.
+            <p>We use the information and data that you provide and that we have about Members to make recommendations for opportunities, users, or professional card. Keeping your profile accurate and up to date helps us to make these recommendations more accurate and relevant.
             </p>
             <h3 style="margin-top:56px">
             4. Disclaimer and liability limit

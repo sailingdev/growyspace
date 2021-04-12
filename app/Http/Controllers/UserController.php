@@ -300,6 +300,7 @@ class UserController extends Controller
 			'user_experiences' => $user_experiences,
 			'months' => $months,
 			'user' => $user,
+			'logged_in_user_id' => $logged_in_user_id,
 			'owner' => $owner,
 			'user_id' => $user_id,
 			'third_person'=> $third_person,
@@ -394,6 +395,7 @@ class UserController extends Controller
 			'user_experiences' => $user_experiences,
 			'months' => $months,
 			'user' => $user,
+			'logged_in_user_id' => $logged_in_user_id,
 			'owner' => true,
 			'third_person'=> $third_person,
 			'user_id' => $user_id

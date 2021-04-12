@@ -18,12 +18,13 @@
                 <div class="d-flex m-0 p-0 opportunity_header">
                     
                     <div class="hiddenState_opt_title">
-                        <p class="m-0 p-0 font-weight-bold">Open-to-work</p>
+                        <p class="m-0 p-0 font-weight-bold">Professional card</p>
+                        
                     </div>
                     <div class="hiddenState_opt_icon d-flex m-0 p-0">
                         <img src="/assets/images/Icon-talent seeker-profile.png" class="pull-left hiddenState_opt_desktop" alt="">
                         <div class="pull-left m-0 p-0 hiddenState_opt_cont hiddenState_opt_desktop">
-                        <p>This open-to-work card is hidden and will only appear to the talent seekers you send it to.</p></div>
+                        <p>This professional card is hidden and will only appear to the talent seekers you send it to.</p></div>
                         
                         <img src="/assets/images/Icon-talent seeker-profile-mobile.png" class="pull-left img-fluid hiddenState_opt_mobile" style="margin: 0 auto;" alt="">
                     </div>
@@ -40,7 +41,7 @@
             @else
             <div class="card-header pl-4 pr-4 color-opentowork h-100">
                 <div class="row m-0 p-0 opportunity_header">
-                    <p class="w-65 m-0 p-0 font-weight-bold">Open-to-work</p>
+                    <p class="w-65 m-0 p-0 font-weight-bold">Professional card</p>
                     <p class="w-35 m-0 p-0 text-right font-weight-bold ">
                     @if(!$third_person)
                         <a href="{{ URL::to('/') }}/opentowork/{{$opc->id}}/edit" class="text-decoration-none text-white"> <img src="/assets/images/Icon-edit.svg" style="width:30px;"><span class="pl-2">Edit</span></a>
@@ -144,7 +145,7 @@
                 </div>	
                 <div class="row m-0 p-0 ">
                     <div class="w-100 profile_pitch">
-                        <h3 class="font-weight-bold">Skills</h3>
+                        <h3 class="font-weight-bold">Technical skills</h3>
                         <ul class="list-unstyled list-inline margin-0-auto mb-0 ">
                         @foreach($opc_fields as $oc)
                         <li class="list-inline-item mr-0 pr-2 pt-2">
@@ -153,21 +154,29 @@
                               
                                 <span >
                                     @if(in_array($logged_in_user_id, $opc_endorse[$oc]))
-                                    <a href="#" data-type="checklist" data-source="{{ URL::to('/') }}/ajax/get_endorse_list/{{$opc->user_id}}/{{$oc}}"  data-title="Endorsed User list" class="endorse_list editable editable-click" data-placement="bottom"   data-original-title="" title="" data-logined="{{$logged_in_user_id}}"><img src='/assets/images/Icon-endorsed.svg' alt='Endorse' style='width:30px;' /></a>
+                                        @if($logged_in_user_id)
+                                        <a href="#" data-type="checklist" data-source="{{ URL::to('/') }}/ajax/get_endorse_list/{{$opc->user_id}}/{{$oc}}"  data-title="Endorsed User list" class="endorse_list editable editable-click" data-placement="bottom"   data-original-title="" title="" data-logined="{{$logged_in_user_id}}"><img src='/assets/images/Icon-endorsed.svg' alt='Endorse' style='width:30px;' /></a>
+                                        @else
+                                            <img src='/assets/images/Icon-endorsed.svg' alt='Endorse' style='width:30px;' />
+                                        @endif
                                         @if(count($opc_endorse[$oc]))
                                         <span>X {{count($opc_endorse[$oc])}}</span>
                                         @endif
-                                    <span class="opentowork_endorse float-right pl-4"  data-opt-skill="{{ $oc }}" data-opt-id="{{$opc->id}}" data-user-id="{{ $opc->user_id }}" class="undo_icon">Undo</span>
+                                    <span class="opentowork_endorse float-right pl-4"  data-opt-skill="{{ $oc }}" data-opt-id="{{$opc->id}}" data-user-id="{{ $opc->user_id }}" data-logined="{{$logged_in_user_id}}" class="undo_icon">Undo</span>
                                     
                                     @else
 
                                         @if(count($opc_endorse[$oc]))
-                                             <a href="#"  data-pk="{{ $opc->user_id }}" data-type="checklist" data-source="{{ URL::to('/') }}/ajax/get_endorse_list/{{$opc->user_id}}/{{$oc}}"  data-title="Endorsed User list" class="endorse_list editable editable-click" data-placement="bottom"   data-original-title="" title="" data-logined="{{$logged_in_user_id}}"><img src='/assets/images/Icon-endorsed.svg' alt='Endorse' style='width:30px;' /></a>                                        
+                                            @if($logged_in_user_id)
+                                             <a href="#"  data-pk="{{ $opc->user_id }}" data-type="checklist" data-source="{{ URL::to('/') }}/ajax/get_endorse_list/{{$opc->user_id}}/{{$oc}}"  data-title="Endorsed User list" class="endorse_list editable editable-click" data-placement="bottom"   data-original-title="" title="" data-logined="{{$logged_in_user_id}}"><img src='/assets/images/Icon-endorsed.svg' alt='Endorse' style='width:30px;' /></a>   
+                                            @else
+                                                <img src='/assets/images/Icon-endorsed.svg' alt='Endorse' style='width:30px;' />
+                                            @endif                                     
                                             <span>X {{count($opc_endorse[$oc])}}</span>
                                         @else
                                             <img src='/assets/images/Icon-endorsed-1.svg' alt='Endorse' style='width:30px;' />
                                         @endif
-                                        <span class="opentowork_endorse float-right pl-4"  data-opt-skill="{{ $oc }}" data-user-id="{{ $opc->user_id }}" data-opt-id="{{$opc->id}}" class="undo_icon">Endorse</span>
+                                        <span class="opentowork_endorse float-right pl-4"  data-opt-skill="{{ $oc }}" data-user-id="{{ $opc->user_id }}" data-opt-id="{{$opc->id}}" data-logined="{{$logged_in_user_id}}" class="undo_icon">Endorse</span>
                                     @endif
                                 </span>
                             </div>
@@ -185,7 +194,8 @@
 
 
 							<a href="#" id="opportunity_share" data-type="text" data-title="Copy this link to share" class="editable editable-click  float-right  text-decoration-none textcolor-blue  pr-2 pl-2 opt_align_mobile" data-placement="bottom" data-original-title="" title="" data-value="{{ URL::to('/') }}/opentowork/{{ $opc->id }}#">Share</a> 
-							<a id="export_PDF" data-id="{{$opc->id}}" data-type="opw" class="editable editable-click  float-right  text-decoration-none textcolor-blue  pr-2 pl-2 cusor_pointer opt_align_mobile" >Download PDF</a> 
+							<!-- <a id="export_PDF" data-id="{{$opc->id}}" data-type="opw" class="editable editable-click  float-right  text-decoration-none textcolor-blue  pr-2 pl-2 cusor_pointer opt_align_mobile" >Download PDF</a>  -->
+							<a href="{{ URL::to('/') }}/exportOPW/{{ $opc->id }}" class="editable editable-click  float-right  text-decoration-none textcolor-blue  pr-2 pl-2 cusor_pointer opt_align_mobile" >Download PDF</a> 
 
 						@if(!$third_person)		
 
@@ -206,7 +216,16 @@
 							</div>
 						@endif
 						</div>
-					@endif
+					@else
+                        <div class="w-100 m-0 p-0">	
+							<a href="{{ URL::to('/') }}/user/{{ $opc->user_id }}/view" class="text-decoration-none textcolor-blue pull-right pl-2 opt_align_mobile">Go to user profile</a>
+							<a href="#" class="opportunity_collection float-right  text-decoration-none textcolor-blue pr-2 pl-2 opt_align_mobile"  data-toggle="modal" data-target="#login_modal">Add to collection</a>   
+
+							<a href="#" class="float-right  text-decoration-none textcolor-blue  pr-2 pl-2 opt_align_mobile"  data-toggle="modal" data-target="#login_modal">Share</a> 
+                            <a href="#" class="float-right  text-decoration-none textcolor-blue  pr-2 pl-2 cusor_pointer opt_align_mobile"  data-toggle="modal" data-target="#login_modal" >Download PDF</a>
+                            <a href="/user/login"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2 opt_align_mobile"  style="color: #219BC4"  data-toggle="modal" data-target="#login_modal">Send my opportunity</a>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

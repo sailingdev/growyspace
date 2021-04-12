@@ -32,7 +32,7 @@
 <div class="row m-0 p-3 explore_circle">
   <div class="explore_circle_area">
     <h1>Explore Growyspace</h1>
-    <p class="m-0">We are a professional development platform that bridges Opportunities with Open-to-work requests from individual professionals. 
+    <p class="m-0">We are a professional development platform that enables the briding between opportunities and professionals. 
     @if(Auth::guard('user')->check())
     <a href="/search" class="color_a">Try it now</a>
     @else    
@@ -53,11 +53,11 @@
   <div class="row seekers_blog">
       <div class="col-md-12 pb-4 "><h1>Growyspace for opportunity seekers</h1></div>
     
-      <div class="col-md-6 pb-3">1) Create an Open-to-work card, and fill out your areas of interest, presentation letter, past experience, skills or education.</div>
-      <div class="col-md-6 pb-3">2) Share your Open-to-work card through the chat function or external, so to gain endorsements of your skills.</div>
-      <div class="col-md-6 pb-3">3) Send your Open-to-work card to the available Opportunities, or other relevant users.</div>
-      <div class="col-md-6 pb-3">4) Explore the available Opportunities, registered users, or available Open-to-work cards.</div>
-      <div class="col-md-6 pb-3">5) Create, manage or share a collection or portfolio of either available Opportunities, Open-to-work, or users.</div>
+      <div class="col-md-6 pb-3">1) Create a Professional card, and fill out your areas of interest, presentation letter, past experience, skills or education.</div>
+      <div class="col-md-6 pb-3">2) Share your Professional card through the chat function or external, so to gain endorsements of your skills.</div>
+      <div class="col-md-6 pb-3">3) Send your Professional card to the available Opportunities, or other relevant users.</div>
+      <div class="col-md-6 pb-3">4) Explore the available Opportunities, registered users, or available Professional cards.</div>
+      <div class="col-md-6 pb-3">5) Create, manage or share a collection or portfolio of either available Opportunities, Professional card, or users.</div>
       <div class="col-md-6 pb-3"><strong>Get started looking for opportunities by signing up. It’s free.</strong></div>
       <div class="col-md-12 pt-1 text-center">
         @if(Auth::guard('user')->check())
@@ -76,9 +76,9 @@
    
     <div class="col-md-6 pb-3">1) Create an Opportunity card and fill out the relevant details such as location, fields (skills required), and the description of the opportunity.</div>
     <div class="col-md-6 pb-3">2) Share your created Opportunity card through the chat function or external, so to gain trafic and exposure.</div>
-    <div class="col-md-6 pb-3">3) Send your Opportunity card to the available Open-to-work cards created by opportunity seeking profesionals.</div>
-    <div class="col-md-6 pb-3">4) Explore the available Open-to-work cards, registered users, or available Opportunities.</div>
-    <div class="col-md-6 pb-3">5) Create, manage or share a collection or portfolio of either available Open-to-work, users, or other Opportunities.</div>
+    <div class="col-md-6 pb-3">3) Send your Opportunity card to the available Professional cards created by opportunity seeking profesionals.</div>
+    <div class="col-md-6 pb-3">4) Explore the available Professional cards, registered users, or available Opportunities.</div>
+    <div class="col-md-6 pb-3">5) Create, manage or share a collection or portfolio of either available Professional cards, users, or other Opportunities.</div>
     <div class="col-md-6 pb-3"><strong>Find great talents by signing up. It’s free.</strong></div>
     <div class="col-md-12 pt-1 text-center">
      

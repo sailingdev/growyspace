@@ -65,7 +65,12 @@
 								</label>
 							</div>                           
                         </td>
-						<td>{{ $client->unsubscribe == 1 ? 'Yes' : 'No' }}</td>
+						<td>
+
+							@if($client->unsubscribe == 1)
+							 <span style="color:red">Yes</span>
+							@endif
+						</td>
 						<td>{{ $client->is_deleted == 1 ? 'Suspended' : 'Active' }}</td>
 						
 						<td>

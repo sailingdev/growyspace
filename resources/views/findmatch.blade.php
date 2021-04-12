@@ -41,13 +41,13 @@
 					Finding matches based on 
 				</div>
 				<div class="matching_option1 form-group form-inline p-0 mt-4  has-location">
-					<select data-tags="true" data-user-id="{{$user_id}}" data-placeholder="select opportunity or open-to-work"  class="opc_explore form-control w-100 matching_filter">		
-						<option value="">select opportunity or open-to-work</option>			
+					<select data-tags="true" data-user-id="{{$user_id}}" data-placeholder="select opportunity or professional card"  class="opc_explore form-control w-100 matching_filter">		
+						<option value="">select opportunity or professional card</option>			
 						@foreach($opportunity_cards as $oc => $val)
 							<option value="opt_{{$val->id}}" {{ $type == "opt" && $card_id == $val->id ? 'selected' : '' }}>opportunity: {{$val->title}}</option>
 						@endforeach
 						@foreach($opentowork_card as $oc => $val)
-							<option value="opw_{{$val->id}}" {{ $type == "opw" && $card_id == $val->id ? 'selected' : '' }}>open-to-work: {{$val->title}}</option>
+							<option value="opw_{{$val->id}}" {{ $type == "opw" && $card_id == $val->id ? 'selected' : '' }}>professional card: {{$val->title}}</option>
 						@endforeach					
 
 					</select>
@@ -71,7 +71,7 @@
 								<input type="checkbox" class="custom-control-input" id="MatchingOPW_{{ $opc->user_id }}_{{ $opc->id }}" name="MatchingOPW" checked value="{{ $opc->user_id }}">
 								<label class="custom-control-label" for="MatchingOPW_{{ $opc->user_id }}_{{ $opc->id }}"><p class="m-0 p-0 pl-2 font-weight-bold">Opportunity</p></label>					
 						</div>
-						<p class="w-50 m-0 p-0 text-right font-weight-bold ellipsis" onclick="toggleEllipsis(this)"><span class="fa fa-map-marker"></span><span class="pl-2">{{ (isset($countries[$opc->country_code]) ? $countries[$opc->country_code] : $opc->country_code).', '.$opc->city }}</span></p>
+						<p class="w-50 m-0 p-0 text-right location_font ellipsis" onclick="toggleEllipsis(this)"><span class="fa fa-map-marker"></span><span class="pl-2">{{ (isset($countries[$opc->country_code]) ? $countries[$opc->country_code] : $opc->country_code).', '.$opc->city }}</span></p>
 						
 					</div>
 				</div>
@@ -80,14 +80,14 @@
 						<div class="row m-0 p-0 ">
 							<div class="w-100 profile_pitch">
 								<h3 class="font-weight-bold ellipsis" onclick="toggleEllipsis(this)">{{ $opc->title }}</h3>
-								<p class="ellipsis" onclick="toggleEllipsis(this)">{{ strlen(nl2br(strip_tags($opc->description))) > 75 ? substr(nl2br(strip_tags($opc->description)),0,75).'...' : nl2br(strip_tags($opc->description)) }}</p>
+								<p class="ellipsis" onclick="toggleEllipsis(this)">{{ $opc->company }}</p>
 								
 							</div>
 						</div>
 
 						<div class="row m-0 p-0 ">
 							<div class="w-100 profile_pitch">
-								<h3 class="font-weight-bold opt_roles_font">Requested skills</h3>
+								<h3 class="font-weight-bold opt_roles_font">Technical skills</h3>
 								<ul class="list-unstyled list-inline margin-0-auto mb-0 request_skills">
 									@foreach(json_decode($opc->fields,true) as $oc)
 									<li class="list-inline-item mr-0 pr-2 pb-2" style="margin:0px">
@@ -107,7 +107,7 @@
 							<a href="/cards/{{ $opc->id }}"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2"  style="color: #219BC4">Read more</a>
 							@if($third_person)	
 								
-									<a href="#"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2" data-toggle="dropdown"  style="color: #219BC4">Send my open-to-work</a>
+									<a href="#"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2" data-toggle="dropdown"  style="color: #219BC4">Send my professional card</a>
 									<div class="dropdown-menu dropdown-menu-right"  style="padding: 0px;">
 										@if(count($opentowork_card) > 0) 
 											<ul style="margin: 0px;padding: 0px;">
@@ -140,9 +140,9 @@
 								<!-- <p class="w-50 m-0 p-0 font-weight-bold">Open-to-work</p> -->
 								<div class="custom-control custom-checkbox w-50">
 									<input type="checkbox" class="custom-control-input" id="MatchingOPW_{{ $opc->user_id }}_{{ $opc->id }}" name="MatchingOPW" checked value="{{ $opc->user_id }}">
-									<label class="custom-control-label" for="MatchingOPW_{{ $opc->user_id }}_{{ $opc->id }}"><p class="m-0 p-0 pl-2 font-weight-bold">Open-to-work</p></label>					
+									<label class="custom-control-label" for="MatchingOPW_{{ $opc->user_id }}_{{ $opc->id }}"><p class="m-0 p-0 pl-2 font-weight-bold">Professional card</p></label>					
 								</div>
-								<p class="w-50 m-0 p-0 text-right font-weight-bold ellipsis" onclick="toggleEllipsis(this)"><span class="fa fa-map-marker"></span><span class="pl-2">{{ (isset($countries[$opc->country_code]) ? $countries[$opc->country_code] : $opc->country_code).', '.$opc->city }}</span></p>
+								<p class="w-50 m-0 p-0 text-right location_font ellipsis" onclick="toggleEllipsis(this)"><span class="fa fa-map-marker"></span><span class="pl-2">{{ (isset($countries[$opc->country_code]) ? $countries[$opc->country_code] : $opc->country_code).', '.$opc->city }}</span></p>
 								
 							</div>
 						</div>
@@ -210,7 +210,7 @@
 							</div> -->
 							<div class="custom-control custom-checkbox w-50">
 								<input type="checkbox" class="custom-control-input" id="MatchingOPW_{{ $opc->user_id }}_{{ $opc->id }}" name="MatchingOPW" checked value="{{ $opc->user_id }}">
-								<label class="custom-control-label" for="MatchingOPW_{{ $opc->user_id }}_{{ $opc->id }}"><p class="m-0 p-0 pl-2 font-weight-bold">Open-to-work</p></label>					
+								<label class="custom-control-label" for="MatchingOPW_{{ $opc->user_id }}_{{ $opc->id }}"><p class="m-0 p-0 pl-2 font-weight-bold">Professional card</p></label>					
 							</div>
 							<p class="w-50 m-0 p-0 text-right font-weight-bold ellipsis" onclick="toggleEllipsis(this)"><span class="fa fa-map-marker"></span><span class="pl-2">{{ (isset($countries[$opc->country_code]) ? $countries[$opc->country_code] : $opc->country_code).', '.$opc->city }}</span></p>
 							

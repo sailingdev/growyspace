@@ -174,12 +174,14 @@
     font-size: 1.4rem;
   }  
   .profile_pitch h3{
-    color:#1C3041;
-    font-size: 1.1rem;
+    /* color:#1C3041;
+    font-size: 1.1rem; */
+    font-size: 28px;
+    color: #000;
   }   
   .profile_pitch .opt_roles_font{
     color:#1C3041;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
   }  
   .profile_exp_font{
     font-size: 1.1rem;
@@ -217,6 +219,9 @@
   .opportunity_header p{
     font-size:1rem
   }
+  .opportunity_header .location_font{
+    font-size: 0.8rem
+  }
   .card-header {
     height: 40px;
   }
@@ -237,7 +242,7 @@
         border-radius: 6px;
         height: 25px;
         font-weight: 500;
-        font-size: 15px;
+        font-size: 13px;
         line-height: 18px;
         display: flex;
         align-items: center;
@@ -444,14 +449,16 @@
       font-size: 1.5rem;
     }    
 	.profile_pitch h3{
-      font-size: 1.2rem;
-      color:#1C3041;
+      /* font-size: 1.2rem;
+      color:#1C3041; */
+      font-size: 28px;
+      color: #000;
     }
 	.profile_exp_font{
       font-size: 1.2rem;
     }
 	.profile_pitch .opt_roles_font{
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     color:#1C3041;
 	} 
     .profile_name img{
@@ -492,7 +499,7 @@
       border-radius: 6px;
       height: 25px;
       font-weight: 500;
-      font-size: 15px;
+      font-size: 13px;
       line-height: 18px;
       display: flex;
       align-items: center;
@@ -714,14 +721,16 @@
       font-size: 1.6rem;
     }    
 	.profile_pitch h3{
-      font-size: 1.3rem;
-      color:#1C3041;
+      /* font-size: 1.3rem;
+      color:#1C3041; */
+      font-size: 28px;
+      color: #000;
     }	
 	.profile_exp_font{
       font-size: 1.3rem;
     }
 	.profile_pitch .opt_roles_font{
-  font-size: 1rem;
+  font-size: 1.1rem;
   color:#1C3041;
 	} 	
     .profile_name img{
@@ -767,7 +776,7 @@
       border-radius: 6px;
       height: 25px;
       font-weight: 500;
-      font-size: 15px;
+      font-size: 13px;
       line-height: 18px;
       display: flex;
       align-items: center;
@@ -980,14 +989,16 @@
       font-size: 1.6rem;
     }    
 	.profile_pitch h3{
-      font-size: 1.3rem;
-      color:#1C3041;
+      /* font-size: 1.3rem;
+      color:#1C3041; */
+      font-size: 28px;
+      color: #000;
     }	
 	.profile_exp_font{
       font-size: 1.3rem;
     }
 	.profile_pitch .opt_roles_font{
-  font-size: 1rem;
+  font-size: 1.1rem;
   color:#1C3041;
 	} 	
     .profile_name img{
@@ -1026,6 +1037,9 @@
     .opportunity_header p{
       font-size:1.4rem
     }
+    .opportunity_header .location_font{
+      font-size:1.15rem
+    }
     .button_create_opportunity{
       font-size: 0.9rem;
     }
@@ -1034,7 +1048,7 @@
       border-radius: 6px;
       height: 25px;
       font-weight: 500;
-      font-size: 15px;
+      font-size: 13px;
       line-height: 18px;
       display: flex;
       align-items: center;
@@ -1042,6 +1056,11 @@
       letter-spacing: -0.015em;
       color: #FFFFFF;
       padding:10px;
+  }
+  .custom_endorse{
+    border-radius: 6px;
+    padding: 10px;
+    margin-bottom: 10px;
   }
   .head_logo_area{
     padding: 0px 0% 2% 9.7%;
@@ -1301,14 +1320,16 @@
       font-size: 1.6rem;
     }    
 	.profile_pitch h3{
-      font-size: 1.3rem;
-      color:#1C3041;
+      /* font-size: 1.3rem;
+      color:#1C3041; */
+      font-size: 28px;
+      color: #000;
     }	
 	.profile_exp_font{
       font-size: 1.3rem;
     }
 	.profile_pitch .opt_roles_font{
-    font-size: 1.125rem;
+    font-size: 1.1rem;
     color: #1C3041;
 	} 	
     .profile_name img{
@@ -1319,6 +1340,9 @@
     }
     .opportunity_header p{
       font-size:1.4rem
+    }
+    .opportunity_header .location_font{
+      font-size:1.15rem
     }
     .button_create_opportunity{
       font-size: 1rem;
@@ -1481,7 +1505,7 @@
         border-radius: 6px;
         height: 25px;
         font-weight: 500;
-        font-size: 15px;
+        font-size: 13px;
         line-height: 18px;
         display: flex;
         align-items: center;
@@ -1661,6 +1685,9 @@
   }
   .opportunity_header p{
     font-size: 0.8rem
+  }
+  .opportunity_header .location_font{
+    font-size: 0.66rem
   }
   .round_change_bg{
     background-image: url("../images/round_change_picture.svg");
@@ -2098,7 +2125,7 @@ html {
 }
 .color-experience{
   background: #332960 !important;
-  color:#fff;
+  color:#fff !important;
 }
 .color-delete{
   color:#CA7073;

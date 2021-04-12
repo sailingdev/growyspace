@@ -81,8 +81,13 @@
 									<span class="pl-2"><img src="/assets/images/Icon-talent seeker.svg" style="width:30px;"></span>
 								</div>
 								<div class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="pro_looking_for" id="inlineRadio3" value="0" {{ $user->looking_for == 0 ? 'checked'  : '' }}>
-									<label class="form-check-label" for="inlineRadio3">None</label>
+									<input class="form-check-input" type="radio" name="pro_looking_for" id="inlineRadio3" value="3" {{ $user->looking_for == 3 ? 'checked'  : '' }}>
+									<label class="form-check-label" for="inlineRadio3">Sourcer Pro</label>
+									<span class="pl-2"><img src="/assets/images/Icon-news.svg" style="width:30px;"></span>
+								</div>		
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="pro_looking_for" id="inlineRadio0" value="0" {{ $user->looking_for == 0 ? 'checked'  : '' }}>
+									<label class="form-check-label" for="inlineRadio0">None</label>
 								</div>		
 							</div>
 						</div>

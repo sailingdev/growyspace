@@ -8,7 +8,7 @@
 <a href="{{ URL::to('/growyspace-admin/dashboard/') }}">Home</a>
 <span class="divider"><i class="fa fa-angle-right"></i></span>
 </li>
-<li class="active">Open-to-work cards</li>
+<li class="active">Professional cards</li>
 </ul>
 </div>
 <!-- END Breadcrumb -->
@@ -18,7 +18,7 @@
 <div class="col-md-12">
 <div class="box">
 <div class="box-title">
-	<h3><i class="fa fa-table"></i> Open-to-work cards</h3>
+	<h3><i class="fa fa-table"></i> Professional cards</h3>
 	<div class="box-tool">
 
 	</div>

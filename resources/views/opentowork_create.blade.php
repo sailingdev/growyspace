@@ -13,7 +13,7 @@
             <a onclick="window.history.back();" class="left_back cusor_pointer display_image2"><img src="/assets/images/backformobile.svg" alt="Back" ></a>
             <div class="card-header pl-4 pr-4 color-opentowork h-100">
                 <div class="row m-0 p-0 opportunity_header">
-                    <p class="w-100 m-0 p-0 font-weight-bold">Open-to-work</p>
+                    <p class="w-100 m-0 p-0 font-weight-bold">Professional card</p>
                 </div>
             </div>
             <div class="card-block p-4">
@@ -242,12 +242,12 @@
                         <div class="form-group form-inline p-0 m-0 mt-3">
                             <div class="col-md-3 p-0 m-0 mb-3">
 								
-								<button type="button" id="hideOpentowork" data-id="{{ $opc && $opc->id ? $opc->id : 0 }}" data-title="{{ $refer == 1 ? 'Unhide'  : 'Hide' }}" data-refer-id="{{ $refer ? $refer : 0 }}" class="settingsButton btn-hide-color">{{ $refer == 1 ? 'Unhide open-to-work'  : 'Hide open-to-work' }}</button>
+								<button type="button" id="hideOpentowork" data-id="{{ $opc && $opc->id ? $opc->id : 0 }}" data-title="{{ $refer == 1 ? 'Unhide'  : 'Hide' }}" data-refer-id="{{ $refer ? $refer : 0 }}" class="settingsButton btn-hide-color">{{ $refer == 1 ? 'Unhide professional card'  : 'Hide professional card' }}</button>
 							</div>
                             <div class="col-md-9 p-0 m-0">
 								
 								<div class="alert alert-secondary m-0 p-0 p-2 " role="alert">
-								Hidden open-to-work cards only appear to the talent seeker you send it too.
+								Hidden professional cards only appear to the talent seeker you send it too.
 								</div>
 								
 							</div>

@@ -34,7 +34,7 @@ use Illuminate\Support\Facades\URL;
 use Config;
 use PDF;
 use Helpers;
-
+use Illuminate\Support\Facades\Storage;
 
 use App\Opportunity_card;
 use App\Opentowork_card;
@@ -50,6 +50,7 @@ use App\User_message;
 use App\User_message_conversation;
 use App\Endorse_list;
 use Illuminate\Support\Str;
+
 
 class AjaxController extends Controller
 {
@@ -361,22 +362,40 @@ class AjaxController extends Controller
 	
 				}
 			}else{
-				$message = preg_replace_callback(
-					"@
-						(?:http|ftp|https)://
-						(?:
-							(?P<domain>\S+?) (?:/\S+)|
-							(?P<domain_only>\S+)
-						)
-					@sx",
-					function($a){
-						$link = "<a href='" . $a[0] . "' style='color:#fff'>";
-						$link .= $a[0];
-						$link .= "</a>";
-						return $link;
-					},
-					$message
-				);
+				$svr = url('/')."/";
+				$split = explode($svr, $message);
+				$ordinaryUrl = true;
+				$tmpMsg = '';
+				if(count($split) > 1){ //user url
+					$rlt = explode('/', $split[1]);
+					if(count($rlt) > 2){
+						if($rlt[0] == "user" && $rlt[2] == "view"){
+							$tmpMsg .= 	'{USER'.$rlt[1].'}';
+							$message = $tmpMsg;
+							$ordinaryUrl = false;
+						}
+					}
+				}
+				if($ordinaryUrl){
+					$message = preg_replace_callback(
+						"@
+							(?:http|ftp|https)://
+							(?:
+								(?P<domain>\S+?) (?:/\S+)|
+								(?P<domain_only>\S+)
+							)
+						@sx",
+						function($a){
+							$link = "<a href='" . $a[0] . "' style='color:#fff'>";
+							$link .= $a[0];
+							$link .= "</a>";
+							return $link;
+						},
+						$message
+					);
+				}
+
+
 				
 			}
 
@@ -1019,7 +1038,7 @@ class AjaxController extends Controller
 			}
 			echo json_encode(array(
 				'complete' => true,
-				'msg' => 'Open-to-work was added in the collection successfully'
+				'msg' => 'Professional card was added in the collection successfully'
 			));
 		}else{
 			$collection = User_collection::where('user_id',$user_id)->get();
@@ -1028,7 +1047,7 @@ class AjaxController extends Controller
 			}	
 			echo json_encode(array(
 				'complete' => true,
-				'msg' => 'Open-to-work was removed in the collection successfully'
+				'msg' => 'Professional card was removed in the collection successfully'
 			));	
 		}
 					
@@ -1937,6 +1956,8 @@ class AjaxController extends Controller
 			
 			$opc_salary = isset($request->opc_salary) ? $request->opc_salary : false;
 			$opc_hours = isset($request->opc_hours) ? $request->opc_hours : false;
+			$opc_perks = isset($request->opc_perks) ? $request->opc_perks : false;
+			$remote = isset($request->remote) ? $request->remote : false;
 			
 			$opc_country_code = isset($request->opc_country_code) ? $request->opc_country_code : false;
 			$opc_city = isset($request->opc_city) ? $request->opc_city : false;
@@ -2043,7 +2064,9 @@ class AjaxController extends Controller
 			$opc->user_id = Auth::guard('user')->user()->id;
 			$opc->title = $opc_title;
 			$opc->fields = json_encode($opc_fields_array);
-			$opc->salary = $opc_salary;
+			$opc->salary_range = $opc_salary;
+			$opc->perks = $opc_perks;
+			$opc->remote = $remote;
 			$opc->company = $opc_company;
 			$opc->hours = $opc_hours;
 			$opc->country_code = $opc_country_code;
@@ -3733,7 +3756,7 @@ class AjaxController extends Controller
 		$opentowork->save();
 		echo json_encode(array(
 			'complete' => true,
-			'messages_html' => 'The open-to-work has been '.$str,
+			'messages_html' => 'The Professional card has been '.$str,
 		));
 	}
 	public function endorse_opentowork(Request $request) {
@@ -4010,30 +4033,50 @@ class AjaxController extends Controller
 					$message = "{OPENTOWORK".$opc->id."}";
 					foreach($matching_users as $key => $to_id){
 						$to_id = (int)$to_id;
-						$conversation_key = $to_id > $user_id ? md5($user_id.'_'.$to_id) : md5($to_id.'_'.$user_id);
-						$umc = User_message_conversation::where('conversation_key',$conversation_key)->first();
-						
-						if($umc === null) {
-							$umc = new User_message_conversation;
-							$umc->conversation_key = $conversation_key;
-						}
-						
-						$umc->last_message = $message;
-						$umc->last_from_id = $user_id;
-						$umc->last_to_id = $to_id;
-						$umc->is_read = 0;
-						$umc->sent_remind_email = 0;
-						$umc->updated_at = date("Y-m-d H:i:s");
-						$umc->save();
+						if($to_id != 0) {
+							$u = User::find($to_id);
+							
+							if($u === null) {
+								// echo json_encode(array(
+								// 	'complete' => false,
+								// 	'message' => 'Wrong Request',
+								// ));exit;
+							}else{
+								
+								if($to_id == $user_id) {
+									// echo json_encode(array(
+									// 	'complete' => false,
+									// 	'message' => 'Wrong Request',
+									// ));exit;
+								}else{
+									$conversation_key = $to_id > $user_id ? md5($user_id.'_'.$to_id) : md5($to_id.'_'.$user_id);
+									$umc = User_message_conversation::where('conversation_key',$conversation_key)->first();
 									
-						$conversation_id = $umc->id;
-						$um = new User_message;
-						$um->conversation_id = $conversation_id;
-						$um->from_id = $user_id;
-						$um->to_id = $to_id;
-						$um->is_read = 0;
-						$um->message = $message;;
-						$um->save();
+									if($umc === null) {
+										$umc = new User_message_conversation;
+										$umc->conversation_key = $conversation_key;
+									}
+									
+									$umc->last_message = $message;
+									$umc->last_from_id = $user_id;
+									$umc->last_to_id = $to_id;
+									$umc->is_read = 0;
+									$umc->sent_remind_email = 0;
+									$umc->updated_at = date("Y-m-d H:i:s");
+									$umc->save();
+												
+									$conversation_id = $umc->id;
+									$um = new User_message;
+									$um->conversation_id = $conversation_id;
+									$um->from_id = $user_id;
+									$um->to_id = $to_id;
+									$um->is_read = 0;
+									$um->message = $message;;
+									$um->save();
+								}								
+							}
+
+						}
 					}
 				}
 
@@ -4176,5 +4219,253 @@ class AjaxController extends Controller
 
 			
 		}
+	}
+	public function upload_attachment(Request $request) {
+		if ($request->ajax()) {
+			if(!Auth::guard('user')->check()) {
+				echo json_encode(array(
+					'complete' => false,
+					'message' => 'Wrong Request',
+				));exit;
+			}
+			
+			$user_id = Auth::guard('user')->user()->id;
+			
+			if($request->file('attachment_files') !== null ) { 
+				$ext =  $request->file('attachment_files')->getClientOriginalExtension();
+				$original_name = $request->file('attachment_files')->getClientOriginalName();
+				$contentType = $request->file('attachment_files')->getClientMimeType();
+							
+				//$filename      = $request->file('profile_image')->hashName();
+				$filename = 'attachement-'.$user_id.'-'.date('YmdHis').'.'.$ext;
+				// $allowedMimeTypes = ['image/jpeg','image/gif','image/png','image/bmp','image/svg+xml'];
+			
+				// if(! in_array($contentType, $allowedMimeTypes) ){
+				// 	echo json_encode(array('complete' => false, 'message' => 'You can only upload image file.'));exit;
+				// }
+				
+				// $is_ok = $request->file('attachment_files')->move(
+				// 	base_path() . '/public/uploads/attachment_files/', $filename
+				// );
+				
+				//$profile_image_src = '';
+				
+				//if($is_ok) {
+					// $u = User::find($user_id);
+					// $u->profile_image = $filename;
+					// $u->profile_image_cropped = $filename;
+					// $u->save();
+					
+					//$profile_image_src = URL::to('/').'/uploads/attachments/'.$user_id.'/'.$filename;
+				//}
+
+				$path = $request->file('attachment_files')->storeAs('attachment_files', $filename); //storage/app/attachment_files
+
+				echo json_encode(array(
+					'filename' => $filename,
+					'complete' => true
+				));
+			}
+		}
+	}
+	public function download_attachment(Request $request) {
+	
+		
+			if(!Auth::guard('user')->check()) {
+				echo json_encode(array(
+					'complete' => false,
+					'message' => 'Wrong Request',
+				));exit;
+			}
+			$file = $request->file;
+			// $path = base_path() . '/public/uploads/attachment_files/attachement-61-20210402182017.pdf';
+			// return response()->download($path,$file);
+
+			return Storage::download('attachment_files/'.$file);
+		
+	}
+	public function exportOPW(Request $request) {
+
+			$card_id = $request->id;
+			$type = 'OPW';
+				$opc  = Opentowork_card::find($card_id);
+				if($opc === null) {
+					abort(404);
+				}
+				$third_person = true;
+				$logged_in_user_id = 0;
+				if(Auth::guard('user')->user() && Auth::guard('user')->user()->id){
+					$logged_in_user_id = Auth::guard('user')->user()->id;
+					if($logged_in_user_id == $opc->user_id) $third_person = false;
+		
+				}
+			
+				$countries = Config::get('countries');
+		
+				$opc_fields_json = $opc->fields;
+				$opc_fields = [];
+				
+				if (trim($opc_fields_json) != '') {
+					$opc_fields = json_decode($opc_fields_json,true);
+				}
+		
+				$opc_roles_json = $opc->roles;
+				$opc_roles = [];
+				
+				if (trim($opc_roles_json) != '') {
+					$opc_roles = json_decode($opc_roles_json,true);
+				}
+				$meta_title = $opc->title;
+		
+				//skill vs endorse
+				$endorsed_users = [];
+				foreach($opc_fields as $skill){
+					$opSkill = Opportunity_card_field::where('name',$skill)->first();
+					$itemList = Endorse_list::where('received_user_id', $opc->user_id)->where('skill_id', $opSkill->id)->pluck('given_user_id')->toArray();
+					$endorsed_users[$skill] = $itemList;
+				}
+		
+				//getting my opportunity list
+				
+				$opportunityList = Opportunity_card::where('user_id',$logged_in_user_id)->get();
+				$user_educations = User_education::where('user_id',$opc->user_id)->orderByRaw('-to_year','desc')->orderBy('from_year', 'Desc')->get();
+				$user_experiences = User_experience::where('user_id',$opc->user_id)->orderByRaw('-to_date','desc')->orderBy('from_date', 'Desc')->get();
+				
+				//SEO
+				$og_url = URL::to('/')."/opentowork"."/".$opc->id;
+				$og_title = $opc->company.' '.$opc->title;
+				$og_description = $opc->description;
+				$og_image = URL::to('/')."/assets/images/external-icon open-to-work.png";
+		
+				// $pdf_html = (String)view('PDF.opentowork',[
+				// 	'countries' => $countries,
+				// 	'opc_fields' => $opc_fields,
+				// 	'opc_roles' => $opc_roles,
+				// 	'opc_endorse' => $endorsed_users,
+				// 	'meta_title' => $meta_title,
+				// 	'opc' => $opc,
+				// 	'logged_in_user_id'=> $logged_in_user_id,
+				// 	'third_person'=> $third_person,
+				// 	'opc_list' => $opportunityList,
+				// 	'user_id' => $logged_in_user_id,
+				// 	'opportunity_card_page' => true,
+				// 	'user_educations' => $user_educations,
+				// 	'user_experiences' => $user_experiences,
+				// 	'og_url'=>$og_url,
+				// 	'og_title'=>$og_title,
+				// 	'og_description'=>$og_description,
+				// 	'og_image'=>$og_image,
+				// ]);
+				// $order_images_path = base_path() . '/public/uploads/PDF/'.$type.'/'.$card_id;
+				// if (!is_dir($order_images_path)) {
+				// 	mkdir($order_images_path, 0777,true);
+				// }
+				// $pdf = PDF::loadHTML($pdf_html);
+				// $pdf->setPaper('a4', 'portrait')->setWarnings(false)->save($order_images_path.'/opentowork.pdf');
+                
+				// return $pdf->download('opentowork.pdf');
+				$data = 
+					[
+						'countries' => $countries,
+						'opc_fields' => $opc_fields,
+						'opc_roles' => $opc_roles,
+						'opc_endorse' => $endorsed_users,
+						'meta_title' => $meta_title,
+						'opc' => $opc,
+						'logged_in_user_id'=> $logged_in_user_id,
+						'third_person'=> $third_person,
+						'opc_list' => $opportunityList,
+						'user_id' => $logged_in_user_id,
+						'opportunity_card_page' => true,
+						'user_educations' => $user_educations,
+						'user_experiences' => $user_experiences,
+						'og_url'=>$og_url,
+						'og_title'=>$og_title,
+						'og_description'=>$og_description,
+						'og_image'=>$og_image,
+					];
+				  
+				  $pdf = PDF::loadView('PDF.opentowork', $data);  
+				  return $pdf->download('professional card-'.$card_id.'.pdf');
+
+				// return view('PDF.opentowork',$data);
+	}
+	public function exportOPP(Request $request) {
+
+			$card_id = $request->id;
+			$type = 'OPW'; 
+				$opc  = Opportunity_card::find($card_id);
+				if($opc === null) {
+					abort(404);
+				}
+				$third_person = true;
+				$logged_in_user_id = 0;
+				if(Auth::guard('user')->user() && Auth::guard('user')->user()->id){
+					$logged_in_user_id = Auth::guard('user')->user()->id;
+					if($logged_in_user_id == $opc->user_id) $third_person = false;
+		
+				}
+			
+				$countries = Config::get('countries');
+		
+				$opc_fields_json = $opc->fields;
+				$opc_fields = [];
+				
+				if (trim($opc_fields_json) != '') {
+					$opc_fields = json_decode($opc_fields_json,true);
+				}
+		
+				$opc_roles_json = $opc->roles;
+				$opc_roles = [];
+				
+				if (trim($opc_roles_json) != '') {
+					$opc_roles = json_decode($opc_roles_json,true);
+				}
+				$meta_title = $opc->title;
+		
+				
+		
+				//getting my opportunity list
+				
+				$opentoworkList = Opentowork_card::where('user_id',$logged_in_user_id)->get();
+				$user_educations = User_education::where('user_id',$opc->user_id)->orderByRaw('-to_year','desc')->orderBy('from_year', 'Desc')->get();
+				$user_experiences = User_experience::where('user_id',$opc->user_id)->orderByRaw('-to_date','desc')->orderBy('from_date', 'Desc')->get();
+				
+				//SEO
+				$og_url = URL::to('/')."/opentowork"."/".$opc->id;
+				$og_title = $opc->company.' '.$opc->title;
+				$og_description = $opc->description;
+				$og_image = URL::to('/')."/assets/images/external-icon open-to-work.png";
+				$remote = '';
+				if($opc && $opc->remote){
+					if($opc->remote == 1) $remote = 'This is a remote position';
+					else if($opc->remote == 2) $remote = 'This is an onsite position';
+					else if($opc->remote == 3) $remote = 'This is a flexible position';
+				}
+				$data = 
+					[
+						'countries' => $countries,
+						'opc_fields' => $opc_fields,
+						'opc_roles' => $opc_roles,
+						'meta_title' => $meta_title,
+						'opc' => $opc,
+						'remote' => $remote,
+						'logged_in_user_id'=> $logged_in_user_id,
+						'third_person'=> $third_person,
+						'opc_list' => $opentoworkList,
+						'user_id' => $logged_in_user_id,
+						'opportunity_card_page' => true,
+						'user_educations' => $user_educations,
+						'user_experiences' => $user_experiences,
+						'og_url'=>$og_url,
+						'og_title'=>$og_title,
+						'og_description'=>$og_description,
+						'og_image'=>$og_image,
+					];
+				  
+				  $pdf = PDF::loadView('PDF.opportunity', $data);  
+				  return $pdf->download('Opportunity card-'.$card_id.'.pdf');
+
+				// return view('PDF.opportunity',$data);
 	}
 }

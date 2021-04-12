@@ -41,7 +41,7 @@
             <p>
             To create an account you need to provide data including your name, email address and/or mobile number, and a password. If you register for an advanced Service, you will need to provide payment (e.g., credit card) and billing information.</p>
 
-            <p>You have choices about the information on your profile, such as your education, work experience, skills, photo, location, or endorsement on Open-to-work card. It’s your choice whether to include sensitive information on your profile and to make that sensitive information public. Please do not post or add personal data to your profile that you would not want to be publicly available. You might give other data to us.</p>
+            <p>You have choices about the information on your profile, such as your education, work experience, skills, photo, location, or endorsement on professional card. It’s your choice whether to include sensitive information on your profile and to make that sensitive information public. Please do not post or add personal data to your profile that you would not want to be publicly available. You might give other data to us.</p>
 
             <p>We collect personal data from you when you provide, post or upload it to our Services.</p>
 
@@ -71,7 +71,7 @@
             4.2. Advanced services
             </h4>
             <p>
-            Our advanced talent-seeker or Opportunity-seeker help paying users to Create unlimited opportunity cards (With unlimited time of activity, or activity time selected by the owner), unlimited Open-to-work cards, or enhance the Opportunity card or Open to work card within the platform. 
+            Our advanced talent-seeker or Opportunity-seeker help paying users to Create unlimited opportunity cards (With unlimited time of activity, or activity time selected by the owner), unlimited professional cards, or enhance the Opportunity card or Open to work card within the platform. 
             </p>
             <h4 style="margin-top:56px">
             4.3. Communications

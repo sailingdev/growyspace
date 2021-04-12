@@ -58,8 +58,12 @@
                                                 <label class="form-check-label" for="inlineRadio2">Talents</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="looking_for" id="inlineRadio3" value="0">
-                                                <label class="form-check-label" for="inlineRadio3">Both/other</label>
+                                                <input class="form-check-input" type="radio" name="looking_for" id="inlineRadio3" value="3">
+                                                <label class="form-check-label" for="inlineRadio3">Sourcer Pro</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="looking_for" id="inlineRadio0" value="0">
+                                                <label class="form-check-label" for="inlineRadio0">Both/other</label>
                                             </div>			
 
                                             <div class="mt-3 mb-3 w-100">
@@ -118,3 +122,10 @@
             </div>
         </div>
 </div>
+<style>
+@media (min-width: 576px){
+    .modal-dialog {
+        max-width: 600px;
+    }
+}
+</style>

@@ -50,6 +50,9 @@
                                         </div>
                                         <div class="w-100 m-0 p-0 mt-4 text-right">	
                                             <a class="forgot_password_btn textcolor-blue cusor_pointer">Forgot password ?</a>
+                                            <!-- <a href="{{ url('/auth/redirect/linkedin') }}" class="btn btn-primary"><i class="fa fa-linkedin"></i> Linkedin</a>
+                                            <a href="https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id={{ env('LINKEDIN_CLIENT_ID')}}&redirect_uri={{ env('LINKEDIN_CALLBACK_URL')}}&state=fooobar&scope=r_liteprofile" class="btn btn-primary"><i class="fa fa-linkedin"></i> profile with linkedin</a> -->
+                                            
                                         </div>
                                     </div>
                                     <div class="row m-0 p-0 mt-4">

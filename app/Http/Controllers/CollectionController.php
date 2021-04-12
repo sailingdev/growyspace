@@ -43,18 +43,18 @@ class CollectionController extends Controller
 		$user_id = Auth::guard('user')->user()->id;
 		$collections = User_collection::where('user_id',$user_id)->get();
 		$countries = Config::get('countries');
-		if(count($collections) == 0){
-			$initial = ["Users", "Opportunities", "Open-to-work Cards"];		
+		// if(count($collections) == 0){
+		// 	$initial = ["Users", "Opportunities", "Professional cards"];		
 			
-			foreach($initial as $key){
-				$Newcollection = new User_collection;
-				$Newcollection->name = $key;
-				$Newcollection->user_id = $user_id;
-				$Newcollection->save();
-			}
-			$collections = User_collection::where('user_id',$user_id)->get();
+		// 	foreach($initial as $key){
+		// 		$Newcollection = new User_collection;
+		// 		$Newcollection->name = $key;
+		// 		$Newcollection->user_id = $user_id;
+		// 		$Newcollection->save();
+		// 	}
+		// 	$collections = User_collection::where('user_id',$user_id)->get();
 						
-		}
+		// }
 		$userLists = User::where('id',$user_id)->first();
 
 		

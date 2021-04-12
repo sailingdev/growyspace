@@ -39,12 +39,14 @@ class SearchController extends Controller
      */
     public function index()
     {
-		if(!Auth::guard('user')->check()) {
-			session(['redirect_back' => url()->full()]);
-			return redirect('user/login');
+		$user_id = 0;
+		if(Auth::guard('user')->check()) {
+			// session(['redirect_back' => url()->full()]);
+			// return redirect('user/login');
+			$user_id = Auth::guard('user')->user()->id;
 		}
 		
-		$user_id = Auth::guard('user')->user()->id;
+		
 		$countries = Config::get('countries');
 		$all_opc_fields = Opportunity_card_field::orderBy('name','asc')->pluck('name')->toArray();
 		$all_skills = Skill::orderBy('name','asc')->pluck('name')->toArray();

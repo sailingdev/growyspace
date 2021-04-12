@@ -81,12 +81,18 @@ class Opportunity_cardController extends Controller
 		$og_title = $opc->company.' '.$opc->title;
 		$og_description = $opc->description;
 		$og_image = URL::to('/')."/assets/images/external-icon-opportunity.png";
-
+		$remote = '';
+		if($opc && $opc->remote){
+			if($opc->remote == 1) $remote = 'This is a remote position';
+			else if($opc->remote == 2) $remote = 'This is an onsite position';
+			else if($opc->remote == 3) $remote = 'This is a flexible position';
+		}
 		return view('opportunity_card',[
 			'countries' => $countries,
 			'opc_fields' => $opc_fields,
 			'meta_title' => $meta_title,
 			'opc' => $opc,
+			'remote' => $remote,
 			'checked_value' => $checked_value,
 			'third_person'=> $third_person,
 			'opc_list' => $opentoworkList,
