@@ -68,7 +68,7 @@
 						<td>
 
 							@if($client->unsubscribe == 1)
-							 <span style="color:red">Yes</span>
+							 <a onclick="revertUnsubscribe({{$client->id}});" style="color:red;cursor:pointer;">Yes</a>
 							@endif
 						</td>
 						<td>{{ $client->is_deleted == 1 ? 'Suspended' : 'Active' }}</td>

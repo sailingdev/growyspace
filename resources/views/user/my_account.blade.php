@@ -143,7 +143,7 @@
 					</div>
 				</div>
 				<div class="card-block p-4">
-					<a href="/cards/{{ $opc->id }}" class="text-decoration-none" style="color:unset">
+					<a href="/cards/{{ $opc->id }}#" class="text-decoration-none" style="color:unset">
 						<div class="row m-0 p-0 ">
 							<div class="w-100 profile_pitch">
 								<h3 class="font-weight-bold ellipsis" onclick="toggleEllipsis(this)">{{ $opc->title }}</h3>
@@ -171,7 +171,7 @@
 
 							<a href="/cards/{{ $opc->id }}/edit" class="textcolor-blue pull-right pl-2"><img src="/assets/images/Icon-edit.svg" alt="Edit" style="width:25px;"><span class="pl-2">Edit</span></a>
 						@endif
-							<a href="/cards/{{ $opc->id }}"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2"  style="color: #219BC4">Read more</a>
+							<a href="/cards/{{ $opc->id }}#"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2"  style="color: #219BC4">Read more</a>
 							@if($logged_in_user_id && $third_person)	
 								
 									<a href="#"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2" data-toggle="dropdown"  style="color: #219BC4">Send my professional card</a>
@@ -229,7 +229,7 @@
 							</div>
 						</div>
 						<div class="card-block p-4">
-							<a href="/opentowork/{{ $opc->id }}" class="text-decoration-none" style="color:unset">
+							<a href="/opentowork/{{ $opc->id }}#" class="text-decoration-none" style="color:unset">
 								<div class="row m-0 p-0 ">
 									<div class="w-100 profile_pitch">
 										<h3 class="font-weight-bold">{{ $opc->title }}</h3>
@@ -256,7 +256,7 @@
 
 									<a href="/opentowork/{{ $opc->id }}/edit" class="textcolor-blue pull-right pl-2"><img src="/assets/images/Icon-edit.svg" alt="Edit" style="width:25px;"><span class="pl-2">Edit</span></a>
 								@endif
-									<a href="/opentowork/{{ $opc->id }}"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2"  style="color: #219BC4">Read more</a>
+									<a href="/opentowork/{{ $opc->id }}#"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2"  style="color: #219BC4">Read more</a>
 								@if($logged_in_user_id && $third_person)	
 									
 										<a href="#" class=" float-right  text-decoration-none textcolor-blue pr-2 pl-2" data-toggle="dropdown">Send my opportunity</a>    
@@ -298,7 +298,7 @@
 						</div>
 					</div>
 					<div class="card-block p-4">
-						<a href="/opentowork/{{ $opc->id }}" class="text-decoration-none" style="color:unset">
+						<a href="/opentowork/{{ $opc->id }}#" class="text-decoration-none" style="color:unset">
 							<div class="row m-0 p-0 ">
 								<div class="w-100 profile_pitch">
 									<h3 class="font-weight-bold">{{ $opc->title }}</h3>
@@ -325,7 +325,7 @@
 
 								<a href="/opentowork/{{ $opc->id }}/edit" class="textcolor-blue pull-right pl-2"><img src="/assets/images/Icon-edit.svg" alt="Edit" style="width:25px;"><span class="pl-2">Edit</span></a>
 							@endif
-								<a href="/opentowork/{{ $opc->id }}"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2"  style="color: #219BC4">Read more</a>
+								<a href="/opentowork/{{ $opc->id }}#"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2"  style="color: #219BC4">Read more</a>
 							@if($logged_in_user_id && $third_person)	
 								
 									<a href="#" class=" float-right  text-decoration-none textcolor-blue pr-2 pl-2" data-toggle="dropdown">Send my opportunity</a>    

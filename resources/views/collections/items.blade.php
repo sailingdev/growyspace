@@ -10,7 +10,7 @@
 				</div>
 			</div>
 			<div class="card-block p-4">
-				<a href="/cards/{{ $opc->id }}" class="text-decoration-none" style="color:unset">
+				<a href="/cards/{{ $opc->id }}#" class="text-decoration-none" style="color:unset">
 					<div class="row m-0 p-0 ">
 						<div class="w-100 profile_pitch">
 							<h3 class="font-weight-bold">{{ $opc->title }}</h3>
@@ -47,7 +47,7 @@
 							</div>
 						</div>						
 					@endif
-						<a href="/cards/{{ $opc->id }}"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2 opt_align_mobile"  style="color: #219BC4">Read more</a>
+						<a href="/cards/{{ $opc->id }}#"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2 opt_align_mobile"  style="color: #219BC4">Read more</a>
 
 						<div>
 							<a href="#"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2 opt_align_mobile" data-toggle="dropdown"  style="color: #219BC4">Send my professional card</a>
@@ -83,7 +83,7 @@
 				</div>
 			</div>
 			<div class="card-block p-4">
-				<a href="/opentowork/{{ $opc->id }}" class="text-decoration-none" style="color:unset">
+				<a href="/opentowork/{{ $opc->id }}#" class="text-decoration-none" style="color:unset">
 					<div class="row m-0 p-0 ">
 						<div class="w-100 profile_pitch">
 							<h3 class="font-weight-bold">{{ strlen($opc->title) > 75 ? substr($opc->title,0,75).'...' : $opc->title }}</h3>
@@ -119,7 +119,7 @@
 							</div>
 						</div>						
 					@endif
-						<a href="/opentowork/{{ $opc->id }}"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2 opt_align_mobile"  style="color: #219BC4 !important">Read more</a>
+						<a href="/opentowork/{{ $opc->id }}#"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2 opt_align_mobile"  style="color: #219BC4 !important">Read more</a>
 
 						<div>
 						
@@ -154,7 +154,7 @@
 		<div class="card mb-4">
 			<div class="card-header pl-4 pr-4 color-user h-100">
 				<div class="row m-0 p-0 opportunity_header">
-					<p class="w-50 m-0 p-0 font-weight-bold">User</p>
+					<p class="w-50 m-0 p-0 font-weight-bold">Profile</p>
 					<p class="w-50 m-0 p-0 text-right location_font ellipsis" onclick="toggleEllipsis(this)"><span class="fa fa-map-marker"></span><span class="pl-2">{{ isset($countries[$u->country_code]) ? $countries[$u->country_code] : $u->country_code }}, {{ $u->city }}</span></p>
 					
 				</div>

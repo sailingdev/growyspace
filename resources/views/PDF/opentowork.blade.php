@@ -103,9 +103,9 @@
         <div class="row m-0 p-0" style="height:30px;"></div>
         <div class="row m-0 p-0">
             <div class="mt-3 w-100 profile_pitch " style="text-align:right;">	
-                 <a href="{{ URL::to('/') }}/opentowork/{{ $opc->id }}" class=" text-decoration-none textcolor-blue pr-2 pl-2">Send my opportunity</a>
-                 <a href="{{ URL::to('/') }}/opentowork/{{ $opc->id }}" class=" text-decoration-none textcolor-blue pr-2 pl-2">Share</a>
-                 <a href="{{ URL::to('/') }}/opentowork/{{ $opc->id }}" class=" text-decoration-none textcolor-blue pr-2 pl-2">Add to collection</a>
+                 <a href="{{ URL::to('/') }}/opentowork/{{ $opc->id }}#" class=" text-decoration-none textcolor-blue pr-2 pl-2">Send my opportunity</a>
+                 <a href="{{ URL::to('/') }}/opentowork/{{ $opc->id }}#" class=" text-decoration-none textcolor-blue pr-2 pl-2">Share</a>
+                 <a href="{{ URL::to('/') }}/opentowork/{{ $opc->id }}#" class=" text-decoration-none textcolor-blue pr-2 pl-2">Add to collection</a>
                  <a href="{{ URL::to('/') }}/user/{{ $opc->user_id }}/view" class="text-decoration-none textcolor-blue pr-2 pl-2">Go to user profile</a>
             </div>
 					

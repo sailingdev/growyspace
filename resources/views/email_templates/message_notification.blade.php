@@ -44,7 +44,7 @@
                                                                             <tbody>
                                                                                 <tr>
                                                                                     <td align="left" id="m_-1730743365790155293qatest-hero-headline" colspan="2" style="padding-bottom:12px">
-                                                                                        <p style="margin:0;word-wrap:break-word;color:#4c4c4c;word-break:break-word;font-weight:400;font-size:16px;line-height:1.5">Hi {{$receiver->full_name}}, I sent the message to you in Growyspace.</p>
+                                                                                        <p style="margin:0;word-wrap:break-word;color:#4c4c4c;word-break:break-word;font-weight:400;font-size:16px;line-height:1.5">Hi {{$receiver->full_name}}, I sent you a message in Growyspace.</p>
                                                                                     </td>
                                                                                 </tr>
                                                                                 <tr>

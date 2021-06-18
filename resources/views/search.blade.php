@@ -49,7 +49,7 @@
 							</div>
 							<div class="form-check">
 								<label class="form-check-label">
-									<input type="radio" class="form-check-input" {{ $type == 1 ? 'checked' : '' }} name="type" value="1">Users
+									<input type="radio" class="form-check-input" {{ $type == 1 ? 'checked' : '' }} name="type" value="1">Profiles
 								</label>
 							</div>
 
@@ -71,7 +71,7 @@
 								</div>
 							</div>
 							<div class="card-block p-4">
-							<a href="/cards/{{ $opc->id }}" class="text-decoration-none" style="color:unset">
+							<a href="/cards/{{ $opc->id }}#" class="text-decoration-none" style="color:unset">
 								<div class="row m-0 p-0 ">
 									<div class="w-100 profile_pitch">
 										<h3 class="font-weight-bold">{{ $opc->title }}</h3>
@@ -101,7 +101,7 @@
 										<a href="/cards/{{ $opc->id }}/edit" class="textcolor-blue pull-right pl-2 opt_align_mobile"><img src="/assets/images/Icon-edit.svg" alt="Edit" style="width:25px;"><span class="pl-2">Edit</span></a>
 									@endif
 									@if($user_id && $user_id != $opc->user_id)
-										<a href="/cards/{{ $opc->id }}"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2 opt_align_mobile"  style="color: #219BC4">Read more</a>
+										<a href="/cards/{{ $opc->id }}#"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2 opt_align_mobile"  style="color: #219BC4">Read more</a>
 					
 										
 										<a href="#"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2 opt_align_mobile" data-toggle="dropdown"  style="color: #219BC4">Send my professional card</a>
@@ -121,7 +121,7 @@
 										<a href="#" data-pk="{{ $opc->id }}" data-type="checklist" data-source="{{ URL::to('/') }}/ajax/get_opc_collection_list/{{$opc->id}}"  data-title="Select collections" class="opportunity_collection editable editable-click  float-right  text-decoration-none textcolor-blue pr-2 pl-2 opt_align_mobile" data-placement="bottom"   data-original-title="" title="">Add to collection</a>   
 															
 									@elseif(!$user_id && $user_id != $opc->user_id)
-										<a href="/cards/{{ $opc->id }}"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2 opt_align_mobile"  style="color: #219BC4" >Read more</a>
+										<a href="/cards/{{ $opc->id }}#"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2 opt_align_mobile"  style="color: #219BC4" >Read more</a>
 										<a href="/user/login"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2 opt_align_mobile" style="color: #219BC4" data-toggle="modal" data-target="#login_modal">Send my professional card</a>		
 										<a href="/user/login" class="float-right  text-decoration-none textcolor-blue pr-2 pl-2 opt_align_mobile" data-toggle="modal" data-target="#login_modal">Add to collection</a> 							
 									@endif
@@ -145,7 +145,7 @@
 								</div>
 							</div>
 							<div class="card-block p-4">
-							<a href="/opentowork/{{ $opc->id }}" class="text-decoration-none" style="color:unset">
+							<a href="/opentowork/{{ $opc->id }}#" class="text-decoration-none" style="color:unset">
 								<div class="row m-0 p-0 ">
 									<div class="w-100 profile_pitch">
 										<h3 class="font-weight-bold">{{ strlen($opc->title) > 75 ? substr($opc->title,0,75).'...' : $opc->title }}</h3>
@@ -170,7 +170,7 @@
 									@if($user_id == $opc->user_id)
 										<a href="/opentowork/{{ $opc->id }}/edit" class="textcolor-blue pull-right pl-2 opt_align_mobile"><img src="/assets/images/Icon-edit.svg" alt="Edit" style="width:25px;"><span class="pl-2">Edit</span></a>
 									@endif
-										<a href="/opentowork/{{ $opc->id }}"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2 opt_align_mobile"  style="color: #219BC4">Read more</a>
+										<a href="/opentowork/{{ $opc->id }}#"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2 opt_align_mobile"  style="color: #219BC4">Read more</a>
 										@if($user_id && $user_id != $opc->user_id)
 										
 											<a href="#" class=" float-right  text-decoration-none textcolor-blue pr-2 pl-2 opt_align_mobile" data-toggle="dropdown">Send my opportunity</a>    
@@ -216,25 +216,25 @@
 										<span class="m-0 text-right " style="padding: 14px 24px 14px 15px;position: absolute;right:0px; top:0px;height: 54px;background: #65C5BF;float:right;">
 											<img src="/assets/images/Icon-opportunity seeker.svg" style="width:30px;"><span class="pl-2">Opportunity Seeker</span>
 										</span>
-										<p class="p-0 font-weight-bold">User</p>
+										<p class="p-0 font-weight-bold">Profile</p>
 										<p class="pl-4 text-right location_font"><span class="fa fa-map-marker"></span><span class="pl-2">{{ isset($countries[$u->country_code]) ? $countries[$u->country_code] : $u->country_code }}, {{ $u->city }}</span></p>
 									
 									@elseif($u->looking_for == 2)
 										<span class="m-0 text-right " style="padding: 14px 24px 14px 15px;position: absolute;right:0px; top:0px;height: 54px;background: #3170AF;float:right;">
 											<img src="/assets/images/Icon-talent seeker.svg" style="width:30px;"><span class="pl-2">Talent Seeker</span>
 										</span>
-										<p class="p-0 font-weight-bold">User</p>
+										<p class="p-0 font-weight-bold">Profile</p>
 										<p class="pl-4 text-right location_font"><span class="fa fa-map-marker"></span><span class="pl-2">{{ isset($countries[$u->country_code]) ? $countries[$u->country_code] : $u->country_code }}, {{ $u->city }}</span></p>
 									@else
 
-									<p class="w-35 m-0 p-0 font-weight-bold">User</p>
+									<p class="w-35 m-0 p-0 font-weight-bold">Profile</p>
 									<p class="w-65 m-0 p-0 text-right location_font"><span class="fa fa-map-marker"></span><span class="pl-2">{{ isset($countries[$u->country_code]) ? $countries[$u->country_code] : $u->country_code }}, {{ $u->city }}</span></p>
 									@endif
 								</div>
 								<!-- mobile -->
 								<div class="row m-0 p-0 opportunity_header show_tablet">
 									@if($u->looking_for == 1)
-										<p class="w-25 m-0 p-0 font-weight-bold">User</p>
+										<p class="w-25 m-0 p-0 font-weight-bold">Profile</p>
 										<p class="w-50 m-0 p-0 text-right location_font ellipsis" onclick="toggleEllipsis(this)"><span class="fa fa-map-marker"></span><span class="pl-2">{{ isset($countries[$u->country_code]) ? $countries[$u->country_code] : $u->country_code }}, {{ $u->city }}</span>
 										</p>
 										<p class="w-25 m-0 p-0 text-right ">
@@ -242,7 +242,7 @@
 										</p>
 									
 									@elseif($u->looking_for == 2)
-										<p class="w-25 m-0 p-0 font-weight-bold">User</p>
+										<p class="w-25 m-0 p-0 font-weight-bold">Profile</p>
 										<p class="w-50 m-0 p-0 text-right location_font ellipsis" onclick="toggleEllipsis(this)"><span class="fa fa-map-marker"></span><span class="pl-2">{{ isset($countries[$u->country_code]) ? $countries[$u->country_code] : $u->country_code }}, {{ $u->city }}</span>
 										</p>
 										<p class="w-25 m-0 p-0 text-right ">
@@ -251,7 +251,7 @@
 
 									@else
 
-									<p class="w-35 m-0 p-0 font-weight-bold pull-left">User</p>
+									<p class="w-35 m-0 p-0 font-weight-bold pull-left">Profile</p>
 									<p class="w-65 m-0 p-0 text-right location_font pull-left ellipsis" onclick="toggleEllipsis(this)"><span class="fa fa-map-marker"></span><span class="pl-2">{{ isset($countries[$u->country_code]) ? $countries[$u->country_code] : $u->country_code }}, {{ $u->city }}</span></p>
 									@endif
 								</div>

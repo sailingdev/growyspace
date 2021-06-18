@@ -223,6 +223,7 @@ Route::prefix('growyspace-admin')->group(function() {
   Route::post('/ajax/delete_factura_item' ,'Admin\AjaxController@delete_factura_item');
   Route::post('/ajax/update_facture' ,'Admin\AjaxController@update_facture');
   Route::post('/ajax/send_chat_opentowork_holder' ,'Admin\AjaxController@send_chat_opentowork_holder');
+  Route::post('/ajax/revertUnsubscribe' ,'Admin\AjaxController@revertUnsubscribe');
 
   Route::post('/login', 'Admin\LoginController@login')->name('admin.login.submit');
 

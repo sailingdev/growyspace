@@ -115,13 +115,22 @@
 					<a href="{{ URL::to('/') }}/user/logout" class="nav-item nav-link m-0 p-0 pr-3 pl-3 pt-3 text-center"><p class="m-0 p-0 pt-2">Log out</p></a>
 					</div>
 				@else
+					@if(request()->is('search'))
+						<div class="navbar-nav ml-auto p-2 show_navbar_inmobile" style="height:91px">
+							<!--a href="/news" class="p-1 nav-item nav-link {{ (request()->is('news')) ? 'active' : '' }}" style="height:auto;"><img src="/assets/images/Icon-news-small.svg" class="pull-left img-fluid" style="width:30px;"/><span class="pull-left p-1" >News</span></a-->
+							<a href="{{ URL::to('/') }}/search" class="nav-item nav-link m-0 p-0 pr-3 pl-3 pt-4 text-center {{ (request()->is('search')) ? 'active' : '' }}">Explore</a>
+							<a href="/user/register" class="nav-item nav-link m-0 p-0 pr-3 pl-3 pt-4 text-center" data-toggle="modal" data-target="#signup_modal">Sign up</a>
+							<a href="/user/login" class="nav-item nav-link m-0 p-0 pr-3 pl-3 pt-4 text-center" data-toggle="modal" data-target="#login_modal">Login</a>
+						</div>
+					@else
+						<div class="navbar-nav ml-auto p-2 show_navbar_inmobile" style="height:75px">
+							<!--a href="/news" class="p-1 nav-item nav-link {{ (request()->is('news')) ? 'active' : '' }}" style="height:auto;"><img src="/assets/images/Icon-news-small.svg" class="pull-left img-fluid" style="width:30px;"/><span class="pull-left p-1" >News</span></a-->
+							<a href="{{ URL::to('/') }}/search" class="nav-item nav-link m-0 p-0 pr-3 pl-3 pt-3 text-center {{ (request()->is('search')) ? 'active' : '' }}">Explore</a>
+							<a href="/user/register" class="nav-item nav-link m-0 p-0 pr-3 pl-3 pt-3 text-center" data-toggle="modal" data-target="#signup_modal">Sign up</a>
+							<a href="/user/login" class="nav-item nav-link m-0 p-0 pr-3 pl-3 pt-3 text-center" data-toggle="modal" data-target="#login_modal">Login</a>
+						</div>
+					@endif
 
-					<div class="navbar-nav ml-auto p-2 show_navbar_inmobile">
-						<!--a href="/news" class="p-1 nav-item nav-link {{ (request()->is('news')) ? 'active' : '' }}" style="height:auto;"><img src="/assets/images/Icon-news-small.svg" class="pull-left img-fluid" style="width:30px;"/><span class="pull-left p-1" >News</span></a-->
-						<a href="{{ URL::to('/') }}/search" class="nav-item nav-link m-0 p-0 pr-3 pl-3 text-center {{ (request()->is('search')) ? 'active' : '' }}"><img src="/assets/images/icon-search-new.svg" class="pt-2 img-fluid" style="width:25px;"/><small style="font-size: 85%;"><p class="m-0 p-0 pt-1">Explore</p></small></a>
-						<a href="/user/register" class="nav-item nav-link m-0 p-0 pr-3 pl-3 pt-3 text-center" data-toggle="modal" data-target="#signup_modal">Sign up</a>
-						<a href="/user/login" class="nav-item nav-link m-0 p-0 pr-3 pl-3 pt-3 text-center" data-toggle="modal" data-target="#login_modal">Login</a>
-					</div>
 				@endif
 				</div>		
 			</nav>

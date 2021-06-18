@@ -1053,6 +1053,22 @@ class AjaxController extends Controller
 			
 		}
 	}
+	public function revertUnsubscribe(Request $request) {
+		if ($request->ajax()) {
+			$id = $request->id;
+			$user = User::find($id);
+			$name = $user->full_name;
+			$user->unsubscribe = 0; 
+			$user->save();
+
+			echo json_encode(array(
+				'complete' => true,
+				'name' => $name,
+
+			));
+			
+		}
+	}
 	/*public function get_product_group_data(Request $request) {
 		if ($request->ajax()) {
 			$data = $request->all();

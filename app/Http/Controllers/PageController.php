@@ -38,6 +38,21 @@ class PageController extends Controller
 	}
 	
 	public function contact_us_post(Request $request) {
+
+		$response = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.env('GOOGLE_CAPCHA_SECURITY', null).'&response='.$_POST['g-recaptcha-response']);
+
+		$response_data = json_decode($response);
+
+		if(!$response_data->success)
+		{
+			$captcha_error = 'Captcha verification failed';
+		  $data = array(
+		   'captcha_error'  => $captcha_error
+		  );
+	
+		  return redirect()->back()->withInput()->withErrors($data);
+		  exit;
+		}
 		
 		$v = Validator::make($request->all(), [
 			'email_address' => 'required|email',
@@ -49,6 +64,7 @@ class PageController extends Controller
 		if ($v->fails())
 		{
 			return redirect()->back()->withInput()->withErrors($v->errors());
+			exit;
 		}
 		
 		$email = $request->email_address;

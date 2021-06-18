@@ -1326,3 +1326,15 @@ function updateMatchmaking(id){
 		}
 	});	
 }
+function revertUnsubscribe(id){
+
+	$.ajax({
+		url:base_url + 'ajax/revertUnsubscribe',
+		type: 'post',
+		data: {id:id ,_token: $('._token').val()},
+		success:function(response){
+			alert("The email notification has been activated");  
+			window.location.reload();
+		}
+	});	
+}

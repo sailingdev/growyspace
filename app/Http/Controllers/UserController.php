@@ -322,7 +322,7 @@ class UserController extends Controller
 			exit;
 		}
 		$user->unsubscribe = 1;
-		$user->save();
+		//$user->save();
 		return redirect('/')->withInput()->withErrors(['You will not receive the reminder email from now on.']);
 	}
 	

@@ -266,14 +266,16 @@ class AjaxController extends Controller
 				
 				//Lets get older messages
 				if($first_msg_id > 0) {
-					$older_messages = User_message::where('id','<',$first_msg_id)->where('conversation_id',$conversation_id)->orderBy('created_at','desc')->limit(5)->get();
+					//$older_messages = User_message::where('id','<',$first_msg_id)->where('conversation_id',$conversation_id)->orderBy('created_at','desc')->limit(5)->get();
+					$older_messages = User_message::where('id','<',$first_msg_id)->where('conversation_id',$conversation_id)->orderBy('created_at','desc')->get();
 					$older_messages = $older_messages->reverse();
 					
 					$um = new User_message;
 					$older_messages_html = $um->get_messages_html($older_messages,$user_id);
 				}
 				
-				$messages = User_message::whereRaw($subquery)->where('conversation_id',$conversation_id)->orderBy('created_at','desc')->limit(20)->get();
+				// $messages = User_message::whereRaw($subquery)->where('conversation_id',$conversation_id)->orderBy('created_at','desc')->limit(20)->get();
+				$messages = User_message::whereRaw($subquery)->where('conversation_id',$conversation_id)->orderBy('created_at','desc')->get();
 				$messages = $messages->reverse();
 				
 				$conversation_last_message = User_message::where('conversation_id',$conversation_id)->orderBy('created_at','desc')->first();
@@ -3735,7 +3737,7 @@ class AjaxController extends Controller
 		}
 		
 
-		$user->save();
+		//$user->save();
 		echo json_encode(array(
 			'complete' => true,
 			'messages_html' => 'Email Notification has been '.$str,

@@ -35,6 +35,9 @@
             <!-- Form actions -->
             <div class="form-group">
               <div class="col-md-12 text-right">
+                  <div class="g-recaptcha" data-type="image"  data-sitekey="{{ env('GOOGLE_CAPCHA_KEY')}}"></div>
+                  
+                  <span id="captcha_error" class="text-danger"></span>
                 <button type="submit" class="btn bgcolor-collection text-white btn-lg">Submit</button>
               </div>
             </div>
@@ -43,6 +46,7 @@
         </div>
       </div>
 	</div>
+	  <script src='https://www.google.com/recaptcha/api.js' async defer ></script>
 </div>
 <style>
 .well {
