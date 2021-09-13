@@ -29,6 +29,7 @@
 					@endif
 					
 					<div class="row m-0 p-0 hide_mobile">
+						<p class="w-50 m-0 p-0 pt-1">Profile</p>
 						@if($user->looking_for == 1)
 						<span class="m-0 text-right " style="padding: 14px 24px 14px 15px;position: absolute;right:0px; top:0px;height: 54px;background: #65C5BF;float:right;border-radius: 0px 3px 0px 0px;">
 							<img src="/assets/images/Icon-opportunity seeker.svg" style="width:30px;"><span class="pl-2">Opportunity Seeker</span>
@@ -64,7 +65,25 @@
 					</div>
 					
 				</div>
-				<div class="card-block p-4">
+				<div class="w-100 m-0 p-3 toolbar">	
+							@if($logged_in_user_id && !$third_person)						
+								<a href="/user/{{ $user->id }}/edit" class="textcolor-blue pull-right "><img src="/assets/images/Icon-edit.svg" alt="Edit" style="width:25px;"><span class="pr-2">Edit</span></a>
+								<a href="#" data-pk="{{ $user->id }}" data-type="checklist" data-source="{{ URL::to('/') }}/ajax/get_user_collection_list/{{$user->id}}"  data-title="Select collections" class="user_collection editable editable-click text-decoration-none textcolor-blue pull-left pr-2 pl-2" data-placement="bottom"   data-original-title="" title="" style="color: #219BC4">Add to collection</a>
+							@endif
+							@if($logged_in_user_id && $third_person)	
+								<a href="#" data-pk="{{ $user->id }}" data-type="checklist" data-source="{{ URL::to('/') }}/ajax/get_user_collection_list/{{$user->id}}"  data-title="Select collections" class="user_collection editable editable-click text-decoration-none textcolor-blue pull-left pr-2 pl-2" data-placement="bottom"   data-original-title="" title="" style="color: #219BC4">Add to collection</a>
+								<a href="/messages/{{ $user->id }}" class="text-decoration-none textcolor-blue float-right pr-2">Send a message</a>
+							@elseif(!$logged_in_user_id && $third_person)	
+								
+								<a href="#" data-toggle="modal" data-target="#login_modal" class="user_collection  text-decoration-none textcolor-blue pull-left pr-2 pl-2" style="color: #219BC4">Add to collection</a>
+								<a href="#" data-toggle="modal" data-target="#login_modal" class="text-decoration-none textcolor-blue float-right pr-2">Send a message</a>
+							@endif	
+								<a href="{{ URL::to('/') }}/exportProfile/{{ $user->id }}" class="editable editable-click  float-left  text-decoration-none textcolor-blue  pr-2 pl-2 cusor_pointer opt_align_mobile" >Download PDF</a> 
+
+								<a href="#" id="profile_share" data-type="text" data-title="Copy this link to share" class="editable editable-click  float-left  text-decoration-none textcolor-blue  pr-2 pl-2 opt_align_mobile" data-placement="bottom" data-original-title="" title="" data-value="{{ URL::to('/') }}/user/{{ $user->id }}#">Share</a> 
+
+				</div>
+				<div class="card-block p-4 toolbar_card">
 						
 						<div class="row m-0 p-0 profile_picture">
 							<div class="profile_img">
@@ -95,68 +114,71 @@
 							</div>
 						</div>
 
-
-
-						<div class="row m-0 p-0 mt-3">
-							<div class="w-100 m-0 p-0">	
-							@if($logged_in_user_id && !$third_person)						
-								<a href="/user/{{ $user->id }}/edit" class="textcolor-blue pull-right pl-2"><img src="/assets/images/Icon-edit.svg" alt="Edit" style="width:25px;"><span class="pl-2">Edit</span></a>
-								<a href="#" data-pk="{{ $user->id }}" data-type="checklist" data-source="{{ URL::to('/') }}/ajax/get_user_collection_list/{{$user->id}}"  data-title="Select collections" class="user_collection editable editable-click text-decoration-none textcolor-blue pull-right pr-2 pl-2" data-placement="bottom"   data-original-title="" title="" style="color: #219BC4">Add to collection</a>
-							@endif
-							@if($logged_in_user_id && $third_person)	
-								<a href="#" data-pk="{{ $user->id }}" data-type="checklist" data-source="{{ URL::to('/') }}/ajax/get_user_collection_list/{{$user->id}}"  data-title="Select collections" class="user_collection editable editable-click text-decoration-none textcolor-blue pull-right pr-2 pl-2" data-placement="bottom"   data-original-title="" title="" style="color: #219BC4">Add to collection</a>
-								<a href="/messages/{{ $user->id }}" class="text-decoration-none textcolor-blue float-right pr-2">Send a message</a>
-							@elseif(!$logged_in_user_id && $third_person)	
-								
-								<a href="#" data-toggle="modal" data-target="#login_modal" class="user_collection  text-decoration-none textcolor-blue pull-right pr-2 pl-2" style="color: #219BC4">Add to collection</a>
-								<a href="#" data-toggle="modal" data-target="#login_modal" class="text-decoration-none textcolor-blue float-right pr-2">Send a message</a>
-							@endif	
+						<div class="row m-0 p-0 ">
+							<div class="mt-3 w-100 profile_experience">
+								<h3 class="font-weight-bold mypresentation color-black1">Experience</h3>
+								@foreach($user_experiences as $ue)
+								<div class="row m-0 p-0 mb-2 profile_company hide_mobile">
+									<p class="w-50 m-0 p-0 font-weight-bold profile_exp_font color-black1 ellipsis" onclick="toggleEllipsis(this)">{{$ue->title}}</p>
+									<p class="w-50 m-0 p-0 text-left profile_exp_font myexp_company color-black2 ellipsis" onclick="toggleEllipsis(this)">{{$ue->company}}</p>
+									<p class="w-50 m-0 p-0 mt-2 myexp_location color-black2 ellipsis" onclick="toggleEllipsis(this)">
+										<!-- <img src="/assets/images/location.png">&nbsp;{{ (isset($countries[$ue->country_code]) ? $countries[$ue->country_code] : '' ) .', '.$ue->city }}</p> -->
+										<span class="fa fa-map-marker"></span>&nbsp;{{ (isset($countries[$ue->country_code]) ? $countries[$ue->country_code] : '' ) .', '.$ue->city }}</p>
+									<p class="w-50 m-0 p-0 text-left mt-2 myexp_location color-black2 ellipsis" onclick="toggleEllipsis(this)">{{ date("F, Y", strtotime($ue->from_date)) }} - 
+									@if($ue->currently_working == 1)
+										Present
+									@else	
+										{{ date("F, Y", strtotime($ue->to_date)) }}
+									@endif
+									</p>
+								</div>
+								<!-- mobile -->
+								<div class="row m-0 p-0 mb-2 profile_company show_mobile">
+									<p class="w-100 m-0 p-0 font-weight-bold profile_exp_font color-black1 ellipsis" onclick="toggleEllipsis(this)">{{$ue->title}}</p>
+									<p class="w-100 m-0 p-0 text-left profile_exp_font myexp_company color-black2 ellipsis" onclick="toggleEllipsis(this)">{{$ue->company}}</p>
+									<p class="w-100 m-0 p-0 mt-2 myexp_location color-black2 ellipsis" onclick="toggleEllipsis(this)">
+										<!-- <img src="/assets/images/location.png">&nbsp;{{ (isset($countries[$ue->country_code]) ? $countries[$ue->country_code] : '' ) .', '.$ue->city }}</p> -->
+										<span class="fa fa-map-marker"></span>&nbsp;{{ (isset($countries[$ue->country_code]) ? $countries[$ue->country_code] : '' ) .', '.$ue->city }}</p>
+									<p class="w-100 m-0 p-0 text-left mt-2 myexp_location color-black2 ellipsis" onclick="toggleEllipsis(this)">{{ date("F, Y", strtotime($ue->from_date)) }} - 
+									@if($ue->currently_working == 1)
+										Present
+									@else	
+										{{ date("F, Y", strtotime($ue->to_date)) }}
+									@endif
+									</p>
+								</div>
+								@endforeach
 							</div>
-						</div>
-	
-
-				</div>
-
-			</div>
-			@if(!$third_person)
-			<div class="row m-0 p-0 mt-5 display_button1" style="{{ $user->matchmaking == 0 ? 'display:none;' : '' }}">
-				<p class="w-65 m-0 p-0"></p>
-				<p class="w-35 m-0 p-0 text-right">
-				<a href="/findmatch/{{ $user->id }}" class="btn button_create_opportunity" style="background:#219BC4">Matchmaking advanced</a>
-				</p>
-			</div>
-			<div class="row m-0 p-0 mt-5 display_button2" style="{{ $user->matchmaking == 0 ? 'display:none;' : '' }}">	
-				<p class="w-100 m-0 p-0 text-right">
-				<a href="/findmatch/{{ $user->id }}" class="btn button_create_opportunity" style="background:#219BC4">Matchmaking advanced</a>
-				</p>
-			</div>	
-			@endif		
-			<!-- opportunity -->
-			@foreach($opportunity_cards as $opc)
-			<div class="card mt-5 mb-2">
-				<div class="card-header pl-4 pr-4 color-oppportunity h-100">
-					<div class="row m-0 p-0 opportunity_header">
-						<p class="w-50 m-0 p-0 font-weight-bold">Opportunity</p>
-						<!-- <p class="w-65 m-0 p-0 text-right font-weight-bold"><img src="/assets/images/location2.png"><span class="pl-2">{{ (isset($countries[$opc->country_code]) ? $countries[$opc->country_code] : $opc->country_code).', '.$opc->city }}</span></p> -->
-						<p class="w-50 m-0 p-0 text-right location_font ellipsis" onclick="toggleEllipsis(this)"><span class="fa fa-map-marker"></span><span class="pl-2">{{ (isset($countries[$opc->country_code]) ? $countries[$opc->country_code] : $opc->country_code).', '.$opc->city }}</span></p>
-						
-					</div>
-				</div>
-				<div class="card-block p-4">
-					<a href="/cards/{{ $opc->id }}#" class="text-decoration-none" style="color:unset">
+                		</div>
+						<div class="row m-0 p-0 ">
+							<div class="mt-3 w-100 profile_experience">
+								<h3 class="font-weight-bold mypresentation color-black1">Education</h3>
+								@foreach($user_educations as $ue)
+								<div class="row m-0 p-0 mb-2 profile_company hide_mobile">
+									<p class="w-50 m-0 p-0 font-weight-bold profile_exp_font myexperience color-black1 ellipsis" onclick="toggleEllipsis(this)">{{$ue->title}}</p>
+									<p class="w-50 m-0 p-0 text-left profile_exp_font myexp_company color-black2 ellipsis" onclick="toggleEllipsis(this)">{{$ue->school}}</p>
+									<!-- <p class="w-50 m-0 p-0"><img src="/assets/images/location.png">&nbsp;{{ (isset($countries[$ue->country_code]) ? $countries[$ue->country_code] : '' ) .', '.$ue->city }}</p> -->
+									<p class="w-50 m-0 p-0 mt-2 myexp_location color-black2 ellipsis" onclick="toggleEllipsis(this)"><span class="fa fa-map-marker"></span>&nbsp;{{ (isset($countries[$ue->country_code]) ? $countries[$ue->country_code] : '' ) .', '.$ue->city }}</p>
+									<p class="w-50 m-0 p-0 text-left mt-2 myexp_location color-black2 ellipsis" onclick="toggleEllipsis(this)">{{ $ue->from_year }} to {{ $ue && $ue->to_year !=null ?  $ue->to_year : 'Present'}}
+									</p>
+								</div>
+								<!-- mobile -->
+								<div class="row m-0 p-0 mb-2 profile_company show_mobile">
+									<p class="w-100 m-0 p-0 font-weight-bold profile_exp_font myexperience color-black1">{{ $ue->title }}</p>
+									<p class="w-100 m-0 p-0 text-left profile_exp_font myexp_company color-black2 ellipsis" onclick="toggleEllipsis(this)">{{ $ue->school  }}</p>
+									<!-- <p class="w-50 m-0 p-0"><img src="/assets/images/location.png">&nbsp;{{ (isset($countries[$ue->country_code]) ? $countries[$ue->country_code] : '' ) .', '.$ue->city }}</p> -->
+									<p class="w-100 m-0 p-0 mt-2 myexp_location color-black2 ellipsis" onclick="toggleEllipsis(this)"><span class="fa fa-map-marker"></span>&nbsp;{{ (isset($countries[$ue->country_code]) ? $countries[$ue->country_code] : '' ) .', '.$ue->city }}</p>
+									<p class="w-100 m-0 p-0 text-left mt-2 myexp_location color-black2 ellipsis" onclick="toggleEllipsis(this)">{{ $ue->from_year }} to {{ $ue && $ue->to_year != null ?  $ue->to_year : 'Present'}}
+									</p>
+								</div>
+								@endforeach
+							</div>
+                		</div>
 						<div class="row m-0 p-0 ">
 							<div class="w-100 profile_pitch">
-								<h3 class="font-weight-bold ellipsis" onclick="toggleEllipsis(this)">{{ $opc->title }}</h3>
-								<p style="font-size: 15px;color:#1C3041;">{{ $opc->company }}</p>
-								
-							</div>
-						</div>
-						
-						<div class="row m-0 p-0 ">
-							<div class="w-100 profile_pitch">
-								<h3 class="font-weight-bold opt_roles_font">Technical skills</h3>
+								<h3 class="font-weight-bold mypresentation">Roles of interest</h3>
 								<ul class="list-unstyled list-inline margin-0-auto mb-0 request_skills">
-									@foreach(json_decode($opc->fields,true) as $oc)
+									@foreach($opc_roles as $oc)
 									<li class="list-inline-item mr-0 pr-2 pb-2" style="margin:0px">
 										<div class="chip bgcolor-purple mr-0 chip-custom">{{$oc}}</div>
 									</li>
@@ -164,216 +186,74 @@
 								</ul>
 							</div>
 						</div>	
-					</a>
-					<div class="row m-0 p-0 ">
-						<div class="w-100 m-0 p-0">	
-						@if(!$third_person)		
-
-							<a href="/cards/{{ $opc->id }}/edit" class="textcolor-blue pull-right pl-2"><img src="/assets/images/Icon-edit.svg" alt="Edit" style="width:25px;"><span class="pl-2">Edit</span></a>
-						@endif
-							<a href="/cards/{{ $opc->id }}#"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2"  style="color: #219BC4">Read more</a>
-							@if($logged_in_user_id && $third_person)	
-								
-									<a href="#"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2" data-toggle="dropdown"  style="color: #219BC4">Send my professional card</a>
-									<div class="dropdown-menu dropdown-menu-right"  style="padding: 0px;">
-										@if(count($opentowork_card) > 0) 
-											<ul style="margin: 0px;padding: 0px;">
-												@foreach ($opentowork_card as $item)
-													<li class="list-unstyled send_opentowork"><a href="{{ URL::to('/') }}/opentowork/{{ $item->id }}">{{$item->title}}</a></li>
-												@endforeach
-													<li class="list-unstyled send_opentowork"><a href="{{ URL::to('/') }}/opentowork/{{ $opc->id }}/refer">Create New one</a></li>
-											</ul>
-										@else
-											<li class="list-unstyled send_opentowork"><a href="{{ URL::to('/') }}/opentowork/{{ $opc->id }}/refer">Create New one</a></li>
-										@endif
-									</div>
-
-									<a href="#" data-pk="{{ $opc->id }}" data-type="checklist" data-source="{{ URL::to('/') }}/ajax/get_opc_collection_list/{{$opc->id}}"  data-title="Select collections" class="opportunity_collection editable editable-click  float-right  text-decoration-none textcolor-blue pr-2 pl-2" data-placement="bottom"   data-original-title="" title="">Add to collection</a>   
-													
-							@elseif(!$logged_in_user_id && $third_person)	
-
-								<a href="#"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2" data-toggle="modal" data-target="#login_modal"  style="color: #219BC4">Send my professional card</a>
-								<a href="#" data-toggle="modal" data-target="#login_modal" class="float-right  text-decoration-none textcolor-blue pr-2 pl-2" >Add to collection</a>
-							@endif	
-						</div>
-					</div>
-				</div>
-			</div>
-			@endforeach	
-			<!-- Add Opportunity -->
-			@if(!$third_person && ($user->looking_for == 2 || $user->looking_for == 0))			
-			<div class="row m-0 p-0 mt-5 display_button1">
-				<p class="w-65 m-0 p-0"></p>
-				<p class="w-35 m-0 p-0 text-right">
-				<a href="/cards" class="btn button_create_opportunity">Create new Opportunity</a>
-				</p>
-			</div>
-			<div class="row m-0 p-0 mt-5 display_button2">		
-				<p class="w-100 m-0 p-0 text-right">
-				<a href="/cards" class="btn button_create_opportunity">Create new Opportunity</a>
-				</p>
-			</div>
-			@endif
-			<!-- opentowork -->
-			@if(count($opentowork_card) > 0)
-			@foreach($opentowork_card as $opc)
-				@if($opc->refer)
-					@if(!$third_person)
-						<div class="card mt-5 mb-2">
-						<div class="card-header pl-4 pr-4 color-opentowork h-100">
-							<div class="row m-0 p-0 opportunity_header">
-								<p class="w-50 m-0 p-0 font-weight-bold">Professional card</p>
-								<!-- <p class="w-65 m-0 p-0 text-right font-weight-bold"><img src="/assets/images/location2.png"><span class="pl-2">{{ (isset($countries[$opc->country_code]) ? $countries[$opc->country_code] : $opc->country_code).', '.$opc->city }}</span></p> -->
-								<p class="w-50 m-0 p-0 text-right location_font ellipsis" onclick="toggleEllipsis(this)"><span class="fa fa-map-marker"></span><span class="pl-2">{{ (isset($countries[$opc->country_code]) ? $countries[$opc->country_code] : $opc->country_code).', '.$opc->city }}</span></p>
-								
-							</div>
-						</div>
-						<div class="card-block p-4">
-							<a href="/opentowork/{{ $opc->id }}#" class="text-decoration-none" style="color:unset">
-								<div class="row m-0 p-0 ">
-									<div class="w-100 profile_pitch">
-										<h3 class="font-weight-bold">{{ $opc->title }}</h3>
-									</div>
-								</div>
-
-								<div class="row m-0 p-0 ">
-									<div class="w-100 profile_pitch">
-										<p></p>
-										<h3 class="font-weight-bold opt_roles_font">Roles of interest</h3>
-										<ul class="list-unstyled list-inline margin-0-auto mb-0 request_skills">
-											@foreach(json_decode($opc->roles,true) as $oc)
-											<li class="list-inline-item mr-0 pr-2 pb-2" style="margin:0px">
-												<div class="chip bgcolor-purple mr-0 chip-custom">{{$oc}}</div>
-											</li>
-											@endforeach	
-										</ul>
-									</div>
-								</div>	
-							</a>
-							<div class="row m-0 p-0 ">
-								<div class="w-100 m-0 p-0">							
-								@if(!$third_person)		
-
-									<a href="/opentowork/{{ $opc->id }}/edit" class="textcolor-blue pull-right pl-2"><img src="/assets/images/Icon-edit.svg" alt="Edit" style="width:25px;"><span class="pl-2">Edit</span></a>
-								@endif
-									<a href="/opentowork/{{ $opc->id }}#"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2"  style="color: #219BC4">Read more</a>
-								@if($logged_in_user_id && $third_person)	
-									
-										<a href="#" class=" float-right  text-decoration-none textcolor-blue pr-2 pl-2" data-toggle="dropdown">Send my opportunity</a>    
-																
-										<div class="dropdown-menu dropdown-menu-right"  style="padding: 0px;">
-										@if(count($opportunity_cards) > 0) 
-											<ul style="margin: 0px;padding: 0px;">
-												@foreach ($opportunity_cards as $item)
-													<li class="list-unstyled send_opentowork"><a href="{{ URL::to('/') }}/cards/{{ $item->id }}">{{$item->title}}</a></li>
-												@endforeach
-													<li class="list-unstyled send_opentowork"><a href="{{ URL::to('/') }}/cards/{{ $opc->id }}/refer">Create New one</a></li>
-											</ul>
-										@else
-											<li class="list-unstyled send_opentowork"><a href="{{ URL::to('/') }}/cards/{{ $opc->id }}/refer">Create New one</a></li>
-										@endif
-										</div>
-
-										<a href="#" data-pk="{{ $opc->id }}" data-type="checklist" data-source="{{ URL::to('/') }}/ajax/get_opc_collection_list/{{$opc->id}}"  data-title="Select collections" class="opportunity_collection editable editable-click  float-right  text-decoration-none textcolor-blue pr-2 pl-2" data-placement="bottom"   data-original-title="" title="">Add to collection</a>   
-														
-								@elseif(!$logged_in_user_id && $third_person)	
-
-									<a href="#" data-toggle="modal" data-target="#login_modal" class=" float-right  text-decoration-none textcolor-blue pr-2 pl-2" data-toggle="dropdown">Send my opportunity</a> 
-									<a href="#" data-toggle="modal" data-target="#login_modal" class="user_collection  text-decoration-none textcolor-blue pull-right pr-2 pl-2" style="color: #219BC4">Add to collection</a>
-								@endif
-									
-								</div>
-							</div>
-						</div>
-					</div>
-					@endif
-				@else
-				<div class="card mt-5 mb-2">
-					<div class="card-header pl-4 pr-4 color-opentowork h-100">
-						<div class="row m-0 p-0 opportunity_header">
-							<p class="w-50 m-0 p-0 font-weight-bold">Professional card</p>
-							<!-- <p class="w-65 m-0 p-0 text-right font-weight-bold"><img src="/assets/images/location2.png"><span class="pl-2">{{ (isset($countries[$opc->country_code]) ? $countries[$opc->country_code] : $opc->country_code).', '.$opc->city }}</span></p> -->
-							<p class="w-50 m-0 p-0 text-right location_font ellipsis" onclick="toggleEllipsis(this)"><span class="fa fa-map-marker"></span><span class="pl-2">{{ (isset($countries[$opc->country_code]) ? $countries[$opc->country_code] : $opc->country_code).', '.$opc->city }}</span></p>
-							
-						</div>
-					</div>
-					<div class="card-block p-4">
-						<a href="/opentowork/{{ $opc->id }}#" class="text-decoration-none" style="color:unset">
-							<div class="row m-0 p-0 ">
-								<div class="w-100 profile_pitch">
-									<h3 class="font-weight-bold">{{ $opc->title }}</h3>
-								</div>
-							</div>
-
-							<div class="row m-0 p-0 ">
-								<div class="w-100 profile_pitch">
-									<p></p>
-									<h3 class="font-weight-bold opt_roles_font">Roles of interest</h3>
-									<ul class="list-unstyled list-inline margin-0-auto mb-0 request_skills">
-										@foreach(json_decode($opc->roles,true) as $oc)
-										<li class="list-inline-item mr-0 pr-2 pb-2" style="margin:0px">
-											<div class="chip bgcolor-purple mr-0 chip-custom">{{$oc}}</div>
-										</li>
-										@endforeach	
-									</ul>
-								</div>
-							</div>	
-						</a>
 						<div class="row m-0 p-0 ">
-							<div class="w-100 m-0 p-0">							
-							@if(!$third_person)		
+							<div class="w-100 profile_pitch">
+								<h3 class="font-weight-bold mypresentation">Technical skills</h3>
+								<ul class="list-unstyled list-inline margin-0-auto mb-0 ">
+								@foreach($opc_fields as $oc)
+								<li class="list-inline-item mr-0 pr-2 pt-2">
+									<div class="chip color-experience mr-0 custom_endorse">
+										<p style="margin: 0px;">{{ $oc }}</p>
+									
+										<span >
+											@if(in_array($logged_in_user_id, $opc_endorse[$oc]))
+												@if($logged_in_user_id)
+												<a href="#" data-type="checklist" data-source="{{ URL::to('/') }}/ajax/get_endorse_list/{{$user_id}}/{{$oc}}"  data-title="Endorsed User list" class="endorse_list editable editable-click" data-placement="bottom"   data-original-title="" title="" data-logined="{{$logged_in_user_id}}"><img src='/assets/images/Icon-endorsed.svg' alt='Endorse' style='width:30px;' /></a>
+												@else
+													<img src='/assets/images/Icon-endorsed.svg' alt='Endorse' style='width:30px;' />
+												@endif
+												@if(count($opc_endorse[$oc]))
+												<span>X {{count($opc_endorse[$oc])}}</span>
+												@endif
+											<span class="opentowork_endorse float-right pl-4"  data-opt-skill="{{ $oc }}" data-opt-id="{{$user_id}}" data-user-id="{{ $user_id }}" data-logined="{{$logged_in_user_id}}" class="undo_icon">Undo</span>
+											
+											@else
 
-								<a href="/opentowork/{{ $opc->id }}/edit" class="textcolor-blue pull-right pl-2"><img src="/assets/images/Icon-edit.svg" alt="Edit" style="width:25px;"><span class="pl-2">Edit</span></a>
-							@endif
-								<a href="/opentowork/{{ $opc->id }}#"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2"  style="color: #219BC4">Read more</a>
-							@if($logged_in_user_id && $third_person)	
-								
-									<a href="#" class=" float-right  text-decoration-none textcolor-blue pr-2 pl-2" data-toggle="dropdown">Send my opportunity</a>    
-															
-									<div class="dropdown-menu dropdown-menu-right"  style="padding: 0px;">
-									@if(count($opportunity_cards) > 0) 
-										<ul style="margin: 0px;padding: 0px;">
-											@foreach ($opportunity_cards as $item)
-												<li class="list-unstyled send_opentowork"><a href="{{ URL::to('/') }}/cards/{{ $item->id }}">{{$item->title}}</a></li>
-											@endforeach
-												<li class="list-unstyled send_opentowork"><a href="{{ URL::to('/') }}/cards/{{ $opc->id }}/refer">Create New one</a></li>
-										</ul>
-									@else
-										<li class="list-unstyled send_opentowork"><a href="{{ URL::to('/') }}/cards/{{ $opc->id }}/refer">Create New one</a></li>
-									@endif
+												@if(count($opc_endorse[$oc]))
+													@if($logged_in_user_id)
+													<a href="#"  data-pk="{{ $user_id }}" data-type="checklist" data-source="{{ URL::to('/') }}/ajax/get_endorse_list/{{$user_id}}/{{$oc}}"  data-title="Endorsed User list" class="endorse_list editable editable-click" data-placement="bottom"   data-original-title="" title="" data-logined="{{$logged_in_user_id}}"><img src='/assets/images/Icon-endorsed.svg' alt='Endorse' style='width:30px;' /></a>   
+													@else
+														<img src='/assets/images/Icon-endorsed.svg' alt='Endorse' style='width:30px;' />
+													@endif                                     
+													<span>X {{count($opc_endorse[$oc])}}</span>
+												@else
+													<img src='/assets/images/Icon-endorsed-1.svg' alt='Endorse' style='width:30px;' />
+												@endif
+												<span class="opentowork_endorse float-right pl-4"  data-opt-skill="{{ $oc }}" data-user-id="{{ $user_id }}" data-opt-id="{{$user_id}}" data-logined="{{$logged_in_user_id}}" class="undo_icon">Endorse</span>
+											@endif
+										</span>
 									</div>
-
-									<a href="#" data-pk="{{ $opc->id }}" data-type="checklist" data-source="{{ URL::to('/') }}/ajax/get_opc_collection_list/{{$opc->id}}"  data-title="Select collections" class="opportunity_collection editable editable-click  float-right  text-decoration-none textcolor-blue pr-2 pl-2" data-placement="bottom"   data-original-title="" title="">Add to collection</a>   
-													
-							@elseif(!$logged_in_user_id && $third_person)	
-
-								<a href="#" data-toggle="modal" data-target="#login_modal" class=" float-right  text-decoration-none textcolor-blue pr-2 pl-2" data-toggle="dropdown">Send my opportunity</a> 
-								<a href="#" data-toggle="modal" data-target="#login_modal" class="user_collection  text-decoration-none textcolor-blue pull-right pr-2 pl-2" style="color: #219BC4">Add to collection</a>
-							@endif
-								
+								</li>
+								@endforeach
+								</ul>
 							</div>
-						</div>
-					</div>
+                		</div>	
+					
 				</div>
-				@endif	
-				
 
-			@endforeach	
-			@endif
-			<!-- Add opentowork -->
-			@if(!$third_person && ($user->looking_for == 1 || $user->looking_for == 0))		
-			<div class="row m-0 p-0 mt-5 display_button1">
-				<p class="w-65 m-0 p-0"></p>
-				<p class="w-35 m-0 p-0 text-right">
-				<a href="/opentowork" class="btn button_create_opportunity color-opentowork">Create new professional card</a>
+			</div>
+			@if(!$third_person)
+			<div class="matchmaking_p" >
+				@if($user->looking_for != 0)			
+				<a href="/findmatch/{{ $user->id }}" class="btn button_create_opportunity" style="background:#219BC4">Matchmaking advanced</a>
+				@endif
+
+				@if(($user->looking_for == 2 || $user->looking_for == 3) && $licence > 1)
+				<a href="/cards" class="btn button_create_opportunity mt-3">Create new Opportunity</a>
+				@endif
+			</div>
+			<!-- <div class="row m-0 p-0 mt-5 display_button1" style="{{ $user->matchmaking == 0 ? 'display:none;' : '' }}">
+				<p class="matchmaking_p">
+				<a href="/findmatch/{{ $user->id }}" class="btn button_create_opportunity" style="background:#219BC4">Matchmaking advanced</a>
 				</p>
-			</div>	
-			<div class="row m-0 p-0 mt-5 display_button2">
+			</div> -->
+			<div class="row m-0 p-0 mt-5 display_button2" style="{{ $user->matchmaking == 0 ? 'display:none;' : '' }}">	
 				<p class="w-100 m-0 p-0 text-right">
-				<a href="/opentowork" class="btn button_create_opportunity color-opentowork">Create new professional card</a>
+				<a href="/findmatch/{{ $user->id }}" class="btn button_create_opportunity" style="background:#219BC4">Matchmaking advanced</a>
 				</p>
 			</div>	
-			@endif
+			@endif		
+
 			<div class="mt-5"></div>	
 			@if($third_person)
 			<p class="text-center">
@@ -382,9 +262,6 @@
 			@endif	
 			<div class="alert alert-secondary m-0 p-0 p-4 mb-5" role="alert" style="background:#fff;border-radius:10px;">
 			Still unsure on what to do? Go to the <a href="/oportunity_guide" style="color:#219BC4;">Opportunity seeker guide</a> if you are looking for job opportunities and go to the <a href="/opentowork_guide" style="color:#219BC4;">Talent seeker guide</a> if you are looking to recruit talents.
-				<!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              	</button> -->
 			</div>
 		</div>
 	</div>

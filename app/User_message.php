@@ -82,6 +82,32 @@ class User_message extends Model
 						// $msg = str_replace("{OPENTOWORK".$opentowork_id."}","",$msg);
 					}
 			}	
+			//interest
+			preg_match('/{INTEREST\s*(\d+)/', $msg, $matches);
+				$interest_html = false;
+				$interest_Prehtml = false;
+				if(isset($matches[1])) {
+					$interest_id = $matches[1];
+					$split = explode('{INTEREST'.$interest_id.'}', $msg);
+					$interest_Prehtml = $split[0];
+					$msg = $split[1];
+
+					$opc = Opportunity_card::find($interest_id);
+					
+					if($opc !== null) {
+						
+						$interest_html = (String) view('opp_card_item',[
+							'opc' => $opc,
+							'user_id' => $user_id,
+							'name' => 'Interest',
+							'url' => 'cards',
+							'msg_state' => $msg_state,
+							'countries' => $countries
+						]);
+						
+			
+					}
+			}	
 			// user
 			preg_match('/{USER\s*(\d+)/', $msg, $matches);
 				$user_html = false;
@@ -205,6 +231,19 @@ class User_message extends Model
 					}
 					$messages_html .= '<li class="agent incoming_opp_card clearfix">'.$opentowork_html.'</li>';
 				}
+				if($interest_html !== false) {
+					if($interest_Prehtml !== false && nl2br($interest_Prehtml) !="") {
+						$messages_html .= '<li class="agent clearfix">';
+						$messages_html .= '<span class="chat-img left clearfix mx-2">';
+							$messages_html .= '<img src="'.$message->from_user_profile_image().'" alt="" class="img-circle" style="width:50px;">';
+						$messages_html .= '</span>';
+							$messages_html .= '<div class="chat-body clearfix">';
+							$messages_html .= '<p>'.nl2br($interest_Prehtml).'</p>';
+							$messages_html .= '</div>';
+						$messages_html .= '</li>';		
+					}
+					$messages_html .= '<li class="agent incoming_opp_card clearfix">'.$interest_html.'</li>';
+				}
 				if($user_html !== false) {
 					if($user_Prehtml !== false && nl2br($user_Prehtml) !="") {
 						$messages_html .= '<li class="agent clearfix">';
@@ -283,6 +322,17 @@ class User_message extends Model
 						$messages_html .= '</li>';
 					}
 					$messages_html .= '<li class="admin outgoing_opp_card clearfix">'.$opentowork_html.'</li>';
+
+				}
+				if($interest_html !== false) {
+					if($interest_Prehtml !== false && nl2br($interest_Prehtml) !="") {
+						$messages_html .= '<li class="admin clearfix">';
+							$messages_html .= '<div class="chat-body color-experience clearfix">';
+							$messages_html .= '<p>'.nl2br($interest_Prehtml).'</p>';
+							$messages_html .= '</div>';
+						$messages_html .= '</li>';
+					}
+					$messages_html .= '<li class="admin outgoing_opp_card clearfix">'.$interest_html.'</li>';
 
 				}
 				if($user_html !== false) {

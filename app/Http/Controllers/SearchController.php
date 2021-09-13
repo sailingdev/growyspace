@@ -333,7 +333,6 @@ class SearchController extends Controller
 		
 		//echo '<pre>';
 		//print_r( $uc_map);exit;
-	
 		$opportunityList = Opportunity_card::where('user_id',$user_id)->get();
 		$opentoworkList = Opentowork_card::where('user_id',$user_id)->get();
 		return view('search',[

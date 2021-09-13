@@ -176,7 +176,7 @@
   .profile_pitch h3{
     /* color:#1C3041;
     font-size: 1.1rem; */
-    font-size: 28px;
+    font-size: 16px;
     color: #000;
   }   
   .profile_pitch .opt_roles_font{
@@ -213,6 +213,7 @@
   .myexp_location{
     font-size:0.875rem !important;
   }
+
   .mylocation{
     display:none;
   }
@@ -451,7 +452,7 @@
 	.profile_pitch h3{
       /* font-size: 1.2rem;
       color:#1C3041; */
-      font-size: 28px;
+      font-size: 16px;
       color: #000;
     }
 	.profile_exp_font{
@@ -723,7 +724,7 @@
 	.profile_pitch h3{
       /* font-size: 1.3rem;
       color:#1C3041; */
-      font-size: 28px;
+      font-size: 16px;
       color: #000;
     }	
 	.profile_exp_font{
@@ -991,7 +992,7 @@
 	.profile_pitch h3{
       /* font-size: 1.3rem;
       color:#1C3041; */
-      font-size: 28px;
+      font-size: 16px;
       color: #000;
     }	
 	.profile_exp_font{
@@ -1322,7 +1323,7 @@
 	.profile_pitch h3{
       /* font-size: 1.3rem;
       color:#1C3041; */
-      font-size: 28px;
+      font-size: 16px;
       color: #000;
     }	
 	.profile_exp_font{
@@ -2304,6 +2305,12 @@ html {
   border-radius: 0px 0px 10px 10px;
   background: #fff;
 }
+.toolbar{
+  box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+}
+.toolbar_card{
+  background: border-box;
+}
 .hidden {
   display: none !important;
 }
@@ -2434,4 +2441,11 @@ button{
 .hiddenState_opt_edit{
   width:22%;
   margin: auto;
+}
+
+.matchmaking_p{
+  position: absolute;right: -200px; top: 0;width: 195px;
+}
+.button_create_opportunity:hover{
+  color:white;
 }

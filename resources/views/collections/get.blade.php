@@ -149,8 +149,8 @@
 										<a href="/cards/{{ $opc->id }}#"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2 opt_align_mobile"  style="color: #219BC4">Read more</a>
 
 										<div>
-											<a href="#"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2 opt_align_mobile" data-toggle="dropdown"  style="color: #219BC4">Send my professional card</a>
-											<div class="dropdown-menu dropdown-menu-right"  style="padding: 0px;">
+											<a href="#" onclick="gotoChatWithOPT({{ $opc->user_id }},{{ $opc->id }})"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2 opt_align_mobile"   style="color: #219BC4">Send my interest</a>
+											<!-- <div class="dropdown-menu dropdown-menu-right"  style="padding: 0px;">
 												@if(count($opt_list) > 0) 
 													<ul style="margin: 0px;padding: 0px;">
 														@foreach ($opt_list as $item)
@@ -161,7 +161,7 @@
 												@else
 													<li class="list-unstyled send_opentowork"><a href="{{ URL::to('/') }}/opentowork/{{ $opc->id }}/refer">Create New one</a></li>
 												@endif
-											</div>
+											</div> -->
 										</div>
 									</div>
 								</div>

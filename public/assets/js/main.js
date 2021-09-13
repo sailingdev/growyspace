@@ -3157,6 +3157,15 @@ $(document).ready(function() {
 			console.log('success')
 		}
 	});
+	$('#profile_share').editable({
+		type: 'text',
+		pk: 1,
+		url: '/post',
+		showbuttons: false,
+		success: function(data) {
+			console.log('success')
+		}
+	});
 
 	//add to collection in the opportunity
 	$('.opportunity_collection').editable({
@@ -3577,13 +3586,33 @@ function gotoChatWithCard(ownerID,ownerProduct){
 	window.location.href = '/messages/' + ownerID + '?msg=' + btoa(encoded_msg);
 
 }
-function gotoChatWithOPT(ownerID,ownerProduct,){
+function gotoChatWithOPT(ownerID,ownerProduct){
 
-	var encoded_msg = '{OPENTOWORK' + ownerProduct + '}';
+	var encoded_msg = '{INTEREST' + ownerProduct + '}';
 	
 	window.location.href = '/messages/' + ownerID + '?msg=' + btoa(encoded_msg);
+	// $.ajax({
+	// 	type:'POST',
+	// 	url:base_url + 'ajax/get_user_data',
+	// 	dataType:'json',
+	// 	data:{
+	// 		data_user_id:ownerID,
+	// 		_token: $('._token').val()
+	// 	},
+	// 	cache: false,
+	// 	success:function(data) {
+	// 		if (data.complete) {
+	// 			if(data.user.full_name){
+	// 				let firstName = data.user.full_name.split(' ');
+	// 				var encoded_msg = 'Hi, ' + firstName[0] + '!' + '<br /><br />' + 'I would like to learn more about this opportunity.';
+	// 				window.location.href = '/messages/' + ownerID + '?msg=' + btoa(encoded_msg);
 
+	// 			}
+	// 		}
+	// 	}
+	// });
 }
+
 
 function checkOngoingExp(){
   var checkbox = document.getElementById('ongoingExp');
@@ -3708,7 +3737,210 @@ $(".profile_save" ).click(function() {
 	var profile_city = $(".opc_city" ).val();
 	var profile_presentation = $(".profile_presentation" ).val();
 	var looking_for = $("input[name='pro_looking_for']:checked").val();
+	var opc_roles = $('.opc_roles').val();
+	var opc_fields = $('.opc_fields').val();
+
+	//education & experience
+	var exp_title2 = $('.exp_role').val();
+	var edu_title3 = $('.edu_role').val();
 	
+
+	var dataid2 = $('#another_experience').attr('data-id');		
+	var exp_company2 = $('.exp_company').val();
+	var exp_country_code2 = $('.exp_country').val();
+	var exp_city2 = $('.exp_city').val();
+	var exp_from_date2 = $('.exp_from_date').val();
+	var exp_to_date2 = $('.exp_to_date').val();
+	var to_date_title2 = exp_to_date2;
+	if(!exp_to_date2)to_date_title2 = 'Present';
+
+	if(exp_title2 !=""){
+
+		if(exp_company2 == "" || exp_country_code2 == "" || exp_city2 == "" || exp_from_date2 == ""){
+			$.notify({
+				// options
+				message: 'Please Complete the writing experience' 
+			},{
+				// settings
+				type: 'danger',
+				placement: {
+					align: 'center'
+				},
+				delay:1000,
+				z_index:20000
+			});
+			
+			return false;
+		}else{
+			var this_ = $(this);
+				
+			var formData2 = new FormData();
+			
+	
+			formData2.append('exp_company', exp_company2);
+			formData2.append('exp_country_code',  exp_country_code2);
+			formData2.append('exp_city', exp_city2);
+			formData2.append('exp_title',  exp_title2);
+			formData2.append('exp_from_date',  exp_from_date2);
+			formData2.append('exp_to_date',  exp_to_date2);
+			
+			if(dataid2 !='') {
+				formData2.append('experience_edit_mode',  1);
+				formData2.append('exp_id',  dataid2);
+			}
+	
+			formData2.append('_token', $('._token').val());
+			
+			$.ajax({
+				async: true,
+				url: base_url + 'ajax/add_edit_experience',
+				dataType: "json",
+				type : "POST",
+				data : formData2,
+				contentType : false,
+				cache : false,
+				processData : false,
+				xhr: function() {
+					var xhr = new window.XMLHttpRequest();
+					xhr.upload.addEventListener("progress", function(evt) {
+						if (evt.lengthComputable) {
+							
+						}
+					}, false);
+					return xhr;
+				},
+				success : function(data)
+				{
+					if (data.complete) {
+						
+						if(dataid2 == '') {
+							//adding them to the above
+							
+							var str = '<div class="row m-0 p-0 profile_company" id="profile_exp_'+data.last_inserted_id+'">';
+							str += '<p class="w-33 m-0 p-0 font-weight-bold exp_db_role">'+exp_title2+'</p>';
+							str += '<p class="w-33 m-0 p-0 text-center mb-2 exp_db_company">'+exp_company2+'</p>';
+							str += '<p class="w-33 m-0 p-0 cusor_pointer text-right "><img src="/assets/images/Icon-edit.svg" alt="Edit" style="width:25px;"><span class="pl-2">Edit</span></p>';
+							str += '<p class="w-33 m-0 p-0 exp_db_country_city"><span class="fa fa-map-marker"></span>&nbsp;'+exp_country_code2+', '+exp_city2+'</p>';
+							str += '<p class="w-33 m-0 p-0 text-center exp_db_date">'+exp_from_date2+' - '+to_date_title2+'</p>';
+							str += '<p class="w-33 m-0 p-0 cusor_pointer text-right onclick="javascript:removeProfile_experience('+data.last_inserted_id+')"">Remove</p>';
+							str += '<input type="hidden" class="db_country_code" value="'+exp_country_code2+'" />';
+							str += '<input type="hidden" class="db_city" value="'+exp_city2+'" />';
+							str += '<input type="hidden" class="db_from_date" value="'+exp_from_date2+'" />';
+							str += '<input type="hidden" class="db_to_date" value="'+exp_to_date2+'" />';
+							str += '</div>';
+							str += '<hr>';
+							$('.profile_experience_area').append(str);
+							
+							$('.exp_company').val('');
+							$('.exp_country_code').val('');
+							$('.exp_city').val('');
+							$('.exp_title').val('');
+							var msg = 'Experience added successfully';
+						}else{
+							var msg = 'Experience updated successfully';
+						}
+						
+					}
+				},
+				error: function(xhr, errStr) {
+	
+				}
+			});	
+		}
+
+
+
+	
+	}
+	if(edu_title3 !=""){
+		var dataid3 = $('#another_education').attr('data-id');
+		var edu_school3 = $('.edu_school').val();
+		var edu_country3 = $('.edu_country').val();
+		var edu_city3 = $('.edu_city').val();
+		var edu_from_year3 = $('.edu_from_year').val();
+		var edu_to_year3 = $('.edu_to_year').val();
+		var edu_type_of_title3 = $('.edu_type_of_title').val();
+		var to_date_title3 = edu_to_year3;
+		if(!edu_to_year3)to_date_title3 = 'Present';
+
+
+		if(edu_school3 == "" || edu_country3 == "" || edu_city3 == "" || edu_from_year3 == ""){
+			$.notify({
+				// options
+				message: 'Please Complete the writing education' 
+			},{
+				// settings
+				type: 'danger',
+				placement: {
+					align: 'center'
+				},
+				delay:1000,
+				z_index:20000
+			});
+			
+			return false;
+		}else{
+			var education_edit_mode3 = 0;
+			if(dataid3 !='') education_edit_mode3 = 1;
+	
+			$.ajax({
+				type:'POST',
+				url:base_url + 'ajax/add_edit_education',
+				dataType:'json',
+				data:{
+					education_edit_mode:education_edit_mode3,
+					edu_id:dataid3,
+					school:edu_school3,
+					country_code:edu_country3,
+					city:edu_city3,
+					from_year:edu_from_year3,
+					to_year:edu_to_year3,
+					// description:edu_to_year,
+					type_of_title:edu_type_of_title3,
+					title:edu_title3,
+					_token: $('._token').val()
+				},
+				cache: false,
+				success:function(data) {
+					if (data.complete) {
+						
+						if(dataid3 == '') {
+							//adding them to the above
+							
+							var str = '<div class="row m-0 p-0 profile_company" id="profile_exp_'+data.last_inserted_id+'">';
+							str += '<p class="w-33 m-0 p-0 font-weight-bold db_edu_role">'+edu_title3+'</p>';
+							str += '<p class="w-33 m-0 p-0 text-center mb-2 db_edu_school">'+edu_school3+'</p>';
+							str += '<p class="w-33 m-0 p-0 cusor_pointer text-right "><img src="/assets/images/Icon-edit.svg" alt="Edit" style="width:25px;"><span class="pl-2">Edit</span></p>';
+							str += '<p class="w-33 m-0 p-0 db_edu_country_city"><span class="fa fa-map-marker"></span>&nbsp;'+edu_country3+', '+edu_city3+'</p>';
+							str += '<p class="w-33 m-0 p-0 text-center db_edu_date">'+edu_from_year3+' - '+edu_to_year3+'</p>';
+							str += '<p class="w-33 m-0 p-0 cusor_pointer text-right" onclick="javascript:removeProfile_education('+data.last_inserted_id+')">Remove</p>';
+							str += '<input type="hidden" class="db_edu_country_city" value="'+edu_country3+'" />';
+							str += '<input type="hidden" class="db_edu_city" value="'+edu_city3+'" />';
+							str += '<input type="hidden" class="db_edu_from_year" value="'+edu_from_year3+'" />';
+							str += '<input type="hidden" class="db_edu_to_year" value="'+edu_to_year3+'" />';
+							str += '</div>';
+							str += '<hr>';
+							$('.profile_education_area').append(str);
+							
+							$('.edu_school').val('');
+							$('.edu_country').val('');
+							$('.edu_city').val('');
+							$('.edu_role').val('');
+							var msg = 'Education added successfully';
+						}else{
+							var msg = 'Education updated successfully';
+						}
+						
+						
+					}
+				}
+			});	
+		}
+
+
+
+	
+	}	
 	$.ajax({
 		type:'POST',
 		url:base_url + 'ajax/update_profile',
@@ -3721,6 +3953,8 @@ $(".profile_save" ).click(function() {
 			profile_city:profile_city,
 			looking_for:looking_for,
 			profile_presentation:profile_presentation,
+			opc_roles:opc_roles.toString(),
+			opc_fields:opc_fields.toString(),
 			_token: $('._token').val()
 		},
 		cache: false,
@@ -4010,8 +4244,24 @@ $('.opentowork_endorse').click(function(){
 	var user_id = $(this).attr('data-user-id');
 	var logined = $(this).attr('data-logined');
 	var optid = $(this).attr('data-opt-id');
-
+	
 	if(logined == 0){	
+		return false;
+	}
+	if(logined == user_id){
+		$.notify({
+			// options
+			message: 'You can not endorce your skills' 
+		},{
+			// settings
+			type: 'danger',
+			placement: {
+				align: 'center'
+			},
+			delay:1000,
+			z_index:20000
+		});
+		
 		return false;
 	}
 	$.ajax({

@@ -1505,7 +1505,39 @@ class AjaxController extends Controller
 			$profile_country = isset($request->profile_country) ? $request->profile_country : false;
 			$profile_city = isset($request->profile_city) ? $request->profile_city : false;
 			$profile_presentation = isset($request->profile_presentation) ? $request->profile_presentation : false;
+			$opc_fields = isset($request->opc_fields) ? $request->opc_fields :'';
+			$opc_roles = isset($request->opc_roles) ? $request->opc_roles : '';
 			$profile_looking_for = isset($request->looking_for) ? $request->looking_for : 0;
+
+			if($opc_fields != ''){
+				
+				$opc_fields_array = explode(',',$opc_fields);
+				
+				foreach($opc_fields_array as $opc_field) {
+					$opf = Opportunity_card_field::where('name',$opc_field)->first();
+					
+					if ($opf === null) {
+						$newopf = new Opportunity_card_field;
+						$newopf->name = $opc_field;
+						$newopf->save();
+					}
+				} 
+			}
+			if($opc_roles != ''){
+				
+				$opc_roles_array = explode(',',$opc_roles);
+				
+				foreach($opc_roles_array as $opc_role) {
+					
+					$opf_role = Roles::where('name',$opc_role)->get();
+					
+					if (count($opf_role) == 0) {
+						$newopf_role = new Roles;
+						$newopf_role->name = $opc_role;
+						$newopf_role->save();
+					}
+				}
+			}
 
 				$ue = User::find($profile_id);
 				
@@ -1530,7 +1562,8 @@ class AjaxController extends Controller
 			$ue->profession             = $profession;
 			$ue->my_pitch             = $profile_presentation;
 			$ue->looking_for             = $profile_looking_for;
-
+			if($opc_fields != '') $ue->fields = json_encode($opc_fields_array);
+			if($opc_roles != '') $ue->roles = json_encode($opc_roles_array);
 			$ue->save();
 			
 	
@@ -4469,5 +4502,84 @@ class AjaxController extends Controller
 				  return $pdf->download('Opportunity card-'.$card_id.'.pdf');
 
 				// return view('PDF.opportunity',$data);
+	}
+	public function exportProfile(Request $request) {
+
+		$user_id = $request->id;
+		$type = 'profile';
+			$opc  = User::find($user_id);
+			if($opc === null) {
+				abort(404);
+			}
+			$third_person = true;
+			$logged_in_user_id = 0;
+			if(Auth::guard('user')->user() && Auth::guard('user')->user()->id){
+				$logged_in_user_id = Auth::guard('user')->user()->id;
+				if($logged_in_user_id == $user_id) $third_person = false;
+	
+			}
+		
+			$countries = Config::get('countries');
+	
+			$opc_fields_json = $opc->fields;
+			$opc_fields = [];
+			
+			if (trim($opc_fields_json) != '') {
+				$opc_fields = json_decode($opc_fields_json,true);
+			}
+	
+			$opc_roles_json = $opc->roles;
+			$opc_roles = [];
+			
+			if (trim($opc_roles_json) != '') {
+				$opc_roles = json_decode($opc_roles_json,true);
+			}
+			$meta_title = $opc->title;
+	
+			//skill vs endorse
+			$endorsed_users = [];
+			foreach($opc_fields as $skill){
+				$opSkill = Opportunity_card_field::where('name',$skill)->first();
+				$itemList = Endorse_list::where('received_user_id', $user_id)->where('skill_id', $opSkill->id)->pluck('given_user_id')->toArray();
+				$endorsed_users[$skill] = $itemList;
+			}
+	
+			//getting my opportunity list
+			
+			$opportunityList = Opportunity_card::where('user_id',$logged_in_user_id)->get();
+			$user_educations = User_education::where('user_id',$user_id)->orderByRaw('-to_year','desc')->orderBy('from_year', 'Desc')->get();
+			$user_experiences = User_experience::where('user_id',$user_id)->orderByRaw('-to_date','desc')->orderBy('from_date', 'Desc')->get();
+			
+			//SEO
+			$og_url = URL::to('/')."/opentowork"."/".$opc->id;
+			$og_title = $opc->company.' '.$opc->title;
+			$og_description = $opc->description;
+			$og_image = URL::to('/')."/assets/images/external-icon open-to-work.png";
+	
+			$data = 
+				[
+					'countries' => $countries,
+					'opc_fields' => $opc_fields,
+					'opc_roles' => $opc_roles,
+					'opc_endorse' => $endorsed_users,
+					'meta_title' => $meta_title,
+					'opc' => $opc,
+					'logged_in_user_id'=> $logged_in_user_id,
+					'third_person'=> $third_person,
+					'opc_list' => $opportunityList,
+					'user_id' => $logged_in_user_id,
+					'opportunity_card_page' => true,
+					'user_educations' => $user_educations,
+					'user_experiences' => $user_experiences,
+					'og_url'=>$og_url,
+					'og_title'=>$og_title,
+					'og_description'=>$og_description,
+					'og_image'=>$og_image,
+				];
+			  
+			  $pdf = PDF::loadView('PDF.profile', $data);  
+			  return $pdf->download('profile-'.$user_id.'.pdf');
+
+			// return view('PDF.opentowork',$data);
 	}
 }

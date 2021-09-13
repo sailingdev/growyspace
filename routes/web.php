@@ -172,6 +172,7 @@ Route::post('/ajax/upload_attachment' ,'AjaxController@upload_attachment');
 Route::get('/download/{file}' ,'AjaxController@download_attachment');
 Route::get('/exportOPW/{id}' ,'AjaxController@exportOPW');
 Route::get('/exportOPP/{id}' ,'AjaxController@exportOPP');
+Route::get('/exportProfile/{id}' ,'AjaxController@exportProfile');
 
 Route::prefix('growyspace-admin')->group(function() {
 

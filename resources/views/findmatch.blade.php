@@ -107,8 +107,8 @@
 							<a href="/cards/{{ $opc->id }}#"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2"  style="color: #219BC4">Read more</a>
 							@if($third_person)	
 								
-									<a href="#"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2" data-toggle="dropdown"  style="color: #219BC4">Send my professional card</a>
-									<div class="dropdown-menu dropdown-menu-right"  style="padding: 0px;">
+									<a href="#" onclick="gotoChatWithOPT({{ $opc->user_id }},{{ $opc->id }})" class="text-decoration-none textcolor-blue pull-right pr-2 pl-2"  style="color: #219BC4">Send my interest</a>
+									<!-- <div class="dropdown-menu dropdown-menu-right"  style="padding: 0px;">
 										@if(count($opentowork_card) > 0) 
 											<ul style="margin: 0px;padding: 0px;">
 												@foreach ($opentowork_card as $item)
@@ -119,7 +119,7 @@
 										@else
 											<li class="list-unstyled send_opentowork"><a href="{{ URL::to('/') }}/opentowork/{{ $opc->id }}/refer">Create New one</a></li>
 										@endif
-									</div>
+									</div> -->
 
 									<a href="#" data-pk="{{ $opc->id }}" data-type="checklist" data-source="{{ URL::to('/') }}/ajax/get_opc_collection_list/{{$opc->id}}"  data-title="Select collections" class="opportunity_collection editable editable-click  float-right  text-decoration-none textcolor-blue pr-2 pl-2" data-placement="bottom"   data-original-title="" title="">Add to collection</a>   
 													

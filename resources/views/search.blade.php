@@ -44,11 +44,6 @@
 							</div>
 							<div class="form-check">
 								<label class="form-check-label">
-									<input type="radio" class="form-check-input" {{ $type == 3 ? 'checked' : '' }} name="type" value="3">Professional cards
-								</label>
-							</div>
-							<div class="form-check">
-								<label class="form-check-label">
 									<input type="radio" class="form-check-input" {{ $type == 1 ? 'checked' : '' }} name="type" value="1">Profiles
 								</label>
 							</div>
@@ -104,25 +99,25 @@
 										<a href="/cards/{{ $opc->id }}#"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2 opt_align_mobile"  style="color: #219BC4">Read more</a>
 					
 										
-										<a href="#"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2 opt_align_mobile" data-toggle="dropdown"  style="color: #219BC4">Send my professional card</a>
-										<div class="dropdown-menu dropdown-menu-right"  style="padding: 0px;">
+										<a href="#" onclick="gotoChatWithOPT({{ $opc->user_id }},{{ $opc->id }})"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2 opt_align_mobile"   style="color: #219BC4">Send my interest</a>
+										<!-- <div class="dropdown-menu dropdown-menu-right"  style="padding: 0px;">
 											@if(count($opt_list) > 0) 
 												<ul style="margin: 0px;padding: 0px;">
 													@foreach ($opt_list as $item)
-														<li class="list-unstyled send_opentowork"><a onclick="gotoChatWithOPT({{ $opc->user_id }}, {{$item->id}})" class="cusor_pointer">{{$item->title}} - {{json_decode($item->fields,true)[0]}}</a></li>
+														<li class="list-unstyled send_opentowork"><a onclick="gotoChatWithInterests({{ $opc->user_id }}, {{$item->id}})" class="cusor_pointer">{{$item->title}} - {{json_decode($item->fields,true)[0]}}</a></li>
 													@endforeach
 														<li class="list-unstyled send_opentowork"><a href="{{ URL::to('/') }}/opentowork/{{ $opc->id }}/refer">Create New one</a></li>
 												</ul>
 											@else
 												<li class="list-unstyled send_opentowork"><a href="{{ URL::to('/') }}/opentowork/{{ $opc->id }}/refer">Create New one</a></li>
 											@endif
-										</div>
+										</div> -->
 
 										<a href="#" data-pk="{{ $opc->id }}" data-type="checklist" data-source="{{ URL::to('/') }}/ajax/get_opc_collection_list/{{$opc->id}}"  data-title="Select collections" class="opportunity_collection editable editable-click  float-right  text-decoration-none textcolor-blue pr-2 pl-2 opt_align_mobile" data-placement="bottom"   data-original-title="" title="">Add to collection</a>   
 															
 									@elseif(!$user_id && $user_id != $opc->user_id)
 										<a href="/cards/{{ $opc->id }}#"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2 opt_align_mobile"  style="color: #219BC4" >Read more</a>
-										<a href="/user/login"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2 opt_align_mobile" style="color: #219BC4" data-toggle="modal" data-target="#login_modal">Send my professional card</a>		
+										<a href="/user/login"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2 opt_align_mobile" style="color: #219BC4" data-toggle="modal" data-target="#login_modal">Send my interest</a>		
 										<a href="/user/login" class="float-right  text-decoration-none textcolor-blue pr-2 pl-2 opt_align_mobile" data-toggle="modal" data-target="#login_modal">Add to collection</a> 							
 									@endif
 									</div>

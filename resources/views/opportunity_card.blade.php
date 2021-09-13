@@ -10,8 +10,8 @@
         <!-- opportunity -->
         <div class="card mt-5 mb-2 bgcolor-e1e3dd">
         @if($user_id)
-        <a onclick="window.history.back();" class="left_back mb-1 cusor_pointer display_image1"><img src="/assets/images/Frame 6.svg" alt="Back" ></a>
-        <a onclick="window.history.back();" class="left_back cusor_pointer display_image2"><img src="/assets/images/backformobile.svg" alt="Back" ></a>
+        <a href="/search?type=2" class="left_back mb-1 cusor_pointer display_image1"><img src="/assets/images/Frame 6.svg" alt="Back" ></a>
+        <a href="/search?type=2" class="left_back cusor_pointer display_image2"><img src="/assets/images/backformobile.svg" alt="Back" ></a>
         @endif
             <div class="card-header pl-4 pr-4 color-oppportunity h-100">
                 <div class="row m-0 p-0 opportunity_header">
@@ -86,8 +86,8 @@
 
 							<!-- <a href="#" id="opportunity_findmatch" data-type="select" data-value="Not selected" data-title="Find Matches" class="editable editable-click  float-right  text-decoration-none textcolor-blue pr-2 pl-2" data-placement="bottom"  data-original-title="" title="" style="color: #E1E3DD;">Find Matches</a> -->
 						@else
-							<a href="#"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2 opt_align_mobile" data-toggle="dropdown"  style="color: #219BC4">Send my professional card</a>
-							<div class="dropdown-menu dropdown-menu-right"  style="padding: 0px;">
+							<a href="#" onclick="gotoChatWithOPT({{ $opc->user_id }},{{ $opc->id }})"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2 opt_align_mobile"  style="color: #219BC4">Send my interest</a>
+							<!-- <div class="dropdown-menu dropdown-menu-right"  style="padding: 0px;">
 								@if(count($opc_list) > 0) 
 									<ul style="margin: 0px;padding: 0px;">
 										@foreach ($opc_list as $item)
@@ -98,7 +98,7 @@
 								@else
 									<li class="list-unstyled send_opentowork"><a href="{{ URL::to('/') }}/opentowork/{{ $opc->id }}/refer">Create New one</a></li>
 								@endif
-							</div>
+							</div> -->
 						@endif
                         </div>
 					@else
@@ -108,7 +108,7 @@
 
 							<a href="#" class="float-right  text-decoration-none textcolor-blue  pr-2 pl-2 opt_align_mobile"  data-toggle="modal" data-target="#login_modal">Share</a> 
                             <a href="#" class="float-right  text-decoration-none textcolor-blue  pr-2 pl-2 cusor_pointer opt_align_mobile"  data-toggle="modal" data-target="#login_modal" >Download PDF</a>
-                            <a href="/user/login"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2 opt_align_mobile"  style="color: #219BC4"  data-toggle="modal" data-target="#login_modal">Send my professional card</a>
+                            <a href="/user/login"  class="text-decoration-none textcolor-blue pull-right pr-2 pl-2 opt_align_mobile"  style="color: #219BC4"  data-toggle="modal" data-target="#login_modal">Send my interest</a>
                         </div>
                     @endif
                 </div>
@@ -118,7 +118,7 @@
         <div class="mt-5"></div>
         <p class="text-center">
         @if($user_id)
-            <a  onclick="window.history.back();" class="cusor_pointer"><img src='/assets/images/back_arrow_round.svg' alt='Back' ></a>
+            <a  href="/search?type=2" class="cusor_pointer"><img src='/assets/images/back_arrow_round.svg' alt='Back' ></a>
         @endif
         </p>		
     </div>

@@ -9,6 +9,7 @@ use Helpers;
 use Config;
 use App\User; 
 use App\User_skill; 
+use App\Opportunity_card_field;
 use App\User_experience; 
 use App\Order; 
 use App\Shipping_method; 
@@ -17,6 +18,8 @@ use App\Opentowork_card;
 use App\Forgot_password; 
 use App\User_education; 
 use App\User_collection; 
+use App\Roles; 
+use App\Endorse_list;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\URL;
 
@@ -230,13 +233,35 @@ class UserController extends Controller
 		if ($user->is_deleted == 1) {
 			$owner = false;
 		}
-		
+		$licence = $user->licence;
+
 		$country_code = $user->country_code;
 		$country = isset($countries[$country_code]) ? $countries[$country_code] : '';
 		$opportunity_cards = Opportunity_card::where('user_id',$user_id)->get();
 		$opentowork_card = Opentowork_card::where('user_id',$user_id)->get();
 		$user_skills = User_skill::where('user_id',$user_id)->orderBy('name','asc')->pluck('name')->toArray();
 		$user_educations = User_education::where('user_id',$user_id)->orderByRaw('-to_year','desc')->orderBy('from_year', 'Desc')->get();
+
+		$opc_fields_json = $user->fields;
+		$opc_fields = [];
+		
+		if (trim($opc_fields_json) != '') {
+			$opc_fields = json_decode($opc_fields_json,true);
+		}
+
+		$opc_roles_json = $user->roles;
+		$opc_roles = [];
+		
+		if (trim($opc_roles_json) != '') {
+			$opc_roles = json_decode($opc_roles_json,true);
+		}
+		//skill vs endorse
+		$endorsed_users = [];
+		foreach($opc_fields as $skill){
+			$opSkill = Opportunity_card_field::where('name',$skill)->first();
+			$itemList = Endorse_list::where('received_user_id', $user_id)->where('skill_id', $opSkill->id)->pluck('given_user_id')->toArray();
+			$endorsed_users[$skill] = $itemList;
+		}
 		$months = [
 			'01' => 'January',
 			'02' => 'February',
@@ -310,6 +335,11 @@ class UserController extends Controller
 			'og_title'=>$og_title,
 			'og_description'=>$og_description,
 			'og_image'=>$og_image,
+			'opc_fields' => $opc_fields,
+			'opc_roles' => $opc_roles,
+			'opc_endorse' => $endorsed_users,
+			'licence' => $licence,
+
 		]);
 	}
 	public function unsubscribe($user_id) {
@@ -337,7 +367,7 @@ class UserController extends Controller
 		$countries = Config::get('countries');
 		$user_id = Auth::guard('user')->user()->id;
 		$user = User::find($user_id);
-		
+		$licence = $user->licence;
 		if ($user->is_deleted == 1) {
 			Auth::guard('user')->logout();
 			return redirect('/')->withInput()->withErrors(['Your account cancelled please contact support.']);
@@ -351,6 +381,26 @@ class UserController extends Controller
 		$user_skills = User_skill::where('user_id',$user_id)->orderBy('name','asc')->pluck('name')->toArray();
 		$user_educations = User_education::where('user_id',$user_id)->orderByRaw('-to_year','desc')->orderBy('from_year', 'Desc')->get();
 		
+		$opc_fields_json = $user->fields;
+		$opc_fields = [];
+		
+		if (trim($opc_fields_json) != '') {
+			$opc_fields = json_decode($opc_fields_json,true);
+		}
+
+		$opc_roles_json = $user->roles;
+		$opc_roles = [];
+		
+		if (trim($opc_roles_json) != '') {
+			$opc_roles = json_decode($opc_roles_json,true);
+		}
+		//skill vs endorse
+		$endorsed_users = [];
+		foreach($opc_fields as $skill){
+			$opSkill = Opportunity_card_field::where('name',$skill)->first();
+			$itemList = Endorse_list::where('received_user_id', $user_id)->where('skill_id', $opSkill->id)->pluck('given_user_id')->toArray();
+			$endorsed_users[$skill] = $itemList;
+		}
 		$months = [
 			'01' => 'January',
 			'02' => 'February',
@@ -398,7 +448,12 @@ class UserController extends Controller
 			'logged_in_user_id' => $logged_in_user_id,
 			'owner' => true,
 			'third_person'=> $third_person,
-			'user_id' => $user_id
+			'user_id' => $user_id,
+			'opc_fields' => $opc_fields,
+			'opc_roles' => $opc_roles,
+			'opc_endorse' => $endorsed_users,
+			'licence' => $licence,
+
 		]);
 	}
 	public function updateAccount($param_id) {
@@ -427,8 +482,30 @@ class UserController extends Controller
 		$country = isset($countries[$country_code]) ? $countries[$country_code] : '';
 		$opportunity_cards = Opportunity_card::where('user_id',$user_id)->get();
 		$opentowork_card = Opentowork_card::where('user_id',$user_id)->get();
-		$user_skills = User_skill::where('user_id',$user_id)->orderBy('name','asc')->pluck('name')->toArray();
+		// $user_skills_all = User_skill::orderBy('name','asc')->pluck('name')->toArray();
+		$opc_fields = Opportunity_card_field::orderBy('name','asc')->pluck('name')->toArray();
+		$opc_roles = Roles::orderBy('name','asc')->pluck('name')->toArray();
+		// $user_skills = User_skill::where('user_id',$user_id)->orderBy('name','asc')->pluck('name')->toArray();
+
+		$opc_fields_json = $user->fields;
+		$opc_fields_db = [];
+		
+		if (trim($opc_fields_json) != '') {
+			$opc_fields_db = json_decode($opc_fields_json,true);
+		}
+
+		$opc_roles_json = $user->roles;
+		$opc_roles_db = [];
+		
+		if (trim($opc_roles_json) != '') {
+			$opc_roles_db = json_decode($opc_roles_json,true);
+		}
+
 		$user_educations = User_education::where('user_id',$user_id)->orderByRaw('-to_year','desc')->orderBy('from_year', 'Desc')->get();
+
+		if($user->looking_for == 1){ // opporutniy seeker
+
+		}
 		
 		$months = [
 			'01' => 'January',
@@ -456,7 +533,8 @@ class UserController extends Controller
 				$profile_image_src = URL::to('/').'/uploads/profile/'.$user_id.'/'.$user->profile_image_cropped;
 			}
 		}
-		
+
+		$opc_roles = Roles::orderBy('name','asc')->pluck('name')->toArray();
 		
 
 		return view('user.edit_profile',[
@@ -465,10 +543,13 @@ class UserController extends Controller
 			'country' => $country,
 			'opportunity_cards' => $opportunity_cards,
 			'opentowork_card' => $opentowork_card,
-			'user_skills' => $user_skills,
+			'opc_fields' => $opc_fields,
+			'opc_fields_db' => $opc_fields_db,
 			'user_educations' => $user_educations,
 			'user_experiences' => $user_experiences,
 			'months' => $months,
+			'opc_roles' => $opc_roles,
+			'opc_roles_db' => $opc_roles_db,
 			'user' => $user,
 			'owner' => true,
 			'third_person'=> false,
